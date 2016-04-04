@@ -1,4 +1,4 @@
 package interfaces;
 
-public interface Enemy extends DynamicGameObject, Unit {
+public interface Enemy extends Unit {
 }

@@ -1,6 +1,6 @@
 package interfaces;
 
-public interface Attack extends DynamicGameObject {
+public interface Attack{
     double getDamage();
 
     void applyAttack(Unit unitToAttack);

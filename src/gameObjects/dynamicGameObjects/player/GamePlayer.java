@@ -1,5 +1,6 @@
 package gameObjects.dynamicGameObjects.player;
 
+import gameObjects.AbstractDynamicGameObject;
 import interfaces.Attack;
 import interfaces.DynamicGameObject;
 import interfaces.Player;
@@ -7,84 +8,38 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-public class GamePlayer implements Player {
-    @Override
+public class GamePlayer extends AbstractDynamicGameObject implements Player{
+    private String name;
+    private Integer score = 0;
+    private double health = 100;
+
+    public GamePlayer(double x, double y, String name) {
+        super(x, y);
+        this.name = name;
+        this.setImage("/5.png");
+    }
+
     public String getName() {
-        return null;
+        return name;
     }
-
-    @Override
-    public void setName() {
-
+    public void setName(String name) {
+        this.name = name;
     }
-
-    @Override
     public Integer getScore() {
-        return null;
+        return score;
     }
-
-    @Override
     public Attack produceAttack() {
         return null;
     }
-
-    @Override
-    public void setVelocity(double x, double y) {
-
-    }
-
-    @Override
-    public void addVelocity(double x, double y) {
-
-    }
-
-    @Override
-    public Rectangle2D getBoundary() {
-        return null;
-    }
-
-    @Override
-    public boolean isIntersecting(DynamicGameObject otherDynamicObject) {
-        return false;
-    }
-
-    @Override
-    public double getX() {
-        return 0;
-    }
-
-    @Override
-    public double getY() {
-        return 0;
-    }
-
-    @Override
-    public void draw(GraphicsContext graphicsContext) {
-
-    }
-
-    @Override
-    public void update() {
-
-    }
-
-    @Override
     public Double getHealth() {
-        return null;
+        return health;
     }
 
-    @Override
-    public Image getImage() {
-        return null;
+    public void draw(GraphicsContext gc) {
+        gc.drawImage(image, x, y);
     }
-
-    @Override
-    public void setImage(Image image) {
-
-    }
-
-    @Override
-    public void setImage(String imagePath) {
-
+    public void update() {
+        x += velocityX;
+        y += velocityY;
     }
 }

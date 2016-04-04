@@ -23,11 +23,19 @@ public class GameDatabase implements Database{
 
     @Override
     public String getHighScore() {
-        this.highScores.toString();
-        return null;
+        StringBuilder highScoreStringBuilder = new StringBuilder();
+        int index = 1;
+        for (HighScore highScore : highScores) {
+            highScoreStringBuilder.append(String.format("%d. %s%n", index,highScore.toString()));
+            index++;
+        }
+
+        return highScoreStringBuilder.toString();
     }
 
     private TreeSet<HighScore> loadCurrentHighScores() {
+        // Use ObjectInputStream to read data and parse it here.
+        // ToDo: Add into the interface another method to save data on game exit.
         return null;
     }
 }
