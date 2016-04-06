@@ -9,6 +9,6 @@ public class GameEngine extends AnimationTimer implements Engine{
     }
 
     public void handle(long now) {
-        start();
+
     }
 }

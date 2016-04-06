@@ -11,8 +11,8 @@ public abstract class AbstractDynamicGameObject implements DynamicGameObject{
     public double y;
     public double velocityX = 0;
     public double velocityY = 0;
-    public double width = image.getWidth();
-    public double height = image.getHeight();
+    public double width;
+    public double height;
 
     public AbstractDynamicGameObject(double x, double y) {
         this.x = x;

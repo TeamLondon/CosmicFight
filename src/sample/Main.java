@@ -1,11 +1,9 @@
 package sample;
 
+import core.ObjectHandler;
 import gameObjects.dynamicGameObjects.player.GamePlayer;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -15,9 +13,10 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
     public static final int WIDTH = 800, HEIGHT = (WIDTH / 12) * 9;
-    Controller controller;
+    ObjectHandler handler;
+
     Stage window;
-    Image player;
+    GamePlayer player;
 
     public void start(Stage primaryStage) throws Exception{
         window = primaryStage;
@@ -29,10 +28,12 @@ public class Main extends Application {
 
         Canvas canvas = new Canvas( WIDTH, HEIGHT);
         layout.getChildren().add(canvas);
-        controller = new Controller();
+        handler = new ObjectHandler();
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
-        player = new Image("5.png");
+        //player = new Image("5.png");
+        //player = new GamePlayer(100, 100, "Asen");
+        handler.addDynamicObject(new GamePlayer(100, 100, "Asen"));
        new AnimationTimer() {
            public void handle(long currentNanoTime) {
                update();
@@ -45,11 +46,10 @@ public class Main extends Application {
 
     public void draw(GraphicsContext gc) {
         gc.clearRect(0, 0, 800,600);
-        controller.draw(gc);
-        gc.drawImage(player, 100, 100);
+        handler.draw(gc);
     }
     public void update() {
-        controller.update();
+        handler.update();
     }
 
     public static void main(String[] args) {
