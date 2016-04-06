@@ -1,9 +1,14 @@
 package interfaces;
 
 public interface Database {
+    /*
     Player getPlayer();
 
     String getHighScore();
+    */
+    void clearHighScoreInfo();
 
-    // Plausible addition of state information.
+    void saveHighScoreInfo();
+
+    void loadHighScoreInfo();
 }
