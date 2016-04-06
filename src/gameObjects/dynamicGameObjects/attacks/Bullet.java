@@ -14,12 +14,10 @@ public class Bullet extends AbstractDynamicGameObject{
         this.image = new Image("/bullet.png");
     }
 
-    @Override
     public void draw(GraphicsContext gc) {
         gc.drawImage(image, x, y, 15, 15);
     }
 
-    @Override
     public void update() {
         y -= 15;
     }

@@ -1,5 +1,6 @@
 package sample;
 
+import core.EnemyFactory;
 import core.InputHandler;
 import core.ObjectHandler;
 import gameObjects.dynamicGameObjects.player.GamePlayer;
@@ -17,6 +18,7 @@ public class Main extends Application {
     Stage window;
     GamePlayer player;
     InputHandler keyInput;
+    EnemyFactory factory;
 
     public void start(Stage primaryStage) throws Exception{
         window = primaryStage;
@@ -31,10 +33,16 @@ public class Main extends Application {
         //layout.setCursor(Cursor.NONE);
 
         handler = new ObjectHandler();
+        factory = new EnemyFactory();
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
         player = new GamePlayer(100, 100, "Asen");
         handler.addDynamicObject(player);
+        handler.addDynamicObject(factory.createEnemy(400, 0, "SlowEnemy"));
+        handler.addDynamicObject(factory.createEnemy(300, 0, "SlowEnemy"));
+        handler.addDynamicObject(factory.createEnemy(500, 0, "SlowEnemy"));
+        handler.addDynamicObject(factory.createEnemy(450, 0, "SlowEnemy"));
+        handler.addDynamicObject(factory.createEnemy(350, 0, "SlowEnemy"));
 
         keyInput = new InputHandler(scene, player, handler);
 

@@ -20,7 +20,7 @@ public class GamePlayer extends AbstractDynamicGameObject implements Player{
     public GamePlayer(double x, double y, String name) {
         super(x, y);
         this.name = name;
-        this.setImage("/5.png");
+        this.setImage("/player.png");
     }
 
     public String getName() {
@@ -53,7 +53,7 @@ public class GamePlayer extends AbstractDynamicGameObject implements Player{
         //Image rotatedImage = iv.snapshot(params, null);
         x = clamp(x, 0, Main.WIDTH - 50);
         y = clamp(y, 0, Main.HEIGHT - 50);
-        gc.drawImage(image, x, y, 50, 50);
+        gc.drawImage(image, this.x, this.y, 50, 50);
     }
 
     private double clamp(double var, double min, double max) {

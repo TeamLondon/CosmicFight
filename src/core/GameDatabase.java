@@ -16,12 +16,10 @@ public class GameDatabase implements Database{
         this.highScores = loadCurrentHighScores();
     }
 
-    @Override
     public Player getPlayer() {
         return this.currentPlayer;
     }
 
-    @Override
     public String getHighScore() {
         StringBuilder highScoreStringBuilder = new StringBuilder();
         int index = 1;
