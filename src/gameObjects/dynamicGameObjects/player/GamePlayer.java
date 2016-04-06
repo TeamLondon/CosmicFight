@@ -35,11 +35,12 @@ public class GamePlayer extends AbstractDynamicGameObject implements Player{
         return health;
     }
 
-    public void draw(GraphicsContext gc) {
-        gc.drawImage(image, x, y);
-    }
     public void update() {
         x += velocityX;
         y += velocityY;
     }
+    public void draw(GraphicsContext gc) {
+        gc.drawImage(image, x, y);
+    }
+
 }

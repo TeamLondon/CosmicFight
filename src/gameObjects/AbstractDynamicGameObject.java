@@ -51,4 +51,8 @@ public abstract class AbstractDynamicGameObject implements DynamicGameObject{
         Image i = new Image(imagePath);
         setImage(i);
     }
+    public void setPosition(double x, double y) {
+        this.x = x;
+        this.y = y;
+    }
 }

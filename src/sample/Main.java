@@ -1,5 +1,6 @@
 package sample;
 
+import core.InputHandler;
 import core.ObjectHandler;
 import gameObjects.dynamicGameObjects.player.GamePlayer;
 import javafx.animation.AnimationTimer;
@@ -7,16 +8,15 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class Main extends Application {
     public static final int WIDTH = 800, HEIGHT = (WIDTH / 12) * 9;
     ObjectHandler handler;
-
     Stage window;
     GamePlayer player;
+    InputHandler keyInput;
 
     public void start(Stage primaryStage) throws Exception{
         window = primaryStage;
@@ -28,12 +28,16 @@ public class Main extends Application {
 
         Canvas canvas = new Canvas( WIDTH, HEIGHT);
         layout.getChildren().add(canvas);
+        //layout.setCursor(Cursor.NONE);
+
         handler = new ObjectHandler();
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
-        //player = new Image("5.png");
-        //player = new GamePlayer(100, 100, "Asen");
-        handler.addDynamicObject(new GamePlayer(100, 100, "Asen"));
+        player = new GamePlayer(100, 100, "Asen");
+        handler.addDynamicObject(player);
+
+        keyInput = new InputHandler(scene, player);
+
        new AnimationTimer() {
            public void handle(long currentNanoTime) {
                update();
@@ -50,6 +54,7 @@ public class Main extends Application {
     }
     public void update() {
         handler.update();
+        keyInput.refresh();
     }
 
     public static void main(String[] args) {
