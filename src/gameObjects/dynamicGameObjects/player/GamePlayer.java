@@ -3,6 +3,7 @@ package gameObjects.dynamicGameObjects.player;
 import gameObjects.AbstractDynamicGameObject;
 import interfaces.Attack;
 import interfaces.DynamicGameObject;
+import interfaces.HighScore;
 import interfaces.Player;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.SnapshotParameters;
@@ -29,6 +30,12 @@ public class GamePlayer extends AbstractDynamicGameObject implements Player{
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public HighScore getHighScore() {
+        return null;
+    }
+
     public Integer getScore() {
         return score;
     }
