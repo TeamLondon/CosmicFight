@@ -14,6 +14,7 @@ public class GameDatabase implements Database {
         loadHighScoreInfo();
     }
 
+<<<<<<< HEAD
     @Override
     public void clearHighScoreInfo() {
         this.highScores.clear();
@@ -26,6 +27,18 @@ public class GameDatabase implements Database {
             objectOutputStream.writeObject(this.highScores);
         } catch (IOException ioe) {
             // ToDo: pass exception further.
+=======
+    public Player getPlayer() {
+        return this.currentPlayer;
+    }
+
+    public String getHighScore() {
+        StringBuilder highScoreStringBuilder = new StringBuilder();
+        int index = 1;
+        for (HighScore highScore : highScores) {
+            highScoreStringBuilder.append(String.format("%d. %s%n", index,highScore.toString()));
+            index++;
+>>>>>>> 8700c62d1fee6bac47a33f47b45971cba22ea99a
         }
     }
 

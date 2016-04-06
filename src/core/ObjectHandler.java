@@ -2,7 +2,9 @@ package core;
 
 import gameObjects.AbstractDynamicGameObject;
 import gameObjects.AbstractStaticGameObject;
+import gameObjects.dynamicGameObjects.attacks.Bullet;
 import javafx.scene.canvas.GraphicsContext;
+import sample.Main;
 
 import java.util.LinkedList;
 
@@ -16,6 +18,14 @@ public class ObjectHandler {
             //Gets them and saves their reference to the variable tempObject
             AbstractDynamicGameObject tempObject = dynamicObjects.get(i);
 
+            if (tempObject instanceof Bullet) {
+                if (tempObject.getY() < 0) {
+                    removeDynamicObject(tempObject);
+                    tempObject = null;
+                    //System.gc();
+                    continue;
+                }
+            }
             //And initiates their update method so their fields get updated every time the controller.update() method gets initiated
             tempObject.update();
         }
