@@ -36,7 +36,7 @@ public class Main extends Application {
         player = new GamePlayer(100, 100, "Asen");
         handler.addDynamicObject(player);
 
-        keyInput = new InputHandler(scene, player);
+        keyInput = new InputHandler(scene, player, handler);
 
        new AnimationTimer() {
            public void handle(long currentNanoTime) {
