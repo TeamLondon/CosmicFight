@@ -16,11 +16,11 @@ public class Bullet extends AbstractDynamicGameObject{
 
     @Override
     public void draw(GraphicsContext gc) {
-        gc.drawImage(image, x, y);
+        gc.drawImage(image, x, y, 15, 15);
     }
 
     @Override
     public void update() {
-        y -= 10;
+        y -= 15;
     }
 }
