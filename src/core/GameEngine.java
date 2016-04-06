@@ -6,12 +6,26 @@ import javafx.animation.AnimationTimer;
 
 public class GameEngine extends AnimationTimer implements Engine{
 
-    @Override
     public Player getCurrentPlayer() {
         return null;
     }
 
-    public void Run() {
+    public void run() {
+    }
+
+    @Override
+    public void draw() {
+
+    }
+
+    @Override
+    public void update() {
+
+    }
+
+    @Override
+    public void unloadContent() {
+
     }
 
     public void handle(long now) {
