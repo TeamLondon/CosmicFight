@@ -9,8 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 
 public class RoundAsteroid extends AbstractDynamicGameObject{
-
-    private int rotation = 1;
+    private double rotation = 1.0;
 
     public RoundAsteroid(double x, double y) {
         super(x, y);
@@ -27,7 +26,6 @@ public class RoundAsteroid extends AbstractDynamicGameObject{
         gc.drawImage(rotatedImage, this.x, this.y, Constants.ROUND_ASTEROID_WIDTH, Constants.ROUND_ASTEROID_HEIGHT);
         this.rotation += 2;
     }
-
     public void update() {
         this.y += 1;
     }

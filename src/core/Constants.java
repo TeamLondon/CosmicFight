@@ -15,5 +15,6 @@ public class Constants {
     public static final String CHAOTIC_ENEMY_PATH = "/ChaoticEnemy.png";
     public static final String BULLET_PATH = "/bullet.png";
     public static final String SLOW_ENEMY_PATH = "/enemy.png";
+    public static final String BACKGROUND_PATH = "/background/GalaxyUno.bmp";
 
 }

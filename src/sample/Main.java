@@ -18,14 +18,14 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-    ObjectHandler handler;
-    Stage window;
-    GamePlayer player;
-    InputHandler keyInput;
-    UnitFactory factory;
-    ImageView backgroundImageView;
-    double backgroundScrollSpeed = 0.7;
-    Pane backgroundLayer;
+    private ObjectHandler handler;
+    private Stage window;
+    private GamePlayer player;
+    private InputHandler keyInput;
+    private UnitFactory factory;
+    private ImageView backgroundImageView;
+    private double backgroundScrollSpeed = 0.7;
+    private Pane backgroundLayer;
 
     public void start(Stage primaryStage) throws Exception{
         window = primaryStage;
@@ -40,10 +40,10 @@ public class Main extends Application {
 
         // background
         // --------------------------------
-        backgroundImageView = new ImageView(getClass().getResource("/background/GalaxyUno.bmp").toExternalForm());
+        backgroundImageView = new ImageView(getClass().getResource(Constants.BACKGROUND_PATH).toExternalForm());
         backgroundImageView.setFitWidth(Constants.WINDOW_WIDTH);
         // reposition the map. it is scrolling from bottom of the background to top of the background
-        backgroundImageView.relocate( 0, -backgroundImageView.getImage().getHeight() + Constants.WINDOW_HEIGHT);
+        backgroundImageView.relocate(0, -backgroundImageView.getImage().getHeight() + Constants.WINDOW_HEIGHT);
         // add background to layer
         backgroundLayer.getChildren().add(backgroundImageView);
 
@@ -59,18 +59,16 @@ public class Main extends Application {
         handler.addDynamicObject(factory.createUnit(500, 0, "SlowEnemy"));
         handler.addDynamicObject(factory.createUnit(450, 0, "SlowEnemy"));
         handler.addDynamicObject(factory.createUnit(350, 0, "SlowEnemy"));
-        handler.addDynamicObject(factory.createUnit(200, 0, "ChaoticEnemy"));
-        handler.addDynamicObject(factory.createUnit(400, 0, "ChaoticEnemy"));
+       //handler.addDynamicObject(factory.createUnit(200, 0, "ChaoticEnemy"));
+       //handler.addDynamicObject(factory.createUnit(400, 0, "ChaoticEnemy"));
         handler.addDynamicObject(factory.createUnit(500, 0, "RoundAsteroid"));
 
         keyInput = new InputHandler(scene, player, handler);
 
-       new AnimationTimer() {
+        new AnimationTimer() {
            public void handle(long currentNanoTime) {
                update();
                draw(gc);
-
-
            }
        }.start();
 
@@ -78,18 +76,14 @@ public class Main extends Application {
     }
 
     public void draw(GraphicsContext gc) {
-        // scroll background
-        // ---------------------------
-        // calculate new position
+        // scroll background and calculate new position
         double y = backgroundImageView.getLayoutY() + backgroundScrollSpeed;
         // check bounds. we scroll upwards, so the y position is negative. once it's > 0 we have reached the end of the map and stop scrolling
-        if( Double.compare( y, 0) >= 0) {
-            y = -1000;
-        }
+        if( Double.compare( y, 0) >= 0) y = -1000;
         // move background
-        backgroundImageView.setLayoutY( y);
+        backgroundImageView.setLayoutY(y);
 
-        gc.clearRect(0,0, 800,600);
+        gc.clearRect(0,0, Constants.WINDOW_WIDTH,Constants.WINDOW_HEIGHT);
         handler.draw(gc);
     }
     public void update() {

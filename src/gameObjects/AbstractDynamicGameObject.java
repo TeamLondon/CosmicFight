@@ -21,6 +21,7 @@ public abstract class AbstractDynamicGameObject implements DynamicGameObject{
         this.y = y;
         this.hitPoints = 100;
     }
+
     public void setVelocity(double x, double y) {
         velocityX = x;
         velocityY = y;

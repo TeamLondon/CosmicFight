@@ -19,9 +19,8 @@ public class Bullet extends AbstractDynamicGameObject{
     }
 
     public void draw(GraphicsContext gc) {
-        gc.drawImage(image, x + 18, y, this.width, this.height);
+        gc.drawImage(image, this.x + 18, this.y, this.width, this.height);
     }
-
     public void update() {
         y -= 10;
     }

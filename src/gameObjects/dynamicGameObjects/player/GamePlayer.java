@@ -18,6 +18,7 @@ public class GamePlayer extends AbstractDynamicGameObject implements Player{
     private String name;
     private Integer score = 0;
     private double health = 100;
+    private double fireRate = 0.4;
 
     public GamePlayer(double x, double y, String name) {
         super(x, y);
@@ -66,5 +67,10 @@ public class GamePlayer extends AbstractDynamicGameObject implements Player{
         else if(var <= min)return var = min;
         else return var;
     }
-
+    public double getFireRate() {
+        return fireRate;
+    }
+    public void setFireRate(double fireRate) {
+        this.fireRate = fireRate;
+    }
 }
