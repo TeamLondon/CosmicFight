@@ -6,20 +6,16 @@ import core.InputHandler;
 import core.ObjectHandler;
 import gameObjects.AbstractDynamicGameObject;
 import gameObjects.dynamicGameObjects.attacks.Bullet;
-import gameObjects.dynamicGameObjects.enemies.SlowEnemy;
 import gameObjects.dynamicGameObjects.player.GamePlayer;
 import gameObjects.dynamicGameObjects.rocks.RoundAsteroid;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-
 
 public class Main extends Application {
     ObjectHandler handler;
@@ -28,7 +24,7 @@ public class Main extends Application {
     InputHandler keyInput;
     UnitFactory factory;
     ImageView backgroundImageView;
-    double backgroundScrollSpeed = 1.0;
+    double backgroundScrollSpeed = 0.7;
     Pane backgroundLayer;
 
     public void start(Stage primaryStage) throws Exception{
@@ -74,22 +70,7 @@ public class Main extends Application {
                update();
                draw(gc);
 
-               for (int i = 0; i < handler.dynamicObjects.size(); i++) {
-                   AbstractDynamicGameObject tempObject = handler.dynamicObjects.get(i);
 
-                   if (tempObject instanceof Bullet) {
-                       for (int j = 0; j < handler.dynamicObjects.size(); j++) {
-                           AbstractDynamicGameObject innerTempObject = handler.dynamicObjects.get(j);
-
-                           if (innerTempObject instanceof RoundAsteroid) {
-                               if (innerTempObject.isIntersecting(tempObject)) {
-                                   System.out.println("Removed");
-                                   handler.removeDynamicObject(innerTempObject);
-                               }
-                           }
-                       }
-                   }
-               }
            }
        }.start();
 

@@ -26,8 +26,4 @@ public class ChaoticEnemy extends AbstractDynamicGameObject implements Enemy {
     public void update() {
         this.y += 3;
     }
-
-    public Double getHealth() {
-        return null;
-    }
 }

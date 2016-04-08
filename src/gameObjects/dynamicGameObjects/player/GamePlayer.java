@@ -47,7 +47,7 @@ public class GamePlayer extends AbstractDynamicGameObject implements Player{
     public void update() {
         x += velocityX;
         y += velocityY;
-        y += 2;
+        y += 1;
     }
     public void draw(GraphicsContext gc) {
 

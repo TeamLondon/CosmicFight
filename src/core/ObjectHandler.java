@@ -19,15 +19,48 @@ public class ObjectHandler {
         for (int i = 0; i < dynamicObjects.size(); i++) {
             //Gets them and saves their reference to the variable tempObject
             AbstractDynamicGameObject tempObject = dynamicObjects.get(i);
-
+            /////////////////////////////////////////////Collision testing///////////////////////////////////////////////////////
+            //If the current object is an instance of the bullet lass
             if (tempObject instanceof Bullet) {
+                //Check if it is outside of the map
                 if (tempObject.getY() < 0) {
-                    removeDynamicObject(tempObject);
+                    //If yes - remove it
+                    this.removeDynamicObject(tempObject);
                     tempObject = null;
                     //System.gc();
                     continue;
                 }
+
+                //Iterate through all game objects again
+                for (int j = 0; j < this.dynamicObjects.size(); j++) {
+                    AbstractDynamicGameObject currentTempObject = this.dynamicObjects.get(j);
+
+                    //Check if the current object is the player or another bullet
+                    if (currentTempObject instanceof GamePlayer || currentTempObject instanceof Bullet) {
+                        //If yes - continue..
+                        continue;
+                    }else {
+                        //Else check if it is intersecting with the bullet
+                        if (tempObject.isIntersecting(currentTempObject)) {
+                            //If yes subtract 10 from the total hitPoints of this object
+                            currentTempObject.setHitPoints(currentTempObject.getHitPoints() - 10);
+                            //Then destroy this bullet and initiate its death animation
+                            tempObject.initiateDestroyAnimation();
+                            this.removeDynamicObject(tempObject);
+                            //tempObject = null;
+                            //Then check if the current object currently has 0 health
+                            if (currentTempObject.getHitPoints() <= 0) {
+                                //If yes - initiate its death animation and remove it from the list
+                                currentTempObject.initiateDestroyAnimation();
+                                this.removeDynamicObject(currentTempObject);
+                                currentTempObject = null;
+                            }
+                        }
+                    }
+                }
             }
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
             //And initiates their update method so their fields get updated every time the controller.update() method gets initiated
             tempObject.update();
         }

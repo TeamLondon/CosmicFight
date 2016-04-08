@@ -22,6 +22,6 @@ public class SlowEnemy extends AbstractDynamicGameObject implements Enemy{
         gc.drawImage(image, this.x, this.y, Constants.SLOW_ENEMY_WIDTH, Constants.SLOW_ENEMY_HEIGHT);
     }
     public void update() {
-        this.y+= 3;
+        this.y+= 1;
     }
 }
