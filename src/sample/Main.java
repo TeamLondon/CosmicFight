@@ -1,49 +1,57 @@
 package sample;
 
+import core.Constants;
 import core.UnitFactory;
 import core.InputHandler;
 import core.ObjectHandler;
+import gameObjects.AbstractDynamicGameObject;
+import gameObjects.dynamicGameObjects.attacks.Bullet;
+import gameObjects.dynamicGameObjects.enemies.SlowEnemy;
 import gameObjects.dynamicGameObjects.player.GamePlayer;
+import gameObjects.dynamicGameObjects.rocks.RoundAsteroid;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 
 public class Main extends Application {
-    public static final int WIDTH = 800, HEIGHT = (WIDTH / 12) * 9;
     ObjectHandler handler;
     Stage window;
     GamePlayer player;
     InputHandler keyInput;
     UnitFactory factory;
-    Image background = new Image("/background.png");
+    ImageView backgroundImageView;
+    double backgroundScrollSpeed = 1.0;
+    Pane backgroundLayer;
 
     public void start(Stage primaryStage) throws Exception{
         window = primaryStage;
-        window.setTitle( "Collect the Money Bags!" );
-
+        window.setTitle("Cosmic Fight");
         StackPane layout = new StackPane();
-        Scene scene = new Scene(layout, WIDTH, HEIGHT);
+        backgroundLayer = new Pane();
+        Scene scene = new Scene(layout, Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
         window.setScene(scene);
-
-        Canvas canvas = new Canvas( WIDTH, HEIGHT);
+        Canvas canvas = new Canvas(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
+        layout.getChildren().add(backgroundLayer);
         layout.getChildren().add(canvas);
+
+        // background
+        // --------------------------------
+        backgroundImageView = new ImageView(getClass().getResource("/background/GalaxyUno.bmp").toExternalForm());
+        backgroundImageView.setFitWidth(Constants.WINDOW_WIDTH);
+        // reposition the map. it is scrolling from bottom of the background to top of the background
+        backgroundImageView.relocate( 0, -backgroundImageView.getImage().getHeight() + Constants.WINDOW_HEIGHT);
+        // add background to layer
+        backgroundLayer.getChildren().add(backgroundImageView);
+
         //layout.setCursor(Cursor.NONE);
-
-
-
-        BackgroundImage myBI= new BackgroundImage(new Image("/background.png"),
-                BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-                BackgroundSize.DEFAULT);
-        //then you set to your node
-        layout.setBackground(new Background(myBI));
-
-
         handler = new ObjectHandler();
         factory = new UnitFactory();
         GraphicsContext gc = canvas.getGraphicsContext2D();
@@ -59,13 +67,29 @@ public class Main extends Application {
         handler.addDynamicObject(factory.createUnit(400, 0, "ChaoticEnemy"));
         handler.addDynamicObject(factory.createUnit(500, 0, "RoundAsteroid"));
 
-
         keyInput = new InputHandler(scene, player, handler);
 
        new AnimationTimer() {
            public void handle(long currentNanoTime) {
                update();
                draw(gc);
+
+               for (int i = 0; i < handler.dynamicObjects.size(); i++) {
+                   AbstractDynamicGameObject tempObject = handler.dynamicObjects.get(i);
+
+                   if (tempObject instanceof Bullet) {
+                       for (int j = 0; j < handler.dynamicObjects.size(); j++) {
+                           AbstractDynamicGameObject innerTempObject = handler.dynamicObjects.get(j);
+
+                           if (innerTempObject instanceof RoundAsteroid) {
+                               if (innerTempObject.isIntersecting(tempObject)) {
+                                   System.out.println("Removed");
+                                   handler.removeDynamicObject(innerTempObject);
+                               }
+                           }
+                       }
+                   }
+               }
            }
        }.start();
 
@@ -73,6 +97,17 @@ public class Main extends Application {
     }
 
     public void draw(GraphicsContext gc) {
+        // scroll background
+        // ---------------------------
+        // calculate new position
+        double y = backgroundImageView.getLayoutY() + backgroundScrollSpeed;
+        // check bounds. we scroll upwards, so the y position is negative. once it's > 0 we have reached the end of the map and stop scrolling
+        if( Double.compare( y, 0) >= 0) {
+            y = -1000;
+        }
+        // move background
+        backgroundImageView.setLayoutY( y);
+
         gc.clearRect(0,0, 800,600);
         handler.draw(gc);
     }

@@ -3,13 +3,15 @@ package core;
 import gameObjects.AbstractDynamicGameObject;
 import gameObjects.AbstractStaticGameObject;
 import gameObjects.dynamicGameObjects.attacks.Bullet;
+import gameObjects.dynamicGameObjects.player.GamePlayer;
+import gameObjects.dynamicGameObjects.rocks.RoundAsteroid;
 import javafx.scene.canvas.GraphicsContext;
 import sample.Main;
 
 import java.util.LinkedList;
 
 public class ObjectHandler {
-    LinkedList<AbstractDynamicGameObject> dynamicObjects = new LinkedList<AbstractDynamicGameObject>();
+    public LinkedList<AbstractDynamicGameObject> dynamicObjects = new LinkedList<AbstractDynamicGameObject>();
     LinkedList<AbstractStaticGameObject> staticObjects = new LinkedList<AbstractStaticGameObject>();
 
     public void update() {

@@ -1,5 +1,6 @@
 package gameObjects.dynamicGameObjects.attacks;
 
+import core.Constants;
 import gameObjects.AbstractDynamicGameObject;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.*;
@@ -11,14 +12,16 @@ public class Bullet extends AbstractDynamicGameObject{
 
     public Bullet(double x, double y) {
         super(x, y);
-        this.image = new Image("/bullet.png");
+        this.image = new Image(Constants.BULLET_PATH);
+        this.width = Constants.BULLET_WIDTH;
+        this.height = Constants.BULLET_HEIGHT;
     }
 
     public void draw(GraphicsContext gc) {
-        gc.drawImage(image, x, y, 15, 15);
+        gc.drawImage(image, x + 18, y, this.width, this.height);
     }
 
     public void update() {
-        y -= 15;
+        y -= 10;
     }
 }

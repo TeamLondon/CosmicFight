@@ -1,6 +1,7 @@
 package gameObjects;
 
 import interfaces.DynamicGameObject;
+import interfaces.Unit;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -31,7 +32,7 @@ public abstract class AbstractDynamicGameObject implements DynamicGameObject{
         return new Rectangle2D(this.x,this.y,width,height);
     }
     public boolean isIntersecting(DynamicGameObject otherDynamicObject) {
-        return false;
+        return otherDynamicObject.getBoundary().intersects( this.getBoundary() );
     }
     public double getX() {
         return x;
@@ -54,5 +55,8 @@ public abstract class AbstractDynamicGameObject implements DynamicGameObject{
     public void setPosition(double x, double y) {
         this.x = x;
         this.y = y;
+    }
+    public void initiateDestroyAnimation() {
+
     }
 }

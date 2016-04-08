@@ -1,5 +1,6 @@
 package gameObjects.dynamicGameObjects.enemies;
 
+import core.Constants;
 import gameObjects.AbstractDynamicGameObject;
 import interfaces.DynamicGameObject;
 import interfaces.Enemy;
@@ -11,14 +12,14 @@ public class SlowEnemy extends AbstractDynamicGameObject implements Enemy{
 
     public SlowEnemy(double x, double y) {
         super(x, y);
-        this.image = new Image("/enemy.png");
+        this.image = new Image(Constants.SLOW_ENEMY_PATH);
     }
 
     public Double getHealth() {
         return null;
     }
     public void draw(GraphicsContext gc) {
-        gc.drawImage(image, this.x, this.y, 50, 50);
+        gc.drawImage(image, this.x, this.y, Constants.SLOW_ENEMY_WIDTH, Constants.SLOW_ENEMY_HEIGHT);
     }
     public void update() {
         this.y+= 3;
