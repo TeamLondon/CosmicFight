@@ -25,6 +25,10 @@ public class RoundAsteroid extends AbstractDynamicGameObject{
 
         gc.drawImage(rotatedImage, this.x, this.y, Constants.ROUND_ASTEROID_WIDTH, Constants.ROUND_ASTEROID_HEIGHT);
         this.rotation += 2;
+
+        if (!this.isAlive()) {
+
+        }
     }
     public void update() {
         this.y += 1;

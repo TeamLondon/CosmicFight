@@ -15,11 +15,13 @@ public abstract class AbstractDynamicGameObject implements DynamicGameObject{
     public double width;
     public double height;
     private double hitPoints;
+    private boolean isAlive;
 
     public AbstractDynamicGameObject(double x, double y) {
         this.x = x;
         this.y = y;
         this.hitPoints = 100;
+        this.isAlive = true;
     }
 
     public void setVelocity(double x, double y) {
@@ -59,12 +61,18 @@ public abstract class AbstractDynamicGameObject implements DynamicGameObject{
         this.y = y;
     }
     public void initiateDestroyAnimation() {
-
+        this.setAlive(false);
     }
     public double getHitPoints() {
         return hitPoints;
     }
     public void setHitPoints(double hitPoints) {
         this.hitPoints = hitPoints;
+    }
+    public boolean isAlive() {
+        return isAlive;
+    }
+    public void setAlive(boolean alive) {
+        isAlive = alive;
     }
 }

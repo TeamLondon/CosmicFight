@@ -20,17 +20,8 @@ public class ObjectHandler {
             //Gets them and saves their reference to the variable tempObject
             AbstractDynamicGameObject tempObject = dynamicObjects.get(i);
             /////////////////////////////////////////////Collision testing///////////////////////////////////////////////////////
-            //If the current object is an instance of the bullet lass
+            //If the current object is an instance of the bullet class
             if (tempObject instanceof Bullet) {
-                //Check if it is outside of the map
-                if (tempObject.getY() < 0) {
-                    //If yes - remove it
-                    this.removeDynamicObject(tempObject);
-                    tempObject = null;
-                    //System.gc();
-                    continue;
-                }
-
                 //Iterate through all game objects again
                 for (int j = 0; j < this.dynamicObjects.size(); j++) {
                     AbstractDynamicGameObject currentTempObject = this.dynamicObjects.get(j);
@@ -61,6 +52,14 @@ public class ObjectHandler {
             }
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+            //Checks if the object is outside of the map
+            if (tempObject.getY() < 0) {
+                //If yes - remove it
+                this.removeDynamicObject(tempObject);
+                tempObject = null;
+                //System.gc();
+                continue;
+            }
             //And initiates their update method so their fields get updated every time the controller.update() method gets initiated
             tempObject.update();
         }
