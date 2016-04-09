@@ -1,32 +1,23 @@
 package sample;
 
 import core.Constants;
-import core.UnitFactory;
 import core.InputHandler;
 import core.ObjectHandler;
-import gameObjects.AbstractDynamicGameObject;
-import gameObjects.dynamicGameObjects.attacks.Bullet;
+import core.UnitFactory;
 import gameObjects.dynamicGameObjects.player.GamePlayer;
-import gameObjects.dynamicGameObjects.rocks.RoundAsteroid;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-<<<<<<< HEAD
     public static final int WIDTH = 800, HEIGHT = (WIDTH / 12) * 9;
-    ObjectHandler handler;
-    Stage window;
-    GamePlayer player;
-    InputHandler keyInput;
-    EnemyFactory factory;
-    Image background = new Image("/background.png");
-=======
+
     private ObjectHandler handler;
     private Stage window;
     private GamePlayer player;
@@ -35,7 +26,6 @@ public class Main extends Application {
     private ImageView backgroundImageView;
     private double backgroundScrollSpeed = 0.7;
     private Pane backgroundLayer;
->>>>>>> c54db4d77cb99173ca12205a58113f8d77fe3fb3
 
     public void start(Stage primaryStage) throws Exception{
         window = primaryStage;
