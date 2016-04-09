@@ -11,6 +11,7 @@ public abstract class AbstractStaticGameObject implements StaticGameObject{
     private double width;
     private double height;
 
+
     public double getX() {
         return x;
     }

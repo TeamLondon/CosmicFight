@@ -1,5 +1,6 @@
 package interfaces;
 
 public interface Unit {
-    Double getHealth();
+    double getHitPoints();
+    void setHitPoints(double hitPoints);
 }

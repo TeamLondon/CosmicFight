@@ -1,6 +1,7 @@
 package gameObjects;
 
 import interfaces.DynamicGameObject;
+import interfaces.Unit;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -13,10 +14,14 @@ public abstract class AbstractDynamicGameObject implements DynamicGameObject{
     public double velocityY = 0;
     public double width;
     public double height;
+    private double hitPoints;
+    private boolean isAlive;
 
     public AbstractDynamicGameObject(double x, double y) {
         this.x = x;
         this.y = y;
+        this.hitPoints = 100;
+        this.isAlive = true;
     }
 
     public void setVelocity(double x, double y) {
@@ -31,7 +36,7 @@ public abstract class AbstractDynamicGameObject implements DynamicGameObject{
         return new Rectangle2D(this.x,this.y,width,height);
     }
     public boolean isIntersecting(DynamicGameObject otherDynamicObject) {
-        return false;
+        return otherDynamicObject.getBoundary().intersects( this.getBoundary() );
     }
     public double getX() {
         return x;
@@ -54,5 +59,20 @@ public abstract class AbstractDynamicGameObject implements DynamicGameObject{
     public void setPosition(double x, double y) {
         this.x = x;
         this.y = y;
+    }
+    public void initiateDestroyAnimation() {
+        this.setAlive(false);
+    }
+    public double getHitPoints() {
+        return hitPoints;
+    }
+    public void setHitPoints(double hitPoints) {
+        this.hitPoints = hitPoints;
+    }
+    public boolean isAlive() {
+        return isAlive;
+    }
+    public void setAlive(boolean alive) {
+        isAlive = alive;
     }
 }

@@ -3,63 +3,58 @@ package core;
 import gameObjects.dynamicGameObjects.attacks.Bullet;
 import gameObjects.dynamicGameObjects.player.GamePlayer;
 import javafx.scene.Scene;
-import javafx.scene.input.MouseEvent;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class InputHandler {
-    Scene scene;
-    GamePlayer player;
-    ObjectHandler handler;
-    List<String> input;
+    private Scene scene;
+    private GamePlayer player;
+    private ObjectHandler handler;
+    private List<String> input;
+    private long lastTime = System.nanoTime();
 
     public InputHandler(Scene scene, GamePlayer player, ObjectHandler handler) {
         this.scene = scene;
         this.player = player;
-        input = new ArrayList<>();
+        this.input = new ArrayList<>();
         this.handler = handler;
     }
 
     public void refresh() {
-        scene.setOnKeyPressed(
+        this.scene.setOnKeyPressed(
                 e -> {
                     String code = e.getCode().toString();
                     if ( !input.contains(code) )
                         this.input.add(code);
                 });
 
-        scene.setOnKeyReleased(
+        this.scene.setOnKeyReleased(
                 e -> {
                     String code = e.getCode().toString();
                     this.input.remove(code);
                 });
-
-      //scene.setOnMouseMoved(
-      //        arg0 -> {
-      //    if(arg0.getEventType() == MouseEvent.MOUSE_MOVED){
-      //        handleMouse(arg0.getX(),arg0.getY(), player);
-      //    }
-      //});
         handleKeys();
     }
-
-   // private void handleMouse(double x, double y, GamePlayer player) {
-   //     player.setPosition(x, y);
-   // }
-
     private void handleKeys() {
-        player.setVelocity(0,0);
-        if (input.contains("LEFT") || input.contains("A"))
-            player.addVelocity(-10,0);
-        if (input.contains("RIGHT") || input.contains("D"))
-            player.addVelocity(10,0);
-        if (input.contains("UP") || input.contains("W"))
-            player.addVelocity(0,-5);
-        if (input.contains("DOWN") || input.contains("S"))
-            player.addVelocity(0,5);
-        if (input.contains("SPACE"))
-            handler.addDynamicObject(new Bullet(player.getX(), player.getY()));
-    }
+        long currentTime = System.nanoTime();
 
+        double elapsedTime = (currentTime - lastTime) / 1_000_000_00.0;
+        this.player.setVelocity(0,0);
+        if (this.input.contains("LEFT") || this.input.contains("A"))
+            this.player.addVelocity(-10,0);
+        if (this.input.contains("RIGHT") || this.input.contains("D"))
+            this.player.addVelocity(10,0);
+        if (this.input.contains("UP") || this.input.contains("W"))
+            this.player.addVelocity(0,-5);
+        if (this.input.contains("DOWN") || this.input.contains("S"))
+            this.player.addVelocity(0,5);
+        if (this.input.contains("SPACE")) {
+            if (elapsedTime > player.getFireRate()) {
+                this.handler.addDynamicObject(new Bullet(player.getX(), player.getY()));
+                lastTime = currentTime;
+            }
+        }
+
+
+    }
 }

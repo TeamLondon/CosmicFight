@@ -1,5 +1,6 @@
 package gameObjects.dynamicGameObjects.enemies;
 
+import core.Constants;
 import gameObjects.AbstractDynamicGameObject;
 import interfaces.Enemy;
 import javafx.scene.canvas.GraphicsContext;
@@ -11,7 +12,7 @@ public class ChaoticEnemy extends AbstractDynamicGameObject implements Enemy {
     public ChaoticEnemy(double x, double y, int luckyNum) {
         super(x, y);
         this.luckyNum = luckyNum;
-        this.image = new Image("/ChaoticEnemy.png");
+        this.image = new Image(Constants.CHAOTIC_ENEMY_PATH);
     }
 
     public void draw(GraphicsContext gc) {
@@ -20,13 +21,9 @@ public class ChaoticEnemy extends AbstractDynamicGameObject implements Enemy {
         double finalX = this.x + animX;
         double finalY = this.y + animY;
 
-        gc.drawImage(image, finalX, finalY, 50, 50);
+        gc.drawImage(image, finalX, finalY, Constants.CHAOTIC_ENEMY_WIDTH, Constants.CHAOTIC_ENEMY_HEIGHT);
     }
     public void update() {
         this.y += 3;
-    }
-
-    public Double getHealth() {
-        return null;
     }
 }

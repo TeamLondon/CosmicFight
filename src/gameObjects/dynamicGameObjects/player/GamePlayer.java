@@ -1,5 +1,6 @@
 package gameObjects.dynamicGameObjects.player;
 
+import core.Constants;
 import gameObjects.AbstractDynamicGameObject;
 import interfaces.Attack;
 import interfaces.DynamicGameObject;
@@ -17,11 +18,12 @@ public class GamePlayer extends AbstractDynamicGameObject implements Player{
     private String name;
     private Integer score = 0;
     private double health = 100;
+    private double fireRate = 0.4;
 
     public GamePlayer(double x, double y, String name) {
         super(x, y);
         this.name = name;
-        this.setImage("/player.png");
+        this.setImage(Constants.PLAYER_PATH);
     }
 
     public String getName() {
@@ -30,12 +32,9 @@ public class GamePlayer extends AbstractDynamicGameObject implements Player{
     public void setName(String name) {
         this.name = name;
     }
-
-    @Override
     public HighScore getHighScore() {
         return null;
     }
-
     public Integer getScore() {
         return score;
     }
@@ -49,7 +48,7 @@ public class GamePlayer extends AbstractDynamicGameObject implements Player{
     public void update() {
         x += velocityX;
         y += velocityY;
-        y += 2;
+        y += 1;
     }
     public void draw(GraphicsContext gc) {
 
@@ -58,9 +57,9 @@ public class GamePlayer extends AbstractDynamicGameObject implements Player{
         //SnapshotParameters params = new SnapshotParameters();
         //params.setFill(Color.TRANSPARENT);
         //Image rotatedImage = iv.snapshot(params, null);
-        x = clamp(x, 0, Main.WIDTH - 50);
-        y = clamp(y, 0, Main.HEIGHT - 50);
-        gc.drawImage(image, this.x, this.y, 50, 50);
+        x = clamp(x, 0, Constants.WINDOW_WIDTH - 50);
+        y = clamp(y, 0, Constants.WINDOW_HEIGHT - 50);
+        gc.drawImage(image, this.x, this.y, Constants.PLAYER_WIDTH, Constants.PLAYER_HEIGHT);
     }
 
     private double clamp(double var, double min, double max) {
@@ -68,5 +67,10 @@ public class GamePlayer extends AbstractDynamicGameObject implements Player{
         else if(var <= min)return var = min;
         else return var;
     }
-
+    public double getFireRate() {
+        return fireRate;
+    }
+    public void setFireRate(double fireRate) {
+        this.fireRate = fireRate;
+    }
 }
