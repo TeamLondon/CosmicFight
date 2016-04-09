@@ -21,7 +21,7 @@ public class Main extends Application {
     GamePlayer player;
     InputHandler keyInput;
     EnemyFactory factory;
-    Image background = new Image("/background.png");;
+    Image background = new Image("/background.png");
 
     public void start(Stage primaryStage) throws Exception{
         window = primaryStage;
