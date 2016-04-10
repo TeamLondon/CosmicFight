@@ -1,5 +1,7 @@
 package interfaces;
 
+import javafx.scene.Scene;
+
 public interface Engine {
     Player getCurrentPlayer();
 
@@ -9,7 +11,7 @@ public interface Engine {
 
     void update();
 
-    void unloadContent();
+    Scene unloadContent();
 
     // Plausible addition of fields and methods.
 }
