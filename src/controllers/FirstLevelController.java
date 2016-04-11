@@ -5,6 +5,7 @@ import core.InputHandler;
 import core.ObjectHandler;
 import core.UnitFactory;
 import enums.Scenes;
+import gameObjects.dynamicGameObjects.enemies.FirstLevelBoss;
 import gameObjects.dynamicGameObjects.player.GamePlayer;
 import interfaces.SceneController;
 import interfaces.StageController;
@@ -63,11 +64,12 @@ public class FirstLevelController implements SceneController, StageController {
         player = new GamePlayer(100, 100, "Asen");
         handler.addDynamicObject(player);
         handler.addDynamicObject(factory.createUnit(400, 0, "SlowEnemy"));
-        handler.addDynamicObject(factory.createUnit(300, 0, "SlowEnemy"));
-        handler.addDynamicObject(factory.createUnit(500, 0, "SlowEnemy"));
-        handler.addDynamicObject(factory.createUnit(450, 0, "SlowEnemy"));
-        handler.addDynamicObject(factory.createUnit(350, 0, "SlowEnemy"));//handler.addDynamicObject(factory.createUnit(200, 0, "ChaoticEnemy"));//handler.addDynamicObject(factory.createUnit(400, 0, "ChaoticEnemy"));
-        handler.addDynamicObject(factory.createUnit(500, 0, "RoundAsteroid"));
+        //handler.addDynamicObject(factory.createUnit(300, 0, "SlowEnemy"));
+        //handler.addDynamicObject(factory.createUnit(500, 0, "SlowEnemy"));
+        //handler.addDynamicObject(factory.createUnit(450, 0, "SlowEnemy"));
+        //handler.addDynamicObject(factory.createUnit(350, 0, "SlowEnemy"));//handler.addDynamicObject(factory.createUnit(200, 0, "ChaoticEnemy"));//handler.addDynamicObject(factory.createUnit(400, 0, "ChaoticEnemy"));
+        //handler.addDynamicObject(factory.createUnit(500, 0, "RoundAsteroid"));
+        handler.addDynamicObject(new FirstLevelBoss(100, 100));
 
         keyInput = new InputHandler(scene, player, handler);
 
@@ -75,15 +77,13 @@ public class FirstLevelController implements SceneController, StageController {
             update();
             draw(gc);
         }}.start();
-
-
     }
 
     public void draw(GraphicsContext gc) {
         // scroll background and calculate new position
         double y = backgroundImageView.getLayoutY() + backgroundScrollSpeed;
         // check bounds. we scroll upwards, so the y position is negative. once it's > 0 we have reached the end of the map and stop scrolling
-        if( Double.compare( y, 0) >= 0) y = -1000;
+        if( Double.compare( y, 0) >= 0) y = 0;
         // move background
         backgroundImageView.setLayoutY(y);
 
@@ -95,9 +95,6 @@ public class FirstLevelController implements SceneController, StageController {
         handler.update();
         keyInput.refresh();
     }
-
-
-
 
     public void setSceneManager(SceneManager sceneManager) {
         this.sceneManager = sceneManager;

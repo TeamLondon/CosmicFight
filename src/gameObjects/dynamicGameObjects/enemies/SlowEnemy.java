@@ -13,13 +13,15 @@ public class SlowEnemy extends AbstractDynamicGameObject implements Enemy{
     public SlowEnemy(double x, double y) {
         super(x, y);
         this.image = new Image(Constants.SLOW_ENEMY_PATH);
+        this.setWidth(Constants.SLOW_ENEMY_WIDTH);
+        this.setHeight(Constants.SLOW_ENEMY_HEIGHT);
     }
 
     public Double getHealth() {
         return null;
     }
     public void draw(GraphicsContext gc) {
-        gc.drawImage(image, this.x, this.y, Constants.SLOW_ENEMY_WIDTH, Constants.SLOW_ENEMY_HEIGHT);
+        gc.drawImage(image, this.getX(), this.getY(), this.getWidth(), this.getHeight());
     }
     public void update() {
         this.y+= 1;
