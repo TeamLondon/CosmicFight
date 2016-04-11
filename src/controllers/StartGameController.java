@@ -1,16 +1,12 @@
 package controllers;
 
-import interfaces.SceneController;
-import interfaces.StageController;
-import javafx.scene.control.Button;
 import enums.Scenes;
-import core.Constants;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
-public class StartGameController implements SceneController, StageController {
-    private SceneManager sceneManager;
-
-    private StageManager stageManager;
-
+public class StartGameController extends AbstractController {
     public StartGameController() {
     }
 
@@ -21,25 +17,27 @@ public class StartGameController implements SceneController, StageController {
     public Button exitGameButton;
 
     public void onStartGameButtonClick() {
-        // this.sceneManager.setScene(Constants.InsertUsernameSceneID);
-        this.stageManager.setScene(Scenes.InsertUsernameScene);
+        this.getStageManager().setScene(Scenes.InsertUsernameScene);
     }
 
     public void onHighScoreButtonClick() {
-        this.sceneManager.setScene(Constants.HighScoreSceneID);
+        this.getStageManager().setScene(Scenes.HighScoreScene);
     }
 
     public void onExitGameButtonClick() {
-        this.sceneManager.setScene(Constants.EndGameSceneID);
+        this.onCloseRequest();
     }
 
-    @Override
-    public void setSceneManager(SceneManager sceneManager) {
-        this.sceneManager = sceneManager;
-    }
-
-    @Override
-    public void setStageManager(StageManager stageManager) {
-        this.stageManager = stageManager;
+    @FXML
+    public void onEnterKeyPress(KeyEvent e) {
+        if (e.getCode() == KeyCode.ENTER) {
+            if (e.getSource() == this.startGameButton) {
+                this.onStartGameButtonClick();
+            } else if (e.getSource() == this.highScoreButton) {
+                this.onHighScoreButtonClick();
+            } else if (e.getSource() == this.exitGameButton) {
+                this.onExitGameButtonClick();
+            }
+        }
     }
 }

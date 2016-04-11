@@ -1,19 +1,18 @@
 package controllers;
 
-import interfaces.SceneController;
-import interfaces.StageController;
+import enums.Scenes;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import enums.Scenes;
+import utilityModels.GameHighScore;
 
-public class InsertUsernameController implements SceneController, StageController {
-    private SceneManager sceneManager;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-    private StageManager stageManager;
 
+public class InsertUsernameController extends AbstractController {
     public TextField usernameTextField;
 
     public Button enterUsernameButton;
@@ -27,22 +26,19 @@ public class InsertUsernameController implements SceneController, StageControlle
     {
         if(e.getCode() == KeyCode.ENTER)
         {
+            String input = this.usernameTextField.getText();
+            Pattern pattern = Pattern.compile("([a-zA-Z]+)[\\W]+([0-9]+)");
+            Matcher matcher = pattern.matcher(input);
+            if (matcher.find()){
+                String name = matcher.group(1);
+                Integer points = Integer.parseInt(matcher.group(2));
+                this.getStageManager().getDatabase().addHighScore(new GameHighScore(name, points));
+            }
             setNextScene();
         }
     }
 
-    @Override
-    public void setSceneManager(SceneManager sceneManager) {
-        this.sceneManager = sceneManager;
-    }
-
     private void setNextScene() {
-        //this.sceneManager.setScene(Constants.StartGameSceneID);
-        this.stageManager.setScene(Scenes.FirstLevelScene);
-    }
-
-    @Override
-    public void setStageManager(StageManager stageManager) {
-        this.stageManager = stageManager;
+        this.getStageManager().setScene(Scenes.FirstLevelScene);
     }
 }

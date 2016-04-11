@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HighScoreController">
+   <children>
+      <ImageView>
+         <image>
+            <Image url="/HighScoreBackground.jpg" />
+         </image>
+      </ImageView>
+   </children>
+   <left>
+      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane layoutY="1.0" prefHeight="229.0" prefWidth="288.0">
+               <children>
+                  <Button fx:id="mainMenuButton" layoutX="93.0" layoutY="96.0" mnemonicParsing="false" onAction="#onMenuButtonClick" onKeyPressed="#onMenuButtonKeyPress" text="Main menu">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </children></Pane>
+   </left>
+   <right>
+      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </right>
+   <top>
+      <Pane prefHeight="218.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="highScoreLabel" layoutX="301.0" layoutY="132.0" text="High score:" textFill="#10109a">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Label>
+         </children></Pane>
+   </top>
+   <center>
+      <ScrollPane fx:id="highScoreScrollPane" maxWidth="250.0" opacity="0.7" prefHeight="230.0" prefViewportHeight="17.0" prefViewportWidth="28.0" prefWidth="250.0">
+         <content>
+            <Label fx:id="highScoreResultsLabel" text="1. Gosho: 10 pt" textFill="#068dee">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </content>
+      </ScrollPane>
+   </center>
+   <bottom>
+      <Pane prefHeight="152.0" prefWidth="800.0" BorderPane.alignment="CENTER" />
+   </bottom>
+</BorderPane>

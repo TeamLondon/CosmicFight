@@ -26,7 +26,7 @@ public class GameHighScore implements HighScore {
     }
 
     @Override
-    public String stringView() {
+    public String toString() {
         String stringView = String.format("%s - %d", this.getPlayerName(), this.getPlayerScore());
         return stringView;
     }
@@ -48,7 +48,7 @@ public class GameHighScore implements HighScore {
     }
 
     private void setPlayerScore(Integer playerScore) {
-        if (playerScore < 0){
+        if (playerScore > 0){
             this.playerScore = playerScore;
         }else{
             throw new InvalidParameterException("Not valid score value!");

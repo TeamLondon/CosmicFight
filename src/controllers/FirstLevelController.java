@@ -1,14 +1,10 @@
 package controllers;
 
-import core.Constants;
-import core.InputHandler;
-import core.ObjectHandler;
-import core.UnitFactory;
+import core.*;
 import enums.Scenes;
 import gameObjects.dynamicGameObjects.enemies.FirstLevelBoss;
 import gameObjects.dynamicGameObjects.player.GamePlayer;
-import interfaces.SceneController;
-import interfaces.StageController;
+
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -18,9 +14,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-public class FirstLevelController implements SceneController, StageController {
-    private SceneManager sceneManager;
-    private StageManager stageManager;
+public class FirstLevelController extends AbstractController {
+    private SimpleStageManager stageManager;
     private Scene scene;
     private Stage stage;
 
@@ -96,10 +91,7 @@ public class FirstLevelController implements SceneController, StageController {
         keyInput.refresh();
     }
 
-    public void setSceneManager(SceneManager sceneManager) {
-        this.sceneManager = sceneManager;
-    }
-    public void setStageManager(StageManager stageManager) {
+    public void setStageManager(SimpleStageManager stageManager) {
         this.stageManager = stageManager;
     }
     private void setNextScene() {
