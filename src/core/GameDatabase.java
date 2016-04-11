@@ -10,6 +10,8 @@ import java.util.TreeSet;
 public class GameDatabase implements Database {
     private TreeSet<HighScore> highScores;
 
+    private Player player;
+
     public GameDatabase() {
         loadHighScoreInfo();
     }
@@ -22,10 +24,22 @@ public class GameDatabase implements Database {
     @Override
     public void saveHighScoreInfo() {
         String savePath = "res\\highscores.save";
-        try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(savePath))) {
+        try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(savePath, false))) {
             objectOutputStream.writeObject(this.highScores);
         } catch (IOException ioe) {
-            // ToDo: pass exception further.
+            System.out.println(ioe.getMessage());
+        }
+    }
+
+    @Override
+    public Player getPlayer() {
+        return this.player;
+    }
+
+    @Override
+    public void setPlayer(Player player) {
+        if (player != null){
+            this.player = player;
         }
     }
 
@@ -37,7 +51,7 @@ public class GameDatabase implements Database {
             index++;
         }
 
-        return  highScoreStringBuilder.toString();
+        return highScoreStringBuilder.toString();
     }
 
     @Override
@@ -55,5 +69,14 @@ public class GameDatabase implements Database {
         } catch (ClassNotFoundException cnfe) {
             // ToDo: pass exception further.
         }
+
+        if (this.highScores == null){
+            this.highScores = new TreeSet<>();
+        }
+    }
+
+    @Override
+    public void addHighScore(HighScore highScore) {
+        this.highScores.add(highScore);
     }
 }

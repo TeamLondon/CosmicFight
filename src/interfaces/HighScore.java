@@ -6,6 +6,4 @@ public interface HighScore extends Serializable,Comparable<HighScore> {
     String getPlayerName();
 
     Integer getPlayerScore();
-
-    String stringView();
 }

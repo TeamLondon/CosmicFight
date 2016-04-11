@@ -1,7 +1,8 @@
 package sample;
 
-import controllers.StageManager;
+import core.*;
 import enums.Scenes;
+import interfaces.Database;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -13,7 +14,12 @@ public class Main extends Application {
     }
 
     public void init(Stage stage) throws java.io.IOException{
-        StageManager stageManager = new StageManager(stage);
+        SimpleSceneBuilder sceneBuilder = new SimpleSceneBuilder();
+        Database gameDatabase = new GameDatabase();
+        MessageBox messageBox = new MessageBox();
+        ConfirmBox confirmBox = new ConfirmBox();
+        SimpleStageManager stageManager = new SimpleStageManager(stage, sceneBuilder, gameDatabase, messageBox, confirmBox);
+
         stageManager.setScene(Scenes.StartGameScene);
         stage.setTitle("Cosmic fight");
     }
