@@ -1,6 +1,5 @@
 package interfaces;
 
-import gameObjects.AbstractDynamicGameObject;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -11,6 +10,6 @@ public interface DynamicGameObject extends Visualizable{
     Rectangle2D getBoundary();
     boolean isIntersecting(DynamicGameObject otherDynamicObject);
 
-    void draw(GraphicsContext graphicsContext);
+    void draw(GraphicsContext gc);
     void update();
 }
