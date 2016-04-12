@@ -10,7 +10,12 @@ import java.util.LinkedList;
 
 public class ObjectHandler {
     public LinkedList<DynamicGameObject> dynamicObjects = new LinkedList<DynamicGameObject>();
-    LinkedList<StaticGameObject> staticObjects = new LinkedList<StaticGameObject>();
+    public LinkedList<StaticGameObject> staticObjects = new LinkedList<StaticGameObject>();
+    private GamePlayer player;
+
+    public ObjectHandler(GamePlayer player) {
+        this.player = player;
+    }
 
     public void update() {
         //This loop goes through all the objects in the game
@@ -32,7 +37,7 @@ public class ObjectHandler {
                         //Else check if it is intersecting with the bullet
                         if (tempObject.isIntersecting(currentTempObject)) {
                             //If yes subtract 10 from the total hitPoints of this object
-                            currentTempObject.applyDamage(5);
+                            currentTempObject.applyDamage(player.getDamage());
                             //Then destroy this bullet and initiate its death animation
                             tempObject.initiateDestroyAnimation();
                             this.removeDynamicObject(tempObject);
