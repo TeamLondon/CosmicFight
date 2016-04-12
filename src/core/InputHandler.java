@@ -2,18 +2,19 @@ package core;
 
 import gameObjects.dynamicGameObjects.attacks.Bullet;
 import gameObjects.dynamicGameObjects.player.GamePlayer;
+import interfaces.Player;
 import javafx.scene.Scene;
 import java.util.ArrayList;
 import java.util.List;
 
 public class InputHandler {
     private Scene scene;
-    private GamePlayer player;
+    private Player player;
     private ObjectHandler handler;
     private List<String> input;
     private long lastTime = System.nanoTime();
 
-    public InputHandler(Scene scene, GamePlayer player, ObjectHandler handler) {
+    public InputHandler(Scene scene, Player player, ObjectHandler handler) {
         this.scene = scene;
         this.player = player;
         this.input = new ArrayList<>();

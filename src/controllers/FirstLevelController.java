@@ -5,7 +5,9 @@ import enums.Scenes;
 import gameObjects.dynamicGameObjects.enemies.FirstLevelBoss;
 import gameObjects.dynamicGameObjects.player.GamePlayer;
 
+import interfaces.Player;
 import javafx.animation.AnimationTimer;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -21,15 +23,16 @@ public class FirstLevelController extends AbstractController {
 
     private ObjectHandler handler;
     private Stage window;
-    private GamePlayer player;
+    private Player player;
     private InputHandler keyInput;
     private UnitFactory factory;
     private ImageView backgroundImageView;
-    private double backgroundScrollSpeed = 0.7;
+    private double backgroundScrollSpeed = 0.3;
     private Pane backgroundLayer;
 
-    public FirstLevelController(Stage stage) {
-        this.stage = stage;
+    public FirstLevelController(SimpleStageManager stageManager) {
+        this.stage = stageManager.getStage();
+        this.stageManager = stageManager;
     }
 
     public void start() throws Exception {
@@ -56,7 +59,8 @@ public class FirstLevelController extends AbstractController {
         factory = new UnitFactory();
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
-        player = new GamePlayer(100, 100, "Asen");
+
+        player = stageManager.getDatabase().getPlayer();
         handler.addDynamicObject(player);
         handler.addDynamicObject(factory.createUnit(400, 0, "SlowEnemy"));
         //handler.addDynamicObject(factory.createUnit(300, 0, "SlowEnemy"));

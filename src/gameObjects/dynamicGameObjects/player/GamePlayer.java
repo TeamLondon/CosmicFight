@@ -73,4 +73,8 @@ public class GamePlayer extends AbstractDynamicGameObject implements Player{
     public void setFireRate(double fireRate) {
         this.fireRate = fireRate;
     }
+
+    public void applyDamage(double hitPoints) {
+
+    }
 }

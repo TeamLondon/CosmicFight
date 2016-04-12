@@ -1,30 +1,28 @@
 package core;
 
-import gameObjects.AbstractDynamicGameObject;
-import gameObjects.AbstractStaticGameObject;
 import gameObjects.dynamicGameObjects.attacks.Bullet;
 import gameObjects.dynamicGameObjects.player.GamePlayer;
-import gameObjects.dynamicGameObjects.rocks.RoundAsteroid;
+import interfaces.DynamicGameObject;
+import interfaces.StaticGameObject;
 import javafx.scene.canvas.GraphicsContext;
-import sample.Main;
 
 import java.util.LinkedList;
 
 public class ObjectHandler {
-    public LinkedList<AbstractDynamicGameObject> dynamicObjects = new LinkedList<AbstractDynamicGameObject>();
-    LinkedList<AbstractStaticGameObject> staticObjects = new LinkedList<AbstractStaticGameObject>();
+    public LinkedList<DynamicGameObject> dynamicObjects = new LinkedList<DynamicGameObject>();
+    LinkedList<StaticGameObject> staticObjects = new LinkedList<StaticGameObject>();
 
     public void update() {
         //This loop goes through all the objects in the game
         for (int i = 0; i < dynamicObjects.size(); i++) {
             //Gets them and saves their reference to the variable tempObject
-            AbstractDynamicGameObject tempObject = dynamicObjects.get(i);
+            DynamicGameObject tempObject = dynamicObjects.get(i);
             /////////////////////////////////////////////Collision testing///////////////////////////////////////////////////////
             //If the current object is an instance of the bullet class
             if (tempObject instanceof Bullet) {
                 //Iterate through all game objects again
                 for (int j = 0; j < this.dynamicObjects.size(); j++) {
-                    AbstractDynamicGameObject currentTempObject = this.dynamicObjects.get(j);
+                    DynamicGameObject currentTempObject = this.dynamicObjects.get(j);
 
                     //Check if the current object is the player or another bullet
                     if (currentTempObject instanceof GamePlayer || currentTempObject instanceof Bullet) {
@@ -34,7 +32,7 @@ public class ObjectHandler {
                         //Else check if it is intersecting with the bullet
                         if (tempObject.isIntersecting(currentTempObject)) {
                             //If yes subtract 10 from the total hitPoints of this object
-                            currentTempObject.setHitPoints(currentTempObject.getHitPoints() - 10);
+                            currentTempObject.applyDamage(5);
                             //Then destroy this bullet and initiate its death animation
                             tempObject.initiateDestroyAnimation();
                             this.removeDynamicObject(tempObject);
@@ -66,7 +64,7 @@ public class ObjectHandler {
 
         for (int i = 0; i < staticObjects.size(); i++) {
             //Gets them and saves their reference to the variable tempObject
-            AbstractStaticGameObject tempObject = staticObjects.get(i);
+            StaticGameObject tempObject = staticObjects.get(i);
 
             //And initiates their update method so their fields get updated every time the controller.update() method gets initiated
             tempObject.update();
@@ -76,7 +74,7 @@ public class ObjectHandler {
         //This loop goes through all the objects in the game
         for (int i = 0; i < dynamicObjects.size(); i++) {
             //Gets them and saves their reference to the variable tempObject
-            AbstractDynamicGameObject tempObject = dynamicObjects.get(i);
+            DynamicGameObject tempObject = dynamicObjects.get(i);
 
             //And invokes their draw() method so any new changes on their rendering (graphics) get taken into account
             tempObject.draw(gc);
@@ -84,7 +82,7 @@ public class ObjectHandler {
 
         for (int i = 0; i < staticObjects.size(); i++) {
             //Gets them and saves their reference to the variable tempObject
-            AbstractStaticGameObject tempObject = staticObjects.get(i);
+            StaticGameObject tempObject = staticObjects.get(i);
 
             //And invokes their draw() method so any new changes on their rendering (graphics) get taken into account
             tempObject.draw(gc);
@@ -93,19 +91,19 @@ public class ObjectHandler {
 
     //These methods have to be used when adding new objects to the game or else they won't change color,speed etc..
     //This method adds an object to the handler list
-    public void addDynamicObject(AbstractDynamicGameObject object) {
+    public void addDynamicObject(DynamicGameObject object) {
         this.dynamicObjects.add(object);
     }
-    public void addStaticObject(AbstractStaticGameObject object) {
+    public void addStaticObject(StaticGameObject object) {
         this.staticObjects.add(object);
     }
 
     //These methods remove an object from the object list in the controller class
     //When an object is removed from the list, his update and draw methods are no longer called every frame
-    public void removeDynamicObject(AbstractDynamicGameObject object) {
+    public void removeDynamicObject(DynamicGameObject object) {
         this.dynamicObjects.remove(object);
     }
-    public void removeStaticObject(AbstractStaticGameObject object) {
+    public void removeStaticObject(StaticGameObject object) {
         this.staticObjects.remove(object);
     }
 }

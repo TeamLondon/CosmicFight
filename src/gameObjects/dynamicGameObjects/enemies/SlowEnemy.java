@@ -17,9 +17,6 @@ public class SlowEnemy extends AbstractDynamicGameObject implements Enemy{
         this.setHeight(Constants.SLOW_ENEMY_HEIGHT);
     }
 
-    public Double getHealth() {
-        return null;
-    }
     public void draw(GraphicsContext gc) {
         gc.drawImage(image, this.getX(), this.getY(), this.getWidth(), this.getHeight());
     }

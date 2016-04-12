@@ -1,7 +1,8 @@
 package interfaces;
 
-public interface Player extends AttackableUnit {
+public interface Player extends AttackableUnit, DynamicGameObject {
     String getName();
+     double getFireRate();
 
     void setName(String name);
 

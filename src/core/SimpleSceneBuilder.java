@@ -86,8 +86,8 @@ public class SimpleSceneBuilder {
         return scene;
     }
 
-    public Scene getFirstLevelScene(SimpleStageManager stateManager) {
-        FirstLevelController controller = new FirstLevelController(stateManager.getStage());
+    public Scene getFirstLevelScene(SimpleStageManager stageManager) {
+        FirstLevelController controller = new FirstLevelController(stageManager);
         Scene scene = null;
         try {
             scene = controller.getCurrentScene();
