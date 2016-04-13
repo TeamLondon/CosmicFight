@@ -1,5 +1,6 @@
 package controllers;
 
+import core.Constants;
 import enums.Scenes;
 import interfaces.StageManager;
 import javafx.fxml.FXML;
@@ -22,6 +23,8 @@ public class GameOverController extends AbstractController{
     @Override
     @FXML
     public void setStageManager(StageManager stageManager) {
+        this.exitGame.setStyle(Constants.BUTTON_STYLE);
+        this.playNewGame.setStyle(Constants.BUTTON_STYLE);
         super.setStageManager(stageManager);
         boolean isAlive = this.getGameDatabase().getPlayer().getHitPoints() > 0;
         if(isAlive){

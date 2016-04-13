@@ -1,6 +1,8 @@
 package controllers;
 
+import core.Constants;
 import enums.Scenes;
+import interfaces.StageManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
@@ -15,6 +17,14 @@ public class StartGameController extends AbstractController {
     public Button highScoreButton;
 
     public Button exitGameButton;
+
+    @Override
+    public void setStageManager(StageManager stageManager) {
+        this.startGameButton.setStyle(Constants.BUTTON_STYLE);
+        this.highScoreButton.setStyle(Constants.BUTTON_STYLE);
+        this.exitGameButton.setStyle(Constants.BUTTON_STYLE);
+        super.setStageManager(stageManager);
+    }
 
     public void onStartGameButtonClick() {
         this.getStageManager().setScene(Scenes.InsertUsernameScene);
