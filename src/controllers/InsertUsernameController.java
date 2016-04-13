@@ -1,7 +1,9 @@
 package controllers;
 
+import core.Constants;
 import enums.Scenes;
 import gameObjects.dynamicGameObjects.player.GamePlayer;
+import interfaces.StageManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -17,6 +19,12 @@ public class InsertUsernameController extends AbstractController {
     public TextField usernameTextField;
 
     public Button enterUsernameButton;
+
+    @Override
+    public void setStageManager(StageManager stageManager) {
+        this.enterUsernameButton.setStyle(Constants.BUTTON_STYLE);
+        super.setStageManager(stageManager);
+    }
 
     public void onEnterUsernameButtonClick(){
         setPlayer();
