@@ -32,7 +32,7 @@ public class GameOverController extends AbstractController{
     }
 
     public void playNewGameButton(){
-        this.getStageManager().setScene(Scenes.FirstLevelScene);
+        this.getStageManager().setScene(Scenes.StartGameScene);
     }
 
     public void exitGameButton() {

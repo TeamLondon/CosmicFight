@@ -25,7 +25,7 @@ public class Constants {
 
     public static final String HighScoreSceneResource = "/scenesFxmls/HighScoreScene.fxml";
 
-    public static final String EndGameSceneResource = "/scenesFxmls/EndGameScene.fxml";
+    public static final String EndGameSceneResource = "/scenesFxmls/GameOverScene.fxml";
 
     public static final Integer SceneHeight = 600;
     public static final Integer SceneWidth = 800;

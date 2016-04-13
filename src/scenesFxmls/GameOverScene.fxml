@@ -15,16 +15,16 @@
    <children>
       <ImageView>
          <image>
-            <Image url="@../../res/GameOverBackground.jpg" />
+            <Image url="/GameOverBackground.jpg" />
          </image>
       </ImageView>
    </children>
    <bottom>
       <AnchorPane prefHeight="211.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Button id="exitGame" layoutX="135.0" layoutY="106.0" mnemonicParsing="false" onAction="#exitGameButton" text="Exit game" onKeyPressed="#onEnterKeyPress"/>
-            <Button id="playNewGame" layoutX="550.0" layoutY="106.0" mnemonicParsing="false" onAction="#playNewGameButton" text="Play new game" onKeyPressed="#onEnterKeyPress"/>
-            <Label id="badLuck" layoutX="320.0" text="BAD LUCK!" textFill="#84ff4c">
+            <Button id="exitGame" fx:id="exitGame" layoutX="135.0" layoutY="106.0" mnemonicParsing="false" onAction="#exitGameButton" onKeyPressed="#onEnterKeyPress" text="Exit game" />
+            <Button id="playNewGame" fx:id="playNewGame" layoutX="550.0" layoutY="106.0" mnemonicParsing="false" onAction="#playNewGameButton" onKeyPressed="#onEnterKeyPress" text="Play new game" />
+            <Label id="badLuck" fx:id="badLuck" layoutX="320.0" text="BAD LUCK!" textFill="#84ff4c">
                <font>
                   <Font size="31.0" />
                </font>
