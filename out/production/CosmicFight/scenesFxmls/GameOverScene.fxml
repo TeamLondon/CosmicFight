@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.GameOverController">
+   <children>
+      <ImageView>
+         <image>
+            <Image url="/GameOverBackground.jpg" />
+         </image>
+      </ImageView>
+   </children>
+   <bottom>
+      <AnchorPane prefHeight="211.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button id="exitGame" fx:id="exitGame" layoutX="135.0" layoutY="106.0" mnemonicParsing="false" onAction="#exitGameButton" onKeyPressed="#onEnterKeyPress" text="Exit game" />
+            <Button id="playNewGame" fx:id="playNewGame" layoutX="550.0" layoutY="106.0" mnemonicParsing="false" onAction="#playNewGameButton" onKeyPressed="#onEnterKeyPress" text="Play new game" />
+            <Label id="badLuck" fx:id="badLuck" layoutX="320.0" text="BAD LUCK!" textFill="#84ff4c">
+               <font>
+                  <Font size="31.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </bottom>
+   <top>
+      <Label ellipsisString="" prefHeight="90.0" prefWidth="220.0" text="GAME OVER" textFill="#54ee2d" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="40.0" />
+         </font>
+         <effect>
+            <Glow level="0.66" />
+         </effect>
+      </Label>
+   </top>
+   <center>
+      <Label id="CONGRATULATIONS YOU WIN!" fx:id="congratulationsYouWin" text="CONGRATULATIONS YOU WIN!" textFill="#52e32d" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="30.0" />
+         </font>
+         <effect>
+            <Glow level="0.4" />
+         </effect>
+      </Label>
+   </center>
+</BorderPane>

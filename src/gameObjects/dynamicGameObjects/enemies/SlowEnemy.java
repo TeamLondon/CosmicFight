@@ -33,7 +33,7 @@ public class SlowEnemy extends AbstractDynamicGameObject implements Enemy{
     public void draw(GraphicsContext gc) {
         gc.drawImage(image, this.getX(), this.getY(), this.getWidth(), this.getHeight());
         this.healthBar.draw(gc);
-        
+
         particles.addAll(emitter.emit(this.getX() + (this.getWidth() / 2) - 5, this.getY()));
 
         for (Iterator<Particle> it = particles.iterator(); it.hasNext(); ) {
