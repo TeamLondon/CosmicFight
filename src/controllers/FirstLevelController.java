@@ -39,6 +39,7 @@ public class FirstLevelController extends AbstractController {
     private double backgroundScrollSpeed = 0.6;
     private Pane backgroundLayer;
     private StackPane layout;
+    private FirstLevelBoss boss;
 
     private boolean isFirstSwarmSpawned = false;
     private boolean isSecondSwarmSpawned = false;
@@ -135,6 +136,12 @@ public class FirstLevelController extends AbstractController {
     public  void update() {
         handler.update();
         keyInput.refresh();
+        if (isBossSpawned) {
+            if (boss.getHitPoints() <= 0) {
+                
+                setNextScene();
+            }
+        }
     }
 
     private void spawnThirdSwarm() {
@@ -178,7 +185,8 @@ public class FirstLevelController extends AbstractController {
 
     private void spawnBoss() {
         Random random = new Random();
-        handler.addDynamicObject(new FirstLevelBoss(random.nextInt(650) + 100, 0));
+        this.boss = new FirstLevelBoss(random.nextInt(650) + 100, 0);
+        handler.addDynamicObject(boss);
     }
 
     private void setNextScene() {
