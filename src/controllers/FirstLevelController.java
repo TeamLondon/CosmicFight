@@ -4,7 +4,7 @@ import core.*;
 import enums.Scenes;
 import gameObjects.dynamicGameObjects.enemies.FirstLevelBoss;
 import gameObjects.dynamicGameObjects.player.GamePlayer;
-
+import interfaces.Player;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -14,6 +14,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
+import java.util.Random;
+
 public class FirstLevelController extends AbstractController {
     private SimpleStageManager stageManager;
     private Scene scene;
@@ -21,18 +23,36 @@ public class FirstLevelController extends AbstractController {
 
     private ObjectHandler handler;
     private Stage window;
-    private GamePlayer player;
+    private Player player;
     private InputHandler keyInput;
     private UnitFactory factory;
     private ImageView backgroundImageView;
-    private double backgroundScrollSpeed = 0.7;
+    private double backgroundScrollSpeed = 0.6;
     private Pane backgroundLayer;
 
-    public FirstLevelController(Stage stage) {
-        this.stage = stage;
+    private boolean isFirstSwarmSpawned = false;
+    private boolean isSecondSwarmSpawned = false;
+    private boolean isThirdSwarmSpawned = false;
+    private boolean isBossSpawned = false;
+
+    public FirstLevelController(SimpleStageManager stageManager) {
+        this.stage = stageManager.getStage();
+        this.stageManager = stageManager;
+
     }
 
     public void start() throws Exception {
+        GraphicsContext gc = initialize();
+        setBackground();
+        initializeControllersAndPlayer();
+
+        new AnimationTimer() {public void handle(long currentNanoTime) {
+            update();
+            draw(gc);
+        }}.start();
+    }
+
+    private GraphicsContext initialize() {
         window = this.stage;
         StackPane layout = new StackPane();
         backgroundLayer = new Pane();
@@ -41,44 +61,59 @@ public class FirstLevelController extends AbstractController {
         Canvas canvas = new Canvas(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
         layout.getChildren().add(backgroundLayer);
         layout.getChildren().add(canvas);
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        return gc;
+    }
 
-        // background
-        // --------------------------------
+    private void initializeControllersAndPlayer() {
+        player = stageManager.getDatabase().getPlayer();
+        handler = new ObjectHandler((GamePlayer) player);
+        factory = new UnitFactory();
+        keyInput = new InputHandler(scene, player, handler);
+        handler.addDynamicObject(player);
+    }
+
+    private void setBackground() {
         backgroundImageView = new ImageView(getClass().getResource(Constants.BACKGROUND_PATH).toExternalForm());
         backgroundImageView.setFitWidth(Constants.WINDOW_WIDTH);
         // reposition the map. it is scrolling from bottom of the background to top of the background
         backgroundImageView.relocate(0, -backgroundImageView.getImage().getHeight() + Constants.WINDOW_HEIGHT);
         // add background to layer
         backgroundLayer.getChildren().add(backgroundImageView);
-
-        //layout.setCursor(Cursor.NONE);
-        handler = new ObjectHandler();
-        factory = new UnitFactory();
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-
-        player = new GamePlayer(100, 100, "Asen");
-        handler.addDynamicObject(player);
-        handler.addDynamicObject(factory.createUnit(400, 0, "SlowEnemy"));
-        //handler.addDynamicObject(factory.createUnit(300, 0, "SlowEnemy"));
-        //handler.addDynamicObject(factory.createUnit(500, 0, "SlowEnemy"));
-        //handler.addDynamicObject(factory.createUnit(450, 0, "SlowEnemy"));
-        //handler.addDynamicObject(factory.createUnit(350, 0, "SlowEnemy"));//handler.addDynamicObject(factory.createUnit(200, 0, "ChaoticEnemy"));//handler.addDynamicObject(factory.createUnit(400, 0, "ChaoticEnemy"));
-        //handler.addDynamicObject(factory.createUnit(500, 0, "RoundAsteroid"));
-        handler.addDynamicObject(new FirstLevelBoss(100, 100));
-
-        keyInput = new InputHandler(scene, player, handler);
-
-        new AnimationTimer() {public void handle(long currentNanoTime) {
-            update();
-            draw(gc);
-        }}.start();
     }
 
     public void draw(GraphicsContext gc) {
         // scroll background and calculate new position
+        double distanceTravelled = backgroundImageView.getLayoutY();
         double y = backgroundImageView.getLayoutY() + backgroundScrollSpeed;
         // check bounds. we scroll upwards, so the y position is negative. once it's > 0 we have reached the end of the map and stop scrolling
-        if( Double.compare( y, 0) >= 0) y = 0;
+
+        ////////////////////////////////////////////////
+        if(Double.compare( y, 0) >= 0) {
+            y = 0;
+        }
+
+        boolean isInFirstSector = distanceTravelled > -1000 && distanceTravelled < -900;
+        boolean isInSecondSector = distanceTravelled > -900 && distanceTravelled < -800;
+        boolean isInThirdSector = distanceTravelled > -800 && distanceTravelled < -700;
+        boolean isInFinalSector = y == 0;
+
+        if (isInFirstSector && !isFirstSwarmSpawned) {
+            spawnFirstSwarm();
+            isFirstSwarmSpawned = true;
+        }else if (isInSecondSector && !isSecondSwarmSpawned) {
+            spawnSecondSwarm();
+            isSecondSwarmSpawned = true;
+        }else if (isInThirdSector && !isThirdSwarmSpawned) {
+            spawnThirdSwarm();
+            isThirdSwarmSpawned = true;
+        }else if (isInFinalSector && !isBossSpawned) {
+            spawnBoss();
+            isBossSpawned = true;
+        }
+
+        ///////////////////////////////////////////////
+
         // move background
         backgroundImageView.setLayoutY(y);
 
@@ -91,12 +126,54 @@ public class FirstLevelController extends AbstractController {
         keyInput.refresh();
     }
 
-    public void setStageManager(SimpleStageManager stageManager) {
-        this.stageManager = stageManager;
+    private void spawnThirdSwarm() {
+        Random random = new Random();
+        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
+        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
+        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
+        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
+        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
+        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
+        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
+        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
+        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
+        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
+        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
+        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
+        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
+        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
+        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
+        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
+        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
+        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
     }
+
+    private void spawnSecondSwarm() {
+        Random random = new Random();
+        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
+        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
+        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
+        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
+        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
+        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
+    }
+
+    private void spawnFirstSwarm() {
+        Random random = new Random();
+        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
+        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
+        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
+    }
+
+    private void spawnBoss() {
+        Random random = new Random();
+        handler.addDynamicObject(new FirstLevelBoss(random.nextInt(650) + 100, 0));
+    }
+
     private void setNextScene() {
         this.stageManager.setScene(Scenes.ExitGameScene);
     }
+
     public Scene getCurrentScene() throws Exception {
         this.start();
         return this.scene;

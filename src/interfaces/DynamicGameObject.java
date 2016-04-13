@@ -9,6 +9,12 @@ public interface DynamicGameObject extends Visualizable{
     void setPosition(double x, double y);
     Rectangle2D getBoundary();
     boolean isIntersecting(DynamicGameObject otherDynamicObject);
+    void initiateDestroyAnimation();
+    double getHitPoints();
+    void applyDamage(double hitPoints);
+    double getX();
+    double getY();
+
 
     void draw(GraphicsContext gc);
     void update();

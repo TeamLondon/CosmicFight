@@ -19,16 +19,12 @@ public class Constants {
     public static final String BOSS_PATH = "/firstLevelBoss.png";
 
     //example
-    public static final String StartGameSceneID = "StartGameScene";
     public static final String StartGameSceneResource = "/scenesFxmls/StartGameScene.fxml";
 
-    public static final String InsertUsernameSceneID = "InsertUsernameScene";
     public static final String InsertUsernameSceneResource = "/scenesFxmls/InsertUsernameScene.fxml";
 
-    public static final String HighScoreSceneID = "HighScoreScene";
     public static final String HighScoreSceneResource = "/scenesFxmls/HighScoreScene.fxml";
 
-    public static final String EndGameSceneID = "EndGameScene";
     public static final String EndGameSceneResource = "/scenesFxmls/EndGameScene.fxml";
 
     public static final Integer SceneHeight = 600;

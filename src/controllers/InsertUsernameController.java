@@ -1,6 +1,7 @@
 package controllers;
 
 import enums.Scenes;
+import gameObjects.dynamicGameObjects.player.GamePlayer;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -18,7 +19,7 @@ public class InsertUsernameController extends AbstractController {
     public Button enterUsernameButton;
 
     public void onEnterUsernameButtonClick(){
-        setNextScene();
+        setPlayer();
     }
 
     @FXML
@@ -26,16 +27,24 @@ public class InsertUsernameController extends AbstractController {
     {
         if(e.getCode() == KeyCode.ENTER)
         {
-            String input = this.usernameTextField.getText();
-            Pattern pattern = Pattern.compile("([a-zA-Z]+)[\\W]+([0-9]+)");
+            setPlayer();
+        }
+    }
+
+    private void setPlayer() {
+        String input = this.usernameTextField.getText();
+        Pattern pattern = Pattern.compile("([a-zA-Z]+)[\\W]+([0-9]+)");
+        String name = input;
+        getStageManager().getDatabase().setPlayer(new GamePlayer(100, 100 ,name));
+           /*
             Matcher matcher = pattern.matcher(input);
             if (matcher.find()){
                 String name = matcher.group(1);
                 Integer points = Integer.parseInt(matcher.group(2));
                 this.getStageManager().getDatabase().addHighScore(new GameHighScore(name, points));
             }
-            setNextScene();
-        }
+            */
+        setNextScene();
     }
 
     private void setNextScene() {
