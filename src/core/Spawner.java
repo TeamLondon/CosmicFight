@@ -17,7 +17,7 @@ public class Spawner {
         this.unitTypes = new String[3];
         this.unitTypes[0] = "SlowEnemy";
         this.unitTypes[1] = "ChaoticEnemy";
-        // this.unitTypes[2] = "RoundAsteroid";
+        this.unitTypes[2] = "RoundAsteroid";
         this.random = new Random();
     }
 
@@ -29,10 +29,11 @@ public class Spawner {
         }
 
         if (Math.abs( currentDistance - this.passedDistance) > this.distanceRate){
-            String enemyType = this.unitTypes[random.nextInt(2)];
+            String enemyType = this.unitTypes[random.nextInt(this.unitTypes.length)];
             gameObject = unitFactory.createUnit(random.nextInt(650) , 0, enemyType);
             this.passedDistance = currentDistance;
         }
+
         return gameObject;
     }
 
