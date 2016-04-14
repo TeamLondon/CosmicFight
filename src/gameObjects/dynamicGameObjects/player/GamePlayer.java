@@ -24,7 +24,7 @@ public class GamePlayer extends AbstractDynamicGameObject implements Player{
     public void update() {
         super.update();
         y += 1;
-        setHitPoints(getHitPoints() - 1);
+//        setHitPoints(getHitPoints() - 1);
     }
 
     public void draw(GraphicsContext gc) {
@@ -68,7 +68,7 @@ public class GamePlayer extends AbstractDynamicGameObject implements Player{
     }
 
     public void applyDamage(double hitPoints) {
-
+        this.setHitPoints(this.getHitPoints() - hitPoints);
     }
 
     public double getDamage() {

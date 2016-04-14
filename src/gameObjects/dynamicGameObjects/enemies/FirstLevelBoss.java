@@ -8,7 +8,6 @@ import javafx.scene.image.Image;
 
 public class FirstLevelBoss extends AbstractDynamicGameObject implements Enemy{
 
-
     public FirstLevelBoss(double x, double y) {
         super(x, y);
         this.setHitPoints(2000);
