@@ -56,11 +56,7 @@ public class ObjectHandler {
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
             //Checks if the object is outside of the map
-<<<<<<< HEAD
-            if (tempObject.getY() > 600 || tempObject.getY() < 0) {
-=======
             if (tempObject.getY() < 0 || tempObject.getY() > 600) {
->>>>>>> 12831cd3b7601e02cf9dad2673c909b0c9a9af95
                 //If yes - remove it
                 removeDynamicObject(tempObject);
                 tempObject = null;
