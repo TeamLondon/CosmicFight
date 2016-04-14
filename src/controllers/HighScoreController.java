@@ -1,5 +1,6 @@
 package controllers;
 
+import core.Constants;
 import core.SimpleStageManager;
 import enums.Scenes;
 import interfaces.StageManager;
@@ -23,6 +24,7 @@ public class HighScoreController extends AbstractController {
 
     @Override
     public void setStageManager(StageManager stageManager) {
+        this.mainMenuButton.setStyle(Constants.BUTTON_STYLE);
         super.setStageManager(stageManager);
         this.initializeInfo();
     }

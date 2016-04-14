@@ -1,8 +1,6 @@
 package core;
 
-import controllers.FirstLevelController;
-import controllers.HighScoreController;
-import controllers.InsertUsernameController;
+import controllers.*;
 import interfaces.StageManager;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,7 +8,6 @@ import javafx.scene.Scene;
 
 import java.io.IOException;
 
-import controllers.StartGameController;
 import enums.Scenes;
 
 public class SimpleSceneBuilder {
@@ -33,10 +30,31 @@ public class SimpleSceneBuilder {
                 break;
             case HighScoreScene:
                 scene = getHighScoreScene(stageManager);
+                break;
+            case ExitGameScene:
+                scene = getExitGameScene(stageManager);
+                break;
             default:
                 break;
         }
 
+        return scene;
+    }
+
+    private Scene getExitGameScene(SimpleStageManager stageManager) {
+        Scene scene = null;
+        this.myLoader = new FXMLLoader(getClass().getResource(Constants.EndGameSceneResource));
+        try {
+            Parent loadScreen = this.myLoader.load();
+            scene = new Scene(loadScreen);
+
+            GameOverController gameOverController = this.myLoader.getController();
+            gameOverController.setStageManager(stageManager);
+
+        } catch (IOException e) {
+            stageManager.getMessageBox().display("Exception", "Scene not loaded.");
+            System.out.println(e.getMessage());
+        }
         return scene;
     }
 

@@ -6,13 +6,22 @@ import gameObjects.dynamicGameObjects.enemies.FirstLevelBoss;
 import gameObjects.dynamicGameObjects.player.GamePlayer;
 import interfaces.Player;
 import javafx.animation.AnimationTimer;
+import javafx.animation.PathTransition;
+import javafx.animation.Timeline;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.effect.BlendMode;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.CubicCurveTo;
+import javafx.scene.shape.MoveTo;
+import javafx.scene.shape.Path;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.util.Random;
 
@@ -29,6 +38,8 @@ public class FirstLevelController extends AbstractController {
     private ImageView backgroundImageView;
     private double backgroundScrollSpeed = 0.6;
     private Pane backgroundLayer;
+    private StackPane layout;
+    private FirstLevelBoss boss;
 
     private boolean isFirstSwarmSpawned = false;
     private boolean isSecondSwarmSpawned = false;
@@ -54,7 +65,7 @@ public class FirstLevelController extends AbstractController {
 
     private GraphicsContext initialize() {
         window = this.stage;
-        StackPane layout = new StackPane();
+        layout = new StackPane();
         backgroundLayer = new Pane();
         scene = new Scene(layout, Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
         window.setScene(scene);
@@ -83,6 +94,8 @@ public class FirstLevelController extends AbstractController {
     }
 
     public void draw(GraphicsContext gc) {
+        gc.setGlobalAlpha(1.0);
+        gc.setGlobalBlendMode(BlendMode.SRC_OVER);
         // scroll background and calculate new position
         double distanceTravelled = backgroundImageView.getLayoutY();
         double y = backgroundImageView.getLayoutY() + backgroundScrollSpeed;
@@ -116,7 +129,6 @@ public class FirstLevelController extends AbstractController {
 
         // move background
         backgroundImageView.setLayoutY(y);
-
         gc.clearRect(0,0, Constants.WINDOW_WIDTH,Constants.WINDOW_HEIGHT);
         handler.draw(gc);
     }
@@ -124,6 +136,12 @@ public class FirstLevelController extends AbstractController {
     public  void update() {
         handler.update();
         keyInput.refresh();
+        if (isBossSpawned) {
+            if (boss.getHitPoints() <= 0) {
+                
+                setNextScene();
+            }
+        }
     }
 
     private void spawnThirdSwarm() {
@@ -167,7 +185,8 @@ public class FirstLevelController extends AbstractController {
 
     private void spawnBoss() {
         Random random = new Random();
-        handler.addDynamicObject(new FirstLevelBoss(random.nextInt(650) + 100, 0));
+        this.boss = new FirstLevelBoss(random.nextInt(650) + 100, 0);
+        handler.addDynamicObject(boss);
     }
 
     private void setNextScene() {

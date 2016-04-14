@@ -21,6 +21,7 @@
             <AnchorPane layoutY="1.0" prefHeight="229.0" prefWidth="288.0">
                <children>
                   <Button fx:id="mainMenuButton" layoutX="93.0" layoutY="96.0" mnemonicParsing="false" onAction="#onMenuButtonClick" onKeyPressed="#onMenuButtonKeyPress" text="Main menu">
+
                      <font>
                         <Font size="16.0" />
                      </font>
