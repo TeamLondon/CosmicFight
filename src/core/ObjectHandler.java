@@ -3,6 +3,7 @@ package core;
 import gameObjects.dynamicGameObjects.attacks.Bullet;
 import gameObjects.dynamicGameObjects.player.GamePlayer;
 import interfaces.DynamicGameObject;
+import interfaces.Enemy;
 import interfaces.StaticGameObject;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -45,6 +46,7 @@ public class ObjectHandler {
                             //Then check if the current object currently has 0 health
                             if (currentTempObject.getHitPoints() <= 0) {
                                 //If yes - initiate its death animation and remove it from the list
+                                player.addScore(currentTempObject instanceof Enemy ? ((Enemy) currentTempObject).getRewardPoints(): 1);
                                 currentTempObject.initiateDestroyAnimation();
                                 removeDynamicObject(currentTempObject);
                                 currentTempObject = null;

@@ -4,6 +4,7 @@ import core.*;
 import enums.Scenes;
 import gameObjects.dynamicGameObjects.enemies.FirstLevelBoss;
 import gameObjects.dynamicGameObjects.player.GamePlayer;
+import gameObjects.staticGameObjects.HUD;
 import interfaces.Player;
 import javafx.animation.AnimationTimer;
 import javafx.animation.PathTransition;
@@ -30,6 +31,7 @@ public class FirstLevelController extends AbstractController {
     private Scene scene;
     private Stage stage;
     private AnimationTimer timer;
+    private HUD hud;
 
     private ObjectHandler handler;
     private Stage window;
@@ -56,6 +58,8 @@ public class FirstLevelController extends AbstractController {
         GraphicsContext gc = initialize();
         setBackground();
         initializeControllersAndPlayer();
+
+
 
         timer = new AnimationTimer() {
             public void handle(long currentNanoTime) {
@@ -87,6 +91,7 @@ public class FirstLevelController extends AbstractController {
        this.factory = new UnitFactory();
        this.keyInput = new InputHandler(scene, player, handler);
        this.handler.addDynamicObject(player);
+       hud = new HUD(this.player);
     }
 
     private void setBackground() {
@@ -140,6 +145,7 @@ public class FirstLevelController extends AbstractController {
         backgroundImageView.setLayoutY(y);
         gc.clearRect(0, 0, Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
         handler.draw(gc);
+        hud.draw(gc);
     }
 
     public void update() {
@@ -151,6 +157,7 @@ public class FirstLevelController extends AbstractController {
                 timer.stop();
             }
         }
+        hud.update();
     }
 
     private void spawnThirdSwarm() {

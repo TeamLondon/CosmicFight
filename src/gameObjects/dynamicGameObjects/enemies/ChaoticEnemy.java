@@ -26,4 +26,9 @@ public class ChaoticEnemy extends AbstractDynamicGameObject implements Enemy {
     public void update() {
         this.y += 3;
     }
+
+    @Override
+    public Integer getRewardPoints() {
+        return 10;
+    }
 }

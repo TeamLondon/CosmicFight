@@ -30,4 +30,20 @@ public abstract class AbstractStaticGameObject implements StaticGameObject{
         Image i = new Image(imagePath);
         setImage(i);
     }
+
+    public double getWidth() {
+        return width;
+    }
+
+    public void setWidth(double width) {
+        this.width = width;
+    }
+
+    public double getHeight() {
+        return height;
+    }
+
+    public void setHeight(double height) {
+        this.height = height;
+    }
 }

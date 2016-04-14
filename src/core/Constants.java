@@ -17,6 +17,7 @@ public class Constants {
     public static final String SLOW_ENEMY_PATH = "/enemy.png";
     public static final String BACKGROUND_PATH = "/background/whale_sulzenauer_big.jpg";
     public static final String BOSS_PATH = "/firstLevelBoss.png";
+    public static final String HUD_HEALTH_BAR_PATH = "/HUD/HUD_healthBar.png";
 
     //example
     public static final String StartGameSceneResource = "/scenesFxmls/StartGameScene.fxml";

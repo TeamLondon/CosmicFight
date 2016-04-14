@@ -47,8 +47,8 @@ public class GameHighScore implements HighScore {
         }
     }
 
-    private void setPlayerScore(Integer playerScore) {
-        if (playerScore > 0){
+    public void setPlayerScore(Integer playerScore) {
+        if (playerScore >= 0){
             this.playerScore = playerScore;
         }else{
             throw new InvalidParameterException("Not valid score value!");

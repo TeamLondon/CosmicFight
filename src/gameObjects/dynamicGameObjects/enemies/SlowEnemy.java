@@ -53,6 +53,11 @@ public class SlowEnemy extends AbstractDynamicGameObject implements Enemy{
         this.healthBar.setPosition(this.getX() + 1, this.getY() - 20);
         healthBar.setHealth(this.getHitPoints() / 2);
         this.healthBar.update();
-        this.y+= 7;
+        this.y+= 1;
+    }
+
+    @Override
+    public Integer getRewardPoints() {
+        return 5;
     }
 }

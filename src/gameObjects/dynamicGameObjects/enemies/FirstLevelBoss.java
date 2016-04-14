@@ -2,10 +2,11 @@ package gameObjects.dynamicGameObjects.enemies;
 
 import core.Constants;
 import gameObjects.AbstractDynamicGameObject;
+import interfaces.Enemy;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-public class FirstLevelBoss extends AbstractDynamicGameObject{
+public class FirstLevelBoss extends AbstractDynamicGameObject implements Enemy{
 
 
     public FirstLevelBoss(double x, double y) {
@@ -30,5 +31,10 @@ public class FirstLevelBoss extends AbstractDynamicGameObject{
         if (this.getX() > Constants.WINDOW_WIDTH - this.getWidth()) {
             this.setVelocity(-5, 0);
         }
+    }
+
+    @Override
+    public Integer getRewardPoints() {
+        return 500;
     }
 }

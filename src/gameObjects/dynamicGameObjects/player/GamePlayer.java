@@ -5,32 +5,29 @@ import gameObjects.AbstractDynamicGameObject;
 import interfaces.HighScore;
 import interfaces.Player;
 import javafx.scene.canvas.GraphicsContext;
+import utilityModels.GameHighScore;
 
 public class GamePlayer extends AbstractDynamicGameObject implements Player{
     private String name;
-    private Integer score = 0;
     private double health = 100;
     private double fireRate = 0.4;
     private double damage = 5;
+    private HighScore highScore;
 
     public GamePlayer(double x, double y, String name) {
         super(x, y);
         this.name = name;
         this.setImage(Constants.PLAYER_PATH);
+        this.highScore = new GameHighScore(this.name, 0);
     }
 
     public void update() {
         super.update();
         y += 1;
+        setHitPoints(getHitPoints() - 1);
     }
 
     public void draw(GraphicsContext gc) {
-
-        //ImageView iv = new ImageView(new Image( "/5.png"));
-        //iv.setRotate(40);
-        //SnapshotParameters params = new SnapshotParameters();
-        //params.setFill(Color.TRANSPARENT);
-        //Image rotatedImage = iv.snapshot(params, null);
         x = clamp(x, 0, Constants.WINDOW_WIDTH - 50);
         y = clamp(y, 0, Constants.WINDOW_HEIGHT - 50);
         gc.drawImage(image, this.x, this.y, Constants.PLAYER_WIDTH, Constants.PLAYER_HEIGHT);
@@ -45,15 +42,15 @@ public class GamePlayer extends AbstractDynamicGameObject implements Player{
     }
 
     public HighScore getHighScore() {
-        return null;
+        return this.highScore;
     }
 
-    public Integer getScore() {
-        return score;
+    public void addScore(int points) {
+        this.getHighScore().setPlayerScore(this.getHighScore().getPlayerScore() + points);
     }
 
     public Double getHealth() {
-        return health;
+        return this.health;
     }
 
     private double clamp(double var, double min, double max) {
