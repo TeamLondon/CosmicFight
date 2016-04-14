@@ -46,7 +46,7 @@ public class ObjectHandler {
                             if (currentTempObject.getHitPoints() <= 0) {
                                 //If yes - initiate its death animation and remove it from the list
                                 currentTempObject.initiateDestroyAnimation();
-                                this.removeDynamicObject(currentTempObject);
+                                removeDynamicObject(currentTempObject);
                                 currentTempObject = null;
                             }
                         }
@@ -56,9 +56,9 @@ public class ObjectHandler {
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
             //Checks if the object is outside of the map
-            if (tempObject.getY() < 0) {
+            if (tempObject.getY() > 600 || tempObject.getY() < 0) {
                 //If yes - remove it
-                this.removeDynamicObject(tempObject);
+                removeDynamicObject(tempObject);
                 tempObject = null;
                 //System.gc();
                 continue;

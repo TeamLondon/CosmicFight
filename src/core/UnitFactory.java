@@ -13,7 +13,7 @@ public class UnitFactory {
         Random rand = new Random();
 
         if (unitType.equals("SlowEnemy")) unit = new SlowEnemy(x, y);
-        else if (unitType.equals("ChaoticEnemy")) unit = new ChaoticEnemy(x, y, rand.nextInt(1000));
+        else if (unitType.equals("ChaoticEnemy")) unit = new ChaoticEnemy(x, y, rand.nextInt(5000) + 1000);
         else if (unitType.equals("RoundAsteroid")) unit = new RoundAsteroid(x, y);
         else unit = new SlowEnemy(x, y);
 

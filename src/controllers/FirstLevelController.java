@@ -29,6 +29,7 @@ public class FirstLevelController extends AbstractController {
     private SimpleStageManager stageManager;
     private Scene scene;
     private Stage stage;
+    private AnimationTimer timer;
 
     private ObjectHandler handler;
     private Stage window;
@@ -49,7 +50,6 @@ public class FirstLevelController extends AbstractController {
     public FirstLevelController(SimpleStageManager stageManager) {
         this.stage = stageManager.getStage();
         this.stageManager = stageManager;
-
     }
 
     public void start() throws Exception {
@@ -57,10 +57,15 @@ public class FirstLevelController extends AbstractController {
         setBackground();
         initializeControllersAndPlayer();
 
-        new AnimationTimer() {public void handle(long currentNanoTime) {
-            update();
-            draw(gc);
-        }}.start();
+        timer = new AnimationTimer() {
+            public void handle(long currentNanoTime) {
+                update();
+                draw(gc);
+                System.out.println(handler.dynamicObjects.size());
+            }
+        };
+
+        timer.start();
     }
 
     private GraphicsContext initialize() {
@@ -106,9 +111,9 @@ public class FirstLevelController extends AbstractController {
             y = 0;
         }
 
-        boolean isInFirstSector = distanceTravelled > -1000 && distanceTravelled < -900;
-        boolean isInSecondSector = distanceTravelled > -900 && distanceTravelled < -800;
-        boolean isInThirdSector = distanceTravelled > -800 && distanceTravelled < -700;
+        boolean isInFirstSector = distanceTravelled > -1000 && distanceTravelled < -700;
+        boolean isInSecondSector = distanceTravelled > -700 && distanceTravelled < -500;
+        boolean isInThirdSector = distanceTravelled > -500 && distanceTravelled < -200;
         boolean isInFinalSector = y == 0;
 
         if (isInFirstSector && !isFirstSwarmSpawned) {
@@ -138,8 +143,8 @@ public class FirstLevelController extends AbstractController {
         keyInput.refresh();
         if (isBossSpawned) {
             if (boss.getHitPoints() <= 0) {
-                
                 setNextScene();
+                timer.stop();
             }
         }
     }
@@ -157,13 +162,18 @@ public class FirstLevelController extends AbstractController {
         handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
         handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
         handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
-        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
-        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
-        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
-        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
-        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
-        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
-        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
+        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "ChaoticEnemy"));
+        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "ChaoticEnemy"));
+        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "ChaoticEnemy"));
+        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "RoundAsteroid"));
+        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "RoundAsteroid"));
+        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "RoundAsteroid"));
+        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "ChaoticEnemy"));
+        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "ChaoticEnemy"));
+        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "ChaoticEnemy"));
+        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "RoundAsteroid"));
+        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "RoundAsteroid"));
+        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "RoundAsteroid"));
     }
 
     private void spawnSecondSwarm() {
@@ -174,6 +184,12 @@ public class FirstLevelController extends AbstractController {
         handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
         handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
         handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
+        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "ChaoticEnemy"));
+        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "ChaoticEnemy"));
+        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "ChaoticEnemy"));
+        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "RoundAsteroid"));
+        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "RoundAsteroid"));
+        handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "RoundAsteroid"));
     }
 
     private void spawnFirstSwarm() {
