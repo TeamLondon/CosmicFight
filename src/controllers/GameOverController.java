@@ -26,12 +26,12 @@ public class GameOverController extends AbstractController{
         this.exitGame.setStyle(Constants.BUTTON_STYLE);
         this.playNewGame.setStyle(Constants.BUTTON_STYLE);
         super.setStageManager(stageManager);
-        boolean isAlive = this.getGameDatabase().getPlayer().getHitPoints() > 0;
-        if(isAlive){
-            this.badLuck.setVisible(false);
-        }else{
-            this.congratulationsYouWin.setVisible(false);
-        }
+       boolean isAlive = this.getGameDatabase().getPlayer().getHitPoints() > 0;
+       if(isAlive){
+           this.badLuck.setVisible(false);
+       }else{
+           this.congratulationsYouWin.setVisible(false);
+       }
     }
 
     public void playNewGameButton(){
