@@ -4,6 +4,7 @@ import core.*;
 import enums.Scenes;
 import gameObjects.dynamicGameObjects.enemies.FirstLevelBoss;
 import gameObjects.dynamicGameObjects.player.GamePlayer;
+import interfaces.DynamicGameObject;
 import interfaces.Player;
 import javafx.animation.AnimationTimer;
 import javafx.animation.PathTransition;
@@ -42,6 +43,8 @@ public class FirstLevelController extends AbstractController {
     private StackPane layout;
     private FirstLevelBoss boss;
 
+    private Spawner spawner;
+
     private boolean isFirstSwarmSpawned = false;
     private boolean isSecondSwarmSpawned = false;
     private boolean isThirdSwarmSpawned = false;
@@ -61,7 +64,6 @@ public class FirstLevelController extends AbstractController {
             public void handle(long currentNanoTime) {
                 update();
                 draw(gc);
-                System.out.println(handler.dynamicObjects.size());
             }
         };
 
@@ -82,11 +84,12 @@ public class FirstLevelController extends AbstractController {
     }
 
     private void initializeControllersAndPlayer() {
-       this.player = stageManager.getDatabase().getPlayer();
-       this.handler = new ObjectHandler((GamePlayer) player);
-       this.factory = new UnitFactory();
-       this.keyInput = new InputHandler(scene, player, handler);
-       this.handler.addDynamicObject(player);
+        this.player = stageManager.getDatabase().getPlayer();
+        this.handler = new ObjectHandler((GamePlayer) player);
+        this.factory = new UnitFactory();
+        this.spawner = new Spawner(this.factory);
+        this.keyInput = new InputHandler(scene, player, handler);
+        this.handler.addDynamicObject(player);
     }
 
     private void setBackground() {
@@ -113,23 +116,38 @@ public class FirstLevelController extends AbstractController {
 
 
         distanceTravelled = distanceTravelled * (-1);
-        boolean isInFirstSector = distanceTravelled > 2350 && distanceTravelled < 2355;
-        boolean isInSecondSector = distanceTravelled > 2300 && distanceTravelled < 2301;
-        boolean isInThirdSector = distanceTravelled > 2298 && distanceTravelled < 2300;
+        boolean isInFirstSector = distanceTravelled > 1800 && distanceTravelled < 2395;
+        boolean isInSecondSector = distanceTravelled > 1000 && distanceTravelled < 1800;
+        boolean isInThirdSector = distanceTravelled > 0 && distanceTravelled < 1000;
         boolean isInFinalSector = y == 0;
 
-        System.out.println(handler.dynamicObjects.size());
+        System.out.println(distanceTravelled);
 
-        if (isInFirstSector) {  //&& !isFirstSwarmSpawned) {
-            spawnFirstSwarm();
+        if (isInFirstSector) { //) !isFirstSwarmSpawned) {
+            // spawnFirstSwarm();
+            spawner.setDistance(30d);
+            DynamicGameObject gameObject = spawner.spawn(distanceTravelled);
+            if (gameObject != null) {
+                this.handler.addDynamicObject(gameObject);
+            }
             isFirstSwarmSpawned = true;
         } else if (isInSecondSector) { // && !isSecondSwarmSpawned) {
-            spawnSecondSwarm();
+            // spawnSecondSwarm();
+            spawner.setDistance(10d);
+            DynamicGameObject gameObject = spawner.spawn(distanceTravelled);
+            if (gameObject != null) {
+                this.handler.addDynamicObject(gameObject);
+            }
             isSecondSwarmSpawned = true;
-        } else if (isInThirdSector) { // && !isThirdSwarmSpawned) {
-            spawnThirdSwarm();
+        } else if (isInThirdSector) {// &&  !isThirdSwarmSpawned) {
+            // spawnThirdSwarm();
+            spawner.setDistance(20d);
+            DynamicGameObject gameObject = spawner.spawn(distanceTravelled);
+            if (gameObject != null) {
+                this.handler.addDynamicObject(gameObject);
+            }
             isThirdSwarmSpawned = true;
-        } else if (isInFinalSector) { // && !isBossSpawned) {
+        } else if (isInFinalSector && !isBossSpawned) {
             spawnBoss();
             isBossSpawned = true;
         }
@@ -159,21 +177,26 @@ public class FirstLevelController extends AbstractController {
         this.handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
         this.handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
         this.handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
+        for (int i = 0; i < 10; i++) {
+            this.handler.addDynamicObject(factory.createUnit(random.nextInt(650), 0, "SlowEnemy"));
+        }
+
+        /*
+        this.handler.addDynamicObject(factory.createUnit(random.nextInt(650), 0, "SlowEnemy"));
+        this.handler.addDynamicObject(factory.createUnit(random.nextInt(650), 0, "SlowEnemy"));
+        this.handler.addDynamicObject(factory.createUnit(random.nextInt(650), 0, "SlowEnemy"));
+        this.handler.addDynamicObject(factory.createUnit(random.nextInt(650), 0, "SlowEnemy"));
+        this.handler.addDynamicObject(factory.createUnit(random.nextInt(650), 0, "SlowEnemy"));
+        this.handler.addDynamicObject(factory.createUnit(random.nextInt(650), 0, "SlowEnemy"));
+        this.handler.addDynamicObject(factory.createUnit(random.nextInt(650), 0, "SlowEnemy"));
+        this.handler.addDynamicObject(factory.createUnit(random.nextInt(650), 0, "SlowEnemy"));
+        this.handler.addDynamicObject(factory.createUnit(random.nextInt(650), 0, "SlowEnemy"));
+        this.handler.addDynamicObject(factory.createUnit(random.nextInt(650), 0, "SlowEnemy"));
+        this.handler.addDynamicObject(factory.createUnit(random.nextInt(650), 0, "SlowEnemy"));
+        this.handler.addDynamicObject(factory.createUnit(random.nextInt(650), 0, "SlowEnemy"));
+        this.handler.addDynamicObject(factory.createUnit(random.nextInt(650), 0, "SlowEnemy"));
         this.handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
-        this.handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
-        this.handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
-        this.handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
-        this.handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
-        this.handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
-        this.handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
-        this.handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
-        this.handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
-        this.handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
-        this.handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
-        this.handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
-        this.handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
-        this.handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
-        this.handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
+        */
     }
 
     private void spawnSecondSwarm() {
@@ -189,8 +212,10 @@ public class FirstLevelController extends AbstractController {
     private void spawnFirstSwarm() {
         Random random = new Random();
         this.handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
+        /*
         this.handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
         this.handler.addDynamicObject(factory.createUnit(random.nextInt(650) + 100, 0, "SlowEnemy"));
+        */
     }
 
     private void spawnBoss() {
