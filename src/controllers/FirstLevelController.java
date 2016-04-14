@@ -4,11 +4,8 @@ import core.*;
 import enums.Scenes;
 import gameObjects.dynamicGameObjects.enemies.FirstLevelBoss;
 import gameObjects.dynamicGameObjects.player.GamePlayer;
-<<<<<<< HEAD
 import gameObjects.staticGameObjects.HUD;
-=======
 import interfaces.DynamicGameObject;
->>>>>>> 5df1feb08fd87659fb846e659c163a67ec5f2dcd
 import interfaces.Player;
 import javafx.animation.AnimationTimer;
 import javafx.animation.PathTransition;
@@ -91,21 +88,13 @@ public class FirstLevelController extends AbstractController {
     }
 
     private void initializeControllersAndPlayer() {
-<<<<<<< HEAD
-       this.player = stageManager.getDatabase().getPlayer();
-       this.handler = new ObjectHandler((GamePlayer) player);
-       this.factory = new UnitFactory();
-       this.keyInput = new InputHandler(scene, player, handler);
-       this.handler.addDynamicObject(player);
-       hud = new HUD(this.player);
-=======
         this.player = stageManager.getDatabase().getPlayer();
         this.handler = new ObjectHandler((GamePlayer) player);
         this.factory = new UnitFactory();
         this.spawner = new Spawner(this.factory);
         this.keyInput = new InputHandler(scene, player, handler);
         this.handler.addDynamicObject(player);
->>>>>>> 5df1feb08fd87659fb846e659c163a67ec5f2dcd
+        hud = new HUD(this.player);
     }
 
     private void setBackground() {
