@@ -24,17 +24,18 @@ public class SlowEnemy extends AbstractDynamicGameObject implements Enemy{
 
     public SlowEnemy(double x, double y) {
         super(x, y);
-        this.image = new Image(Constants.SLOW_ENEMY_PATH);
+        this.setImage(Constants.SLOW_ENEMY_PATH);
         this.setWidth(Constants.SLOW_ENEMY_WIDTH);
         this.setHeight(Constants.SLOW_ENEMY_HEIGHT);
-        this.healthBar = new HealthBar(this.getX(), this.getY() - 15, this.getWidth(), 5);
+        this.healthBar = new HealthBar(this.getX(), this.getY(), this.getWidth(), this.getHeight(), this.getHitPoints(), Constants.SLOW_ENEMY_HEALTH_BAR_PATH);
+        this.setVelocity(0, 3);
     }
 
     public void draw(GraphicsContext gc) {
         gc.drawImage(image, this.getX(), this.getY(), this.getWidth(), this.getHeight());
         this.healthBar.draw(gc);
 
-        particles.addAll(emitter.emit(this.getX() + (this.getWidth() / 2) - 5, this.getY()));
+        particles.addAll(emitter.emit(this.getX() + (this.getWidth() / 2) - 2, this.getY()));
 
         for (Iterator<Particle> it = particles.iterator(); it.hasNext(); ) {
             Particle p = it.next();
@@ -50,10 +51,10 @@ public class SlowEnemy extends AbstractDynamicGameObject implements Enemy{
     }
     public void update() {
         super.update();
-        this.healthBar.setPosition(this.getX() + 1, this.getY() - 20);
-        healthBar.setHealth(this.getHitPoints() / 2);
+        this.healthBar.setPosition(this.getX(), this.getY());
+        this.healthBar.setHealth(this.getHitPoints());
         this.healthBar.update();
-        this.y+= 1;
+
     }
 
     @Override

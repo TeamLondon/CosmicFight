@@ -9,8 +9,8 @@ public abstract class AbstractDynamicGameObject implements DynamicGameObject{
     public Image image;
     public double x;
     public double y;
-    public double velocityX = 0;
-    public double velocityY = 0;
+    public double velocityX;
+    public double velocityY;
     public double width;
     public double height;
     private double hitPoints;

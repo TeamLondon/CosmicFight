@@ -8,6 +8,7 @@ public class Constants {
     public static final int PLAYER_WIDTH = 50, PLAYER_HEIGHT = 50;
     public static final int ROUND_ASTEROID_WIDTH = 64, ROUND_ASTEROID_HEIGHT = 64;
     public static final int CHAOTIC_ENEMY_WIDTH = 50, CHAOTIC_ENEMY_HEIGHT = 50;
+    public static final int BOSS_WIDTH = 300, BOSS_HEIGHT = 100;
 
     //Sprite paths
     public static final String PLAYER_PATH = "/player.png";
@@ -18,19 +19,16 @@ public class Constants {
     public static final String BACKGROUND_PATH = "/background/space3.jpg";
     public static final String BOSS_PATH = "/firstLevelBoss.png";
     public static final String HUD_HEALTH_BAR_PATH = "/HUD/HUD_healthBar.png";
+    public static final String BOSS_HEALTH_BAR_PATH = "/HealthBars/BossHealthBar.png";
+    public static final String SLOW_ENEMY_HEALTH_BAR_PATH = "/HealthBars/slowEnemyHealthBar.png";
 
-    //example
-    public static final String StartGameSceneResource = "/scenesFxmls/StartGameScene.fxml";
+    //FXML Paths
+    public static final String START_GAME_SCENE_RESOURCE = "/scenesFxmls/StartGameScene.fxml";
+    public static final String INSERT_USERNAME_SCENE_RESOURCE = "/scenesFxmls/InsertUsernameScene.fxml";
+    public static final String HIGH_SCORE_SCENE_RESOURCE = "/scenesFxmls/HighScoreScene.fxml";
+    public static final String END_GAME_SCENE_RESOURCE = "/scenesFxmls/GameOverScene.fxml";
 
-    public static final String InsertUsernameSceneResource = "/scenesFxmls/InsertUsernameScene.fxml";
-
-    public static final String HighScoreSceneResource = "/scenesFxmls/HighScoreScene.fxml";
-
-    public static final String EndGameSceneResource = "/scenesFxmls/GameOverScene.fxml";
-
-    public static final Integer SceneHeight = 600;
-    public static final Integer SceneWidth = 800;
-
+    //Styles
     public static final String BUTTON_STYLE = "-fx-background-color: \n" +
             "        linear-gradient(#ffd65b, #e68400),\n" +
             "        linear-gradient(#ffef84, #f2ba44),\n" +
@@ -43,5 +41,4 @@ public class Constants {
             "    -fx-font-weight: bold;\n" +
             "    -fx-font-size: 14px;\n" +
             "    -fx-padding: 10 20 10 20;";
-
 }
