@@ -13,19 +13,23 @@ public class Bullet extends AbstractDynamicGameObject{
 
     public Bullet(double x, double y) {
         super(x, y);
-        this.image = new Image(Constants.BULLET_PATH);
-        this.width = Constants.BULLET_WIDTH;
-        this.height = Constants.BULLET_HEIGHT;
-    }
-
-    public void draw(GraphicsContext gc) {
-        gc.drawImage(image, this.x + 18, this.y, this.width, this.height);
-    }
-    public void update() {
-        y -= 10;
+        this.setImage(Constants.BULLET_PATH);
+        this.setWidth(Constants.BULLET_WIDTH);
+        this.setHeight(Constants.BULLET_HEIGHT);
+        this.setVelocity(0, -10);
     }
 
     public Rectangle2D getBoundary() {
-        return new Rectangle2D(this.x, this.y, width + 20, height + 20);
+        return new Rectangle2D(this.getX(), this.getY(), this.getWidth() + 20, this.getHeight() + 20);
+    }
+
+
+
+    public void draw(GraphicsContext gc) {
+        gc.drawImage(this.getImage(), this.getX() + 18, this.getY(), this.getWidth(), this.getHeight());
+    }
+
+    public void update() {
+        super.update();
     }
 }

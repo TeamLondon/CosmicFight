@@ -3,16 +3,12 @@ package gameObjects.dynamicGameObjects.enemies;
 import core.Constants;
 import gameObjects.AbstractDynamicGameObject;
 import gameObjects.dynamicGameObjects.HealthBar;
-import gameObjects.dynamicGameObjects.Particle;
+import gameObjects.dynamicGameObjects.effects.Particle;
 import gameObjects.dynamicGameObjects.effects.Emitter;
 import gameObjects.dynamicGameObjects.effects.FireEmitter;
-import interfaces.DynamicGameObject;
 import interfaces.Enemy;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -27,12 +23,12 @@ public class SlowEnemy extends AbstractDynamicGameObject implements Enemy{
         this.setImage(Constants.SLOW_ENEMY_PATH);
         this.setWidth(Constants.SLOW_ENEMY_WIDTH);
         this.setHeight(Constants.SLOW_ENEMY_HEIGHT);
-        this.healthBar = new HealthBar(this.getX(), this.getY(), this.getWidth(), this.getHeight(), this.getHitPoints(), Constants.SLOW_ENEMY_HEALTH_BAR_PATH);
         this.setVelocity(0, 3);
+        this.healthBar = new HealthBar(this.getX(), this.getY(), this.getWidth(), this.getHeight(), this.getHitPoints(), Constants.SLOW_ENEMY_HEALTH_BAR_PATH);
     }
 
     public void draw(GraphicsContext gc) {
-        gc.drawImage(image, this.getX(), this.getY(), this.getWidth(), this.getHeight());
+        gc.drawImage(this.getImage(), this.getX(), this.getY(), this.getWidth(), this.getHeight());
         this.healthBar.draw(gc);
 
         particles.addAll(emitter.emit(this.getX() + (this.getWidth() / 2) - 2, this.getY()));
@@ -54,7 +50,6 @@ public class SlowEnemy extends AbstractDynamicGameObject implements Enemy{
         this.healthBar.setPosition(this.getX(), this.getY());
         this.healthBar.setHealth(this.getHitPoints());
         this.healthBar.update();
-
     }
 
     @Override

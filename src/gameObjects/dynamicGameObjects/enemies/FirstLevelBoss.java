@@ -16,8 +16,8 @@ public class FirstLevelBoss extends AbstractDynamicGameObject implements Enemy{
         this.setImage(Constants.BOSS_PATH);
         this.setWidth(Constants.BOSS_WIDTH);
         this.setHeight(Constants.BOSS_HEIGHT);
-        this.healthBar = new HealthBar(this.getX(), this.getY(), this.getWidth(), this.getHeight(), this.getHitPoints(), Constants.BOSS_HEALTH_BAR_PATH);
         this.setVelocity(5, 0);
+        this.healthBar = new HealthBar(this.getX(), this.getY(), this.getWidth(), this.getHeight(), this.getHitPoints(), Constants.BOSS_HEALTH_BAR_PATH);
     }
 
     public void draw(GraphicsContext gc) {

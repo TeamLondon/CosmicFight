@@ -1,4 +1,4 @@
-package gameObjects.dynamicGameObjects;
+package gameObjects.dynamicGameObjects.effects;
 
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;

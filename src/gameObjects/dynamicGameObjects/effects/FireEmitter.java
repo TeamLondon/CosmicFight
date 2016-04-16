@@ -1,8 +1,6 @@
 package gameObjects.dynamicGameObjects.effects;
 
-import gameObjects.dynamicGameObjects.Particle;
 import javafx.geometry.Point2D;
-import javafx.scene.effect.BlendMode;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;

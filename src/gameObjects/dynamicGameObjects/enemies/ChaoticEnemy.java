@@ -25,9 +25,8 @@ public class ChaoticEnemy extends AbstractDynamicGameObject implements Enemy {
         this.healthBar.draw(gc);
     }
     public void update() {
+        super.update();
         this.setVelocity(((Math.random() * 40)) - 20, (Math.random() * 10));
-        this.x += this.velocityX;
-        this.y += this.velocityY;
 
         this.healthBar.setPosition(this.getX(), this.getY());
         this.healthBar.setHealth(this.getHitPoints());
