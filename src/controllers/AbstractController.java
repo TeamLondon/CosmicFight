@@ -1,27 +1,39 @@
 package controllers;
 
-import interfaces.Database;
-import interfaces.StageController;
-
-import interfaces.StageManager;
+import interfaces.*;
 
 public abstract class AbstractController implements StageController {
     private StageManager stageManager;
 
     private Database gameDatabase;
 
+    private MessageBox messageBox;
+
+    private ConfirmBox confirmBox;
+
+    protected ConfirmBox getConfirmBox() {
+        return this.confirmBox;
+    }
+
+    protected MessageBox getMessageBox() {
+        return this.messageBox;
+    }
+
     protected StageManager getStageManager() {
-        return stageManager;
+        return this.stageManager;
     }
 
     protected Database getGameDatabase() {
-        return gameDatabase;
+        return this.gameDatabase;
     }
 
     @Override
-    public void setStageManager(StageManager stageManager) {
-        this.gameDatabase = stageManager.getDatabase();
+    public void initialize(StageManager stageManager, Database database, MessageBox messageBox, ConfirmBox confirmBox) {
         this.stageManager = stageManager;
+        this.gameDatabase = database;
+        this.messageBox = messageBox;
+        this.confirmBox = confirmBox;
+
         this.stageManager.getStage().setOnCloseRequest(e -> {
             e.consume();
             this.onCloseRequest();
@@ -29,11 +41,10 @@ public abstract class AbstractController implements StageController {
     }
 
 
-    public void onCloseRequest() {
-        boolean answer = this.stageManager.getConfirmBox().display("Exit game", "Are you sure you want to exit?");
-        if (answer){
+    protected void onCloseRequest() {
+        boolean isQuitting = this.stageManager.getConfirmBox().display("Exit game", "Are you sure you want to exit?");
+        if (isQuitting){
             this.gameDatabase.saveHighScoreInfo();
-            System.out.println("Data saved.");
             this.stageManager.getStage().close();
         }
     }

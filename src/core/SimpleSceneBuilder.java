@@ -49,7 +49,7 @@ public class SimpleSceneBuilder {
             scene = new Scene(loadScreen);
 
             GameOverController gameOverController = this.myLoader.getController();
-            gameOverController.setStageManager(stageManager);
+            gameOverController.initialize(stageManager, stageManager.getDatabase(), stageManager.getMessageBox(), stageManager.getConfirmBox());
 
         } catch (IOException e) {
             stageManager.getMessageBox().display("Exception", "Scene not loaded.");
@@ -66,7 +66,7 @@ public class SimpleSceneBuilder {
             scene = new Scene(loadScreen);
 
             HighScoreController highScoreController = this.myLoader.getController();
-            highScoreController.setStageManager(stageManager);
+            highScoreController.initialize(stageManager, stageManager.getDatabase(), stageManager.getMessageBox(), stageManager.getConfirmBox());
 
         } catch (IOException e) {
             stageManager.getMessageBox().display("Exception", "Scene not loaded.");
@@ -83,7 +83,7 @@ public class SimpleSceneBuilder {
             scene = new Scene(loadScreen);
 
             InsertUsernameController insertUsernameController = this.myLoader.getController();
-            insertUsernameController.setStageManager(stageManager);
+            insertUsernameController.initialize(stageManager, stageManager.getDatabase(), stageManager.getMessageBox(), stageManager.getConfirmBox());
         } catch (IOException e) {
             stageManager.getMessageBox().display("Exception", "Scene not loaded.");
         }
@@ -97,7 +97,7 @@ public class SimpleSceneBuilder {
             Parent loadScreen = this.myLoader.load();
             scene = new Scene(loadScreen);
             StartGameController startGameController = this.myLoader.getController();
-            startGameController.setStageManager(stageManager);
+            startGameController.initialize(stageManager, stageManager.getDatabase(), stageManager.getMessageBox(), stageManager.getConfirmBox());
         } catch (IOException e) {
             stageManager.getMessageBox().display("Exception", "Scene not loaded.");
         }

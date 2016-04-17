@@ -40,9 +40,6 @@ public class FirstLevelController extends AbstractController {
 
     private Spawner spawner;
 
-//    private boolean isFirstSwarmSpawned = false;
-//    private boolean isSecondSwarmSpawned = false;
-//    private boolean isThirdSwarmSpawned = false;
     private boolean isBossSpawned = false;
 
     public FirstLevelController(SimpleStageManager stageManager) {
@@ -55,7 +52,7 @@ public class FirstLevelController extends AbstractController {
         setBackground();
         initializeControllersAndPlayer();
 
-spawnBoss();
+        spawnBoss();
 
         timer = new AnimationTimer() {
             public void handle(long currentNanoTime) {
