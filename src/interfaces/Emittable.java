@@ -1,6 +1,6 @@
 package interfaces;
 
-import gameObjects.dynamicGameObjects.Particle;
+import gameObjects.dynamicGameObjects.effects.Particle;
 
 import java.util.List;
 

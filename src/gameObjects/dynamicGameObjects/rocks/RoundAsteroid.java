@@ -12,13 +12,17 @@ public class RoundAsteroid extends AbstractDynamicGameObject{
 
     public RoundAsteroid(double x, double y) {
         super(x, y);
-        this.image = new Image(Constants.ROUND_ASTEROID_PATH);
+        this.setImage(Constants.ROUND_ASTEROID_PATH);
+        this.setWidth(Constants.ROUND_ASTEROID_WIDTH);
+        this.setHeight(Constants.ROUND_ASTEROID_HEIGHT);
+        this.setVelocity(0, 8);
     }
 
     public void draw(GraphicsContext gc) {
-        gc.drawImage(this.image, this.x, this.y, Constants.ROUND_ASTEROID_WIDTH, Constants.ROUND_ASTEROID_HEIGHT);
+        super.draw(gc);
+        gc.drawImage(this.getImage(), this.getX(), this.getY(), this.getWidth(), this.getHeight());
     }
     public void update() {
-        this.y += 8;
+        super.update();
     }
 }

@@ -43,7 +43,7 @@ public class SimpleSceneBuilder {
 
     private Scene getExitGameScene(SimpleStageManager stageManager) {
         Scene scene = null;
-        this.myLoader = new FXMLLoader(getClass().getResource(Constants.EndGameSceneResource));
+        this.myLoader = new FXMLLoader(getClass().getResource(Constants.END_GAME_SCENE_RESOURCE));
         try {
             Parent loadScreen = this.myLoader.load();
             scene = new Scene(loadScreen);
@@ -60,7 +60,7 @@ public class SimpleSceneBuilder {
 
     private Scene getHighScoreScene(StageManager stageManager) {
         Scene scene = null;
-        this.myLoader = new FXMLLoader(getClass().getResource(Constants.HighScoreSceneResource));
+        this.myLoader = new FXMLLoader(getClass().getResource(Constants.HIGH_SCORE_SCENE_RESOURCE));
         try {
             Parent loadScreen = this.myLoader.load();
             scene = new Scene(loadScreen);
@@ -77,7 +77,7 @@ public class SimpleSceneBuilder {
 
     private Scene getInsertUsernameScene(SimpleStageManager stageManager) {
         Scene scene = null;
-        this.myLoader = new FXMLLoader(getClass().getResource(Constants.InsertUsernameSceneResource));
+        this.myLoader = new FXMLLoader(getClass().getResource(Constants.INSERT_USERNAME_SCENE_RESOURCE));
         try {
             Parent loadScreen = this.myLoader.load();
             scene = new Scene(loadScreen);
@@ -92,7 +92,7 @@ public class SimpleSceneBuilder {
 
     private Scene getStartScene(SimpleStageManager stageManager) {
         Scene scene = null;
-        this.myLoader = new FXMLLoader(getClass().getResource(Constants.StartGameSceneResource));
+        this.myLoader = new FXMLLoader(getClass().getResource(Constants.START_GAME_SCENE_RESOURCE));
         try {
             Parent loadScreen = this.myLoader.load();
             scene = new Scene(loadScreen);

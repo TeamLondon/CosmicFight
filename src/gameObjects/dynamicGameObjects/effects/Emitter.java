@@ -1,7 +1,5 @@
 package gameObjects.dynamicGameObjects.effects;
 
-import gameObjects.dynamicGameObjects.Particle;
-
 import java.util.List;
 
 public abstract class Emitter {

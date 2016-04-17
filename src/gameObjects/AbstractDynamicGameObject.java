@@ -6,39 +6,30 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 public abstract class AbstractDynamicGameObject implements DynamicGameObject{
-    public Image image;
-    public double x;
-    public double y;
-    public double velocityX = 0;
-    public double velocityY = 0;
-    public double width;
-    public double height;
+    private Image image;
+    private double x;
+    private double y;
+    private double velocityX;
+    private double velocityY;
+    private double width;
+    private double height;
     private double hitPoints;
     private boolean isAlive;
 
     public AbstractDynamicGameObject(double x, double y) {
-        this.x = x;
-        this.y = y;
-        this.hitPoints = 100;
-        this.isAlive = true;
+        this.setPosition(x ,y);
+        this.setHitPoints(100);
+        this.setAlive(true);
     }
 
     public void setVelocity(double x, double y) {
-        velocityX = x;
-        velocityY = y;
+        this.velocityX = x;
+        this.velocityY = y;
     }
 
     public void addVelocity(double x, double y) {
         velocityX += x;
         velocityY += y;
-    }
-
-    public Rectangle2D getBoundary() {
-        return new Rectangle2D(this.x,this.y,width,height);
-    }
-
-    public boolean isIntersecting(DynamicGameObject otherDynamicObject) {
-        return otherDynamicObject.getBoundary().intersects( this.getBoundary() );
     }
 
     public double getX() {
@@ -108,6 +99,16 @@ public abstract class AbstractDynamicGameObject implements DynamicGameObject{
     public void setHeight(double height) {
         this.height = height;
     }
+
+    public Rectangle2D getBoundary() {
+        return new Rectangle2D(this.x,this.y,width,height);
+    }
+
+    public boolean isIntersecting(DynamicGameObject otherDynamicObject) {
+        return otherDynamicObject.getBoundary().intersects( this.getBoundary() );
+    }
+
+
 
     public void draw(GraphicsContext gc) {
 

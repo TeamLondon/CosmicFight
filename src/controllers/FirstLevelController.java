@@ -8,8 +8,6 @@ import gameObjects.staticGameObjects.HUD;
 import interfaces.DynamicGameObject;
 import interfaces.Player;
 import javafx.animation.AnimationTimer;
-import javafx.animation.PathTransition;
-import javafx.animation.Timeline;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -17,13 +15,7 @@ import javafx.scene.effect.BlendMode;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.CubicCurveTo;
-import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.Path;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 import java.util.Random;
 
@@ -47,9 +39,9 @@ public class FirstLevelController extends AbstractController {
 
     private Spawner spawner;
 
-    private boolean isFirstSwarmSpawned = false;
-    private boolean isSecondSwarmSpawned = false;
-    private boolean isThirdSwarmSpawned = false;
+//    private boolean isFirstSwarmSpawned = false;
+//    private boolean isSecondSwarmSpawned = false;
+//    private boolean isThirdSwarmSpawned = false;
     private boolean isBossSpawned = false;
 
     public FirstLevelController(SimpleStageManager stageManager) {
@@ -62,7 +54,7 @@ public class FirstLevelController extends AbstractController {
         setBackground();
         initializeControllersAndPlayer();
 
-
+spawnBoss();
 
         timer = new AnimationTimer() {
             public void handle(long currentNanoTime) {
@@ -117,8 +109,10 @@ public class FirstLevelController extends AbstractController {
         ////////////////////////////////////////////////
         if (Double.compare(y, 0) >= 0) {
             y = 0;
+            if (isBossSpawned == false) {
+                spawnBoss();
+            }
         }
-
 
         distanceTravelled = distanceTravelled * (-1);
 
@@ -151,8 +145,9 @@ public class FirstLevelController extends AbstractController {
 
     private void spawnBoss() {
         Random random = new Random();
-        this.boss = new FirstLevelBoss(random.nextInt(650) + 100, 0);
+        this.boss = new FirstLevelBoss(random.nextInt(650) + 100, 50);
         this.handler.addDynamicObject(boss);
+        isBossSpawned = true;
     }
 
     private void setNextScene() {

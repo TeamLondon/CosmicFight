@@ -54,6 +54,12 @@ public class ObjectHandler {
                         }
                     }
                 }
+            }else {
+                if (!(tempObject instanceof GamePlayer)) {
+                    if (tempObject.isIntersecting(this. player)) {
+                        player.applyDamage(0.5);
+                    }
+                }
             }
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
