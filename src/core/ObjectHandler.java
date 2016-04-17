@@ -2,7 +2,11 @@ package core;
 
 import gameObjects.dynamicGameObjects.attacks.Bullet;
 import gameObjects.dynamicGameObjects.player.GamePlayer;
+<<<<<<< HEAD
 import interfaces.Bonus;
+=======
+import interfaces.Ammo;
+>>>>>>> 234e0378a6964639bd0bf02b1c5b2670e66248fb
 import interfaces.DynamicGameObject;
 import interfaces.Enemy;
 import interfaces.StaticGameObject;
@@ -26,20 +30,20 @@ public class ObjectHandler {
             DynamicGameObject tempObject = dynamicObjects.get(i);
             /////////////////////////////////////////////Collision testing///////////////////////////////////////////////////////
             //If the current object is an instance of the bullet class
-            if (tempObject instanceof Bullet) {
+            if (tempObject instanceof Ammo) {
                 //Iterate through all game objects again
                 for (int j = 0; j < this.dynamicObjects.size(); j++) {
                     DynamicGameObject currentTempObject = this.dynamicObjects.get(j);
 
                     //Check if the current object is the player or another bullet
-                    if (currentTempObject instanceof GamePlayer || currentTempObject instanceof Bullet) {
+                    if (currentTempObject instanceof GamePlayer || currentTempObject instanceof Ammo) {
                         //If yes - continue..
                         continue;
                     }else {
                         //Else check if it is intersecting with the bullet
                         if (tempObject.isIntersecting(currentTempObject)) {
                             //If yes subtract 10 from the total hitPoints of this object
-                            currentTempObject.applyDamage(player.getDamage());
+                            currentTempObject.applyDamage(((Ammo) tempObject).getDamage());
                             //Then destroy this bullet and initiate its death animation
                             tempObject.initiateDestroyAnimation();
                             this.removeDynamicObject(tempObject);

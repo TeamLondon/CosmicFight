@@ -11,14 +11,14 @@ import javafx.scene.input.KeyEvent;
 
 public class GameOverController extends AbstractController{
     @FXML
-    public Label badLuck;
+    private Label badLuck;
     @FXML
-    public Label congratulationsYouWin;
+    private Label congratulationsYouWin;
 
     @FXML
-    public Button exitGame;
+    private Button exitGame;
     @FXML
-    public Button playNewGame;
+    private Button playNewGame;
 
     @Override
     @FXML

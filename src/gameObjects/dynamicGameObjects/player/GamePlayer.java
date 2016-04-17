@@ -1,17 +1,23 @@
 package gameObjects.dynamicGameObjects.player;
 
 import core.Constants;
+import enums.Attacks;
 import gameObjects.AbstractDynamicGameObject;
 import interfaces.HighScore;
 import interfaces.Player;
 import javafx.scene.canvas.GraphicsContext;
 import utilityModels.GameHighScore;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GamePlayer extends AbstractDynamicGameObject implements Player{
     private String name;
-    private double fireRate;
-    private double damage;
+    private double bulletCooldown;
+    private double bombCooldown;
     private HighScore highScore;
+    private List<Attacks> attacks = new ArrayList<>();
+    private Attacks currentAttack;
 
     public GamePlayer(double x, double y, String name) {
         super(x, y);
@@ -19,8 +25,11 @@ public class GamePlayer extends AbstractDynamicGameObject implements Player{
         this.setImage(Constants.PLAYER_PATH);
         this.setWidth(Constants.PLAYER_WIDTH);
         this.setHeight(Constants.PLAYER_HEIGHT);
-        this.setFireRate(0.4);
-        this.setDamage(5);
+        this.setBulletCooldown(0.4);
+        this.setBombCooldown(20.0);
+        this.currentAttack = Attacks.Bullet;
+        this.addAttack(currentAttack);
+        this.addAttack(Attacks.Bomb);
         this.highScore = new GameHighScore(this.name, 0);
     }
 
@@ -32,24 +41,34 @@ public class GamePlayer extends AbstractDynamicGameObject implements Player{
         this.name = name;
     }
 
-    public double getDamage() {
-        return damage;
+    public double getBulletCooldown() {
+        return bulletCooldown;
     }
 
-    public void setDamage(double damage) {
-        this.damage = damage;
+    public void setBulletCooldown(double bulletCooldown) {
+        this.bulletCooldown = bulletCooldown;
     }
 
-    public double getFireRate() {
-        return fireRate;
-    }
-
-    public void setFireRate(double fireRate) {
-        this.fireRate = fireRate;
+    public void resetBullet() {
+        this.setBulletCooldown(0.4);
     }
 
     public HighScore getHighScore() {
         return this.highScore;
+    }
+
+    public void changeAttack() {
+        int index = attacks.indexOf(currentAttack);
+
+        if (index == this.attacks.size() - 1) {
+            this.currentAttack = this.attacks.get(0);
+        }else {
+            this.currentAttack = this.attacks.get(index + 1);
+        }
+    }
+
+    public void addAttack(Attacks attack) {
+        this.attacks.add(attack);
     }
 
     public void addScore(int points) {
@@ -66,13 +85,29 @@ public class GamePlayer extends AbstractDynamicGameObject implements Player{
         else return var;
     }
 
+    public double getBombCooldown() {
+        return bombCooldown;
+    }
 
+    public void setBombCooldown(double bombCooldown) {
+        this.bombCooldown = bombCooldown;
+    }
+
+    public void resetBomb() {
+        this.setBombCooldown(20.0);
+    }
+
+    public Attacks getCurrentAttack() {
+        return currentAttack;
+    }
 
     public void update() {
         super.update();
         double currentX = clamp(this.getX(), 0, Constants.WINDOW_WIDTH - this.getWidth());
         double currentY = clamp(this.getY(), 0, Constants.WINDOW_HEIGHT - this.getHeight());
         this.setPosition(currentX, currentY + 1);
+        this.setBulletCooldown(clamp(this.getBulletCooldown() - 0.12, 0.0, 0.4));
+        this.setBombCooldown(clamp(this.getBombCooldown() - 0.1, 0.0, 20.0));
     }
 
     public void draw(GraphicsContext gc) {

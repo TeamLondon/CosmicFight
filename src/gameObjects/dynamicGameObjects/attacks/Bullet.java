@@ -2,14 +2,11 @@ package gameObjects.dynamicGameObjects.attacks;
 
 import core.Constants;
 import gameObjects.AbstractDynamicGameObject;
+import interfaces.Ammo;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.*;
-import javafx.scene.image.Image;
 
-import java.awt.*;
-
-public class Bullet extends AbstractDynamicGameObject{
+public class Bullet extends AbstractDynamicGameObject implements Ammo{
 
     public Bullet(double x, double y) {
         super(x, y);
@@ -31,5 +28,10 @@ public class Bullet extends AbstractDynamicGameObject{
 
     public void update() {
         super.update();
+    }
+
+    @Override
+    public Integer getDamage() {
+        return 5;
     }
 }
