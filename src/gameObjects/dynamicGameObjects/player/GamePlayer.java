@@ -100,6 +100,10 @@ public class GamePlayer extends AbstractDynamicGameObject implements Player{
         return currentAttack;
     }
 
+    public List<Attacks> getAttacks() {
+        return attacks;
+    }
+
     public void update() {
         super.update();
         double currentX = clamp(this.getX(), 0, Constants.WINDOW_WIDTH - this.getWidth());
