@@ -25,8 +25,8 @@ public class GamePlayer extends AbstractDynamicGameObject implements Player{
         this.setImage(Constants.PLAYER_PATH);
         this.setWidth(Constants.PLAYER_WIDTH);
         this.setHeight(Constants.PLAYER_HEIGHT);
-        this.setBulletCooldown(0.4);
-        this.setBombCooldown(20.0);
+        this.setBulletCooldown(0.0);
+        this.setBombCooldown(0.0);
         this.currentAttack = Attacks.Bullet;
         this.addAttack(currentAttack);
         this.highScore = new GameHighScore(this.name, 0);
@@ -49,7 +49,7 @@ public class GamePlayer extends AbstractDynamicGameObject implements Player{
     }
 
     public void resetBullet() {
-        this.setBulletCooldown(0.4);
+        this.setBulletCooldown(0.0);
     }
 
     public HighScore getHighScore() {
@@ -93,7 +93,7 @@ public class GamePlayer extends AbstractDynamicGameObject implements Player{
     }
 
     public void resetBomb() {
-        this.setBombCooldown(20.0);
+        this.setBombCooldown(0.0);
     }
 
     public Attacks getCurrentAttack() {
@@ -105,8 +105,8 @@ public class GamePlayer extends AbstractDynamicGameObject implements Player{
         double currentX = clamp(this.getX(), 0, Constants.WINDOW_WIDTH - this.getWidth());
         double currentY = clamp(this.getY(), 0, Constants.WINDOW_HEIGHT - this.getHeight());
         this.setPosition(currentX, currentY + 1);
-        this.setBulletCooldown(clamp(this.getBulletCooldown() - 0.12, 0.0, 0.4));
-        this.setBombCooldown(clamp(this.getBombCooldown() - 0.1, 0.0, 20.0));
+        this.setBulletCooldown(clamp(this.getBulletCooldown() + 0.13, 0.0, 0.4));
+        this.setBombCooldown(clamp(this.getBombCooldown() + 0.1, 0.0, 20.0));
     }
 
     public void draw(GraphicsContext gc) {

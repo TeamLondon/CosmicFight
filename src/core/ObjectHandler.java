@@ -1,20 +1,16 @@
 package core;
 
-import gameObjects.dynamicGameObjects.attacks.Bullet;
 import gameObjects.dynamicGameObjects.player.GamePlayer;
-import interfaces.Bonus;
 import interfaces.Ammo;
-
+import interfaces.Bonus;
 import interfaces.DynamicGameObject;
 import interfaces.Enemy;
-import interfaces.StaticGameObject;
 import javafx.scene.canvas.GraphicsContext;
 
 import java.util.LinkedList;
 
 public class ObjectHandler {
     public LinkedList<DynamicGameObject> dynamicObjects = new LinkedList<DynamicGameObject>();
-    public LinkedList<StaticGameObject> staticObjects = new LinkedList<StaticGameObject>();
     private GamePlayer player;
 
     public ObjectHandler(GamePlayer player) {
@@ -26,6 +22,15 @@ public class ObjectHandler {
         for (int i = 0; i < dynamicObjects.size(); i++) {
             //Gets them and saves their reference to the variable tempObject
             DynamicGameObject tempObject = dynamicObjects.get(i);
+
+            //Checks if the object is outside of the map
+            if (tempObject.getY() < 0 || tempObject.getY() > 600) {
+                //If yes - remove it
+                removeDynamicObject(tempObject);
+                tempObject = null;
+                //System.gc();
+                continue;
+            }
             /////////////////////////////////////////////Collision testing///////////////////////////////////////////////////////
             //If the current object is an instance of the bullet class
             if (tempObject instanceof Ammo) {
@@ -59,7 +64,7 @@ public class ObjectHandler {
                 }
             }else {
                 if (!(tempObject instanceof GamePlayer)) {
-                    if (tempObject.isIntersecting(this. player)) {
+                    if (tempObject.isIntersecting(this.player)) {
                         if (tempObject instanceof Bonus) {
                             ((Bonus)tempObject).applyBonus(this.player);
                             this.removeDynamicObject(tempObject);
@@ -70,23 +75,6 @@ public class ObjectHandler {
                 }
             }
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-            //Checks if the object is outside of the map
-            if (tempObject.getY() < 0 || tempObject.getY() > 600) {
-                //If yes - remove it
-                removeDynamicObject(tempObject);
-                tempObject = null;
-                //System.gc();
-                continue;
-            }
-            //And initiates their update method so their fields get updated every time the controller.update() method gets initiated
-            tempObject.update();
-        }
-
-        for (int i = 0; i < staticObjects.size(); i++) {
-            //Gets them and saves their reference to the variable tempObject
-            StaticGameObject tempObject = staticObjects.get(i);
-
             //And initiates their update method so their fields get updated every time the controller.update() method gets initiated
             tempObject.update();
         }
@@ -100,14 +88,6 @@ public class ObjectHandler {
             //And invokes their draw() method so any new changes on their rendering (graphics) get taken into account
             tempObject.draw(gc);
         }
-
-        for (int i = 0; i < staticObjects.size(); i++) {
-            //Gets them and saves their reference to the variable tempObject
-            StaticGameObject tempObject = staticObjects.get(i);
-
-            //And invokes their draw() method so any new changes on their rendering (graphics) get taken into account
-            tempObject.draw(gc);
-        }
     }
 
     //These methods have to be used when adding new objects to the game or else they won't change color,speed etc..
@@ -115,16 +95,9 @@ public class ObjectHandler {
     public void addDynamicObject(DynamicGameObject object) {
         this.dynamicObjects.add(object);
     }
-    public void addStaticObject(StaticGameObject object) {
-        this.staticObjects.add(object);
-    }
-
     //These methods remove an object from the object list in the controller class
     //When an object is removed from the list, his update and draw methods are no longer called every frame
     public void removeDynamicObject(DynamicGameObject object) {
         this.dynamicObjects.remove(object);
-    }
-    public void removeStaticObject(StaticGameObject object) {
-        this.staticObjects.remove(object);
     }
 }
