@@ -11,12 +11,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Paint;
 
 public class GameOverController extends AbstractController {
     @FXML
     private Label badLuck;
     @FXML
     private Label congratulationsYouWin;
+
+    @FXML
+    public Label score;
 
     @FXML
     private Button exitGame;
@@ -30,9 +34,13 @@ public class GameOverController extends AbstractController {
         super.initialize(stageManager, database, messageBox, confirmBox);
         boolean isAlive = this.getGameDatabase().getPlayer().getHitPoints() > 0;
         if (isAlive) {
-            this.badLuck.setVisible(false);
+            this.congratulationsYouWin.setVisible(true);
+            this.score.textProperty().
+                    set(this.getGameDatabase().getPlayer().getName() +
+                    " score: " + this.getGameDatabase().getPlayer().getHighScore().getPlayerScore());
+            this.score.setVisible(true);
         } else {
-            this.congratulationsYouWin.setVisible(false);
+            this.badLuck.setVisible(true);
         }
     }
 
