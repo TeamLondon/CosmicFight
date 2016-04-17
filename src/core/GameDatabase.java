@@ -5,10 +5,11 @@ import interfaces.HighScore;
 import interfaces.Player;
 
 import java.io.*;
-import java.util.TreeSet;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class GameDatabase implements Database {
-    private TreeSet<HighScore> highScores;
+    private Set<HighScore> highScores;
 
     private Player player;
 
@@ -23,6 +24,7 @@ public class GameDatabase implements Database {
 
     @Override
     public void saveHighScoreInfo() {
+        this.highScores = this.highScores.stream().sorted().collect(Collectors.toSet());
         String savePath = "res\\highscores.save";
         try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(savePath, false))) {
             objectOutputStream.writeObject(this.highScores);
@@ -44,7 +46,9 @@ public class GameDatabase implements Database {
     }
 
     public String getHighScore() {
+        this.highScores = this.highScores.stream().sorted().collect(Collectors.toSet());
         StringBuilder highScoreStringBuilder = new StringBuilder();
+
         int index = 1;
         for (HighScore highScore : highScores) {
             highScoreStringBuilder.append(String.format("%d. %s%n", index, highScore.toString()));
@@ -58,11 +62,12 @@ public class GameDatabase implements Database {
     public void loadHighScoreInfo() {
         String loadPath = "res\\highscores.save";
         try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(loadPath))) {
-            TreeSet<HighScore> loadedHighScores = (TreeSet<HighScore>) objectInputStream.readObject();
+            Set<HighScore> loadedHighScores = (HashSet<HighScore>) objectInputStream.readObject();
             if (loadedHighScores != null) {
                 this.highScores = loadedHighScores;
+                this.highScores = this.highScores.stream().sorted().collect(Collectors.toSet());
             } else {
-                this.highScores = new TreeSet<>();
+                this.highScores = new HashSet<>();
             }
         } catch (IOException ioe) {
             // ToDo: pass exception further.
@@ -71,7 +76,7 @@ public class GameDatabase implements Database {
         }
 
         if (this.highScores == null){
-            this.highScores = new TreeSet<>();
+            this.highScores = new HashSet<>();
         }
     }
 

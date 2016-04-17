@@ -47,6 +47,22 @@ public class GameHighScore implements HighScore {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        GameHighScore that = (GameHighScore) o;
+
+        return playerName.equals(that.playerName);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return playerName.hashCode();
+    }
+
     public void setPlayerScore(Integer playerScore) {
         if (playerScore >= 0){
             this.playerScore = playerScore;
