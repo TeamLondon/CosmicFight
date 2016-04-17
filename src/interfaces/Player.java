@@ -2,7 +2,14 @@ package interfaces;
 
 public interface Player extends DynamicGameObject, Unit {
     String getName();
-     double getFireRate();
+
+     double getBulletCooldown();
+
+     double getBombCooldown();
+
+    void resetBullet();
+
+    void resetBomb();
 
     void setName(String name);
 

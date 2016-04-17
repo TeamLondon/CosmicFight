@@ -1,7 +1,7 @@
 package core;
 
 import gameObjects.dynamicGameObjects.attacks.Bullet;
-import gameObjects.dynamicGameObjects.player.GamePlayer;
+import gameObjects.dynamicGameObjects.attacks.GiantBomb;
 import interfaces.Player;
 import javafx.scene.Scene;
 import java.util.ArrayList;
@@ -37,9 +37,6 @@ public class InputHandler {
         handleKeys();
     }
     private void handleKeys() {
-        long currentTime = System.nanoTime();
-
-        double elapsedTime = (currentTime - lastTime) / 1_000_000_00.0;
         this.player.setVelocity(0,0);
         if (this.input.contains("LEFT") || this.input.contains("A"))
             this.player.addVelocity(-10,0);
@@ -50,9 +47,15 @@ public class InputHandler {
         if (this.input.contains("DOWN") || this.input.contains("S"))
             this.player.addVelocity(0,5);
         if (this.input.contains("SPACE")) {
-            if (elapsedTime > player.getFireRate()) {
+            if (player.getBulletCooldown() <= 0.0) {
                 this.handler.addDynamicObject(new Bullet(player.getX(), player.getY()));
-                lastTime = currentTime;
+                player.resetBullet();
+            }
+        }
+        if (this.input.contains("E")) {
+            if (player.getBombCooldown() <= 0.0) {
+                this.handler.addDynamicObject(new GiantBomb(player.getX(), player.getY()));
+                player.resetBomb();
             }
         }
 

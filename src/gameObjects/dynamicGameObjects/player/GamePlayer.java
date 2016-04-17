@@ -9,7 +9,8 @@ import utilityModels.GameHighScore;
 
 public class GamePlayer extends AbstractDynamicGameObject implements Player{
     private String name;
-    private double fireRate;
+    private double bulletCooldown;
+    private double bombCooldown;
     private double damage;
     private HighScore highScore;
 
@@ -19,7 +20,8 @@ public class GamePlayer extends AbstractDynamicGameObject implements Player{
         this.setImage(Constants.PLAYER_PATH);
         this.setWidth(Constants.PLAYER_WIDTH);
         this.setHeight(Constants.PLAYER_HEIGHT);
-        this.setFireRate(0.4);
+        this.setBulletCooldown(0.4);
+        this.setBombCooldown(20.0);
         this.setDamage(5);
         this.highScore = new GameHighScore(this.name, 0);
     }
@@ -40,12 +42,16 @@ public class GamePlayer extends AbstractDynamicGameObject implements Player{
         this.damage = damage;
     }
 
-    public double getFireRate() {
-        return fireRate;
+    public double getBulletCooldown() {
+        return bulletCooldown;
     }
 
-    public void setFireRate(double fireRate) {
-        this.fireRate = fireRate;
+    public void setBulletCooldown(double bulletCooldown) {
+        this.bulletCooldown = bulletCooldown;
+    }
+
+    public void resetBullet() {
+        this.setBulletCooldown(0.4);
     }
 
     public HighScore getHighScore() {
@@ -66,13 +72,25 @@ public class GamePlayer extends AbstractDynamicGameObject implements Player{
         else return var;
     }
 
+    public double getBombCooldown() {
+        return bombCooldown;
+    }
 
+    public void setBombCooldown(double bombCooldown) {
+        this.bombCooldown = bombCooldown;
+    }
+
+    public void resetBomb() {
+        this.setBombCooldown(20.0);
+    }
 
     public void update() {
         super.update();
         double currentX = clamp(this.getX(), 0, Constants.WINDOW_WIDTH - this.getWidth());
         double currentY = clamp(this.getY(), 0, Constants.WINDOW_HEIGHT - this.getHeight());
         this.setPosition(currentX, currentY + 1);
+        this.setBulletCooldown(this.getBulletCooldown() - 0.12);
+        this.setBombCooldown(this.getBombCooldown() - 0.1);
     }
 
     public void draw(GraphicsContext gc) {
