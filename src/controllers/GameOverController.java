@@ -35,6 +35,7 @@ public class GameOverController extends AbstractController{
     }
 
     public void playNewGameButton(){
+        this.getGameDatabase().saveHighScoreInfo();
         this.getStageManager().setScene(Scenes.StartGameScene);
     }
 
