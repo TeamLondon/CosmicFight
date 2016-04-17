@@ -51,12 +51,12 @@ public class InputHandler {
             this.player.addVelocity(0,5);
         if (this.input.contains("SPACE")) {
             if (player.getCurrentAttack() == Attacks.Bullet) {
-                if (player.getBulletCooldown() <= 0.0) {
+                if (player.getBulletCooldown() >= 0.4) {
                     this.handler.addDynamicObject(new Bullet(player.getX(), player.getY()));
                     player.resetBullet();
                 }
             }else if (player.getCurrentAttack() == Attacks.Bomb) {
-                if (player.getBombCooldown() <= 0.0) {
+                if (player.getBombCooldown() >= 20.0) {
                     this.handler.addDynamicObject(new GiantBomb(player.getX(), player.getY()));
                     player.resetBomb();
                 }
