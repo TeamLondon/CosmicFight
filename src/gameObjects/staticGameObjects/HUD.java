@@ -20,7 +20,7 @@ public class HUD extends AbstractStaticGameObject {
 
     public void draw(GraphicsContext gc) {
         this.setImage(Constants.HUD_HEALTH_BAR_PATH);
-        gc.setFill(Color.rgb(75, (int)healthValue, 0));
+        gc.setFill(Color.rgb(75, Math.abs((int)healthValue), 0));
         gc.fillRect(20, 10, healthValue, this.getHeight() - 25);
         gc.drawImage(this.getImage(), 1, 1, this.getWidth(), this.getHeight());
         Font theFont = Font.font("Impact", FontWeight.BOLD, 50);
