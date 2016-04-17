@@ -1,6 +1,7 @@
 package gameObjects.staticGameObjects;
 
 import core.Constants;
+import enums.Attacks;
 import gameObjects.AbstractStaticGameObject;
 import gameObjects.dynamicGameObjects.player.GamePlayer;
 import interfaces.Player;
@@ -33,12 +34,11 @@ public class HUD extends AbstractStaticGameObject {
         gc.fillText( pointsText, 700, 50);
         gc.strokeText( pointsText, 700, 50);
 
-        this.setImage(Constants.HUD_COOLDOWN_BAR_PATH);
-        gc.fillRect(84, Constants.WINDOW_HEIGHT - 43, bombValue, 20);
-        gc.drawImage(this.getImage(), 1, Constants.WINDOW_HEIGHT - this.getImage().getHeight() + 20, this.getWidth(), this.getHeight() - 20);
-
-
-
+        if (player.getAttacks().contains(Attacks.Bomb)) {
+            this.setImage(Constants.HUD_COOLDOWN_BAR_PATH);
+            gc.fillRect(84, Constants.WINDOW_HEIGHT - 42, bombValue, 20);
+            gc.drawImage(this.getImage(), 1, Constants.WINDOW_HEIGHT - this.getImage().getHeight() + 20, this.getWidth(), this.getHeight() - 20);
+        }
     }
     public void update() {
         double amountInPercent = (player.getBombCooldown() / 20.0) * 100;
