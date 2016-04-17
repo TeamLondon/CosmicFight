@@ -13,7 +13,6 @@ public class InputHandler {
     private Player player;
     private ObjectHandler handler;
     private List<String> input;
-    private long lastTime = System.nanoTime();
 
     public InputHandler(Scene scene, Player player, ObjectHandler handler) {
         this.scene = scene;
@@ -51,12 +50,12 @@ public class InputHandler {
             this.player.addVelocity(0,5);
         if (this.input.contains("SPACE")) {
             if (player.getCurrentAttack() == Attacks.Bullet) {
-                if (player.getBulletCooldown() <= 0.0) {
+                if (player.getBulletCooldown() >= 0.4) {
                     this.handler.addDynamicObject(new Bullet(player.getX(), player.getY()));
                     player.resetBullet();
                 }
             }else if (player.getCurrentAttack() == Attacks.Bomb) {
-                if (player.getBombCooldown() <= 0.0) {
+                if (player.getBombCooldown() >= 20.0) {
                     this.handler.addDynamicObject(new GiantBomb(player.getX(), player.getY()));
                     player.resetBomb();
                 }
@@ -68,5 +67,11 @@ public class InputHandler {
         }
 
 
+    }
+
+    public void setScene(Scene scene) {
+        if (scene != null) {
+            this.scene = scene;
+        }
     }
 }

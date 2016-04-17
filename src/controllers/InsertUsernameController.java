@@ -3,17 +3,14 @@ package controllers;
 import core.Constants;
 import enums.Scenes;
 import gameObjects.dynamicGameObjects.player.GamePlayer;
-import interfaces.Player;
-import interfaces.StageManager;
+import interfaces.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import utilityModels.GameHighScore;
 
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
@@ -28,9 +25,9 @@ public class InsertUsernameController extends AbstractController {
     private Label usernameInfo;
 
     @Override
-    public void setStageManager(StageManager stageManager) {
+    public void initialize(StageManager stageManager, Database database, MessageBox messageBox, ConfirmBox confirmBox) {
         this.enterUsernameButton.setStyle(Constants.BUTTON_STYLE);
-        super.setStageManager(stageManager);
+        super.initialize(stageManager, database, messageBox, confirmBox);
     }
 
     public void onEnterUsernameButtonClick(){
