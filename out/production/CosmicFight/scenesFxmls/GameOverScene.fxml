@@ -20,13 +20,18 @@
       </ImageView>
    </children>
    <bottom>
-      <AnchorPane prefHeight="211.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <AnchorPane id="score" prefHeight="211.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
             <Button id="exitGame" fx:id="exitGame" layoutX="135.0" layoutY="106.0" mnemonicParsing="false" onAction="#exitGameButton" onKeyPressed="#onEnterKeyPress" text="Exit game" />
             <Button id="playNewGame" fx:id="playNewGame" layoutX="550.0" layoutY="106.0" mnemonicParsing="false" onAction="#playNewGameButton" onKeyPressed="#onEnterKeyPress" text="Play new game" />
-            <Label id="badLuck" fx:id="badLuck" layoutX="320.0" text="BAD LUCK!" textFill="#f24806">
+            <Label id="badLuck" fx:id="badLuck" layoutX="320.0" text="BAD LUCK!" textFill="#f24806" visible="false">
                <font>
                   <Font size="31.0" />
+               </font>
+            </Label>
+            <Label id="score" fx:id="score" alignment="CENTER" layoutX="221.0" layoutY="44.0" prefHeight="47.0" prefWidth="360.0" text="score" textAlignment="CENTER" textFill="#1b0d40" visible="false">
+               <font>
+                  <Font size="30.0" />
                </font>
             </Label>
          </children>
@@ -43,7 +48,7 @@
       </Label>
    </top>
    <center>
-      <Label id="CONGRATULATIONS YOU WIN!" fx:id="congratulationsYouWin" text="CONGRATULATIONS YOU WIN!" textFill="#ff8316" BorderPane.alignment="CENTER">
+      <Label id="CONGRATULATIONS YOU WIN!" fx:id="congratulationsYouWin" text="CONGRATULATIONS YOU WIN!" textFill="#ff8316" visible="false" BorderPane.alignment="CENTER">
          <font>
             <Font size="30.0" />
          </font>

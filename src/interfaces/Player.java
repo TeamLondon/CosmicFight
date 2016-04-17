@@ -23,6 +23,8 @@ public interface Player extends DynamicGameObject, Unit {
 
     void changeAttack();
 
+    void addScore(int additionalScore);
+
     Attacks getCurrentAttack();
 
      List<Attacks> getAttacks();

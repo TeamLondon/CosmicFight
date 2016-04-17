@@ -2,20 +2,18 @@ package core;
 
 import gameObjects.dynamicGameObjects.attacks.BossBullet;
 import gameObjects.dynamicGameObjects.player.GamePlayer;
-import interfaces.Ammo;
-import interfaces.Bonus;
-import interfaces.DynamicGameObject;
-import interfaces.Enemy;
+import interfaces.*;
 import javafx.scene.canvas.GraphicsContext;
 
 import java.util.LinkedList;
 
 public class ObjectHandler {
     public LinkedList<DynamicGameObject> dynamicObjects = new LinkedList<DynamicGameObject>();
-    private GamePlayer player;
+    private Player player;
 
-    public ObjectHandler(GamePlayer player) {
+    public ObjectHandler(Player player) {
         this.player = player;
+        this.addDynamicObject(player);
     }
 
     public void update() {

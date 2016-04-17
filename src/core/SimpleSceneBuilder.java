@@ -1,6 +1,9 @@
 package core;
 
 import controllers.*;
+import gameObjects.dynamicGameObjects.player.GamePlayer;
+import gameObjects.staticGameObjects.HUD;
+import interfaces.Player;
 import interfaces.StageManager;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,12 +16,23 @@ import enums.Scenes;
 public class SimpleSceneBuilder {
     private FXMLLoader myLoader;
 
-    public SimpleSceneBuilder() {
+    private Player player;
+    private Spawner spawner;
+    private ObjectHandler objectHandler;
+    private InputHandler inputHandler;
+    private HUD hud;
+
+    public SimpleSceneBuilder(Player player, Spawner spawner, ObjectHandler objectHandler, InputHandler inputHandler, HUD hud) {
+        this.player = player;
+        this.spawner = spawner;
+        this.objectHandler = objectHandler;
+        this.inputHandler = inputHandler;
+        this.hud = hud;
     }
 
-    public Scene build(Scenes sceneType, SimpleStageManager stageManager){
+    public Scene build(Scenes sceneType, SimpleStageManager stageManager) {
         Scene scene = null;
-        switch (sceneType){
+        switch (sceneType) {
             case StartGameScene:
                 scene = getStartScene(stageManager);
                 break;
@@ -26,7 +40,7 @@ public class SimpleSceneBuilder {
                 scene = getInsertUsernameScene(stageManager);
                 break;
             case FirstLevelScene:
-                scene = getFirstLevelScene(stageManager);
+                scene = getFirstLevelScene(stageManager, this.player, this.inputHandler, this.objectHandler, this.hud, this.spawner);
                 break;
             case HighScoreScene:
                 scene = getHighScoreScene(stageManager);
@@ -104,8 +118,23 @@ public class SimpleSceneBuilder {
         return scene;
     }
 
-    public Scene getFirstLevelScene(SimpleStageManager stageManager) {
-        FirstLevelController controller = new FirstLevelController(stageManager, stageManager.getDatabase(), stageManager.getMessageBox(), stageManager.getConfirmBox());
+    public Scene getFirstLevelScene(
+            SimpleStageManager stageManager,
+            Player player,
+            InputHandler inputHandler,
+            ObjectHandler objectHandler,
+            HUD hud,
+            Spawner spawner) {
+        FirstLevelController controller = new FirstLevelController(
+                stageManager,
+                stageManager.getDatabase(),
+                stageManager.getMessageBox(),
+                stageManager.getConfirmBox(),
+                objectHandler,
+                player,
+                inputHandler,
+                hud,
+                spawner);
         Scene scene = null;
         try {
             scene = controller.getCurrentScene();
