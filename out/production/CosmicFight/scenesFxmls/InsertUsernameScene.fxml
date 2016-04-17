@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -8,6 +13,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
+
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.InsertUsernameController">
    <children>
       <ImageView onKeyPressed="#onEnterUsernameKeyPressed">
@@ -17,7 +23,7 @@
       </ImageView>
    </children>
    <center>
-      <VBox fillWidth="false" maxHeight="120.0" maxWidth="180.0" minHeight="50.0" minWidth="79.0" prefHeight="100.0" prefWidth="180.0" BorderPane.alignment="CENTER">
+      <VBox fillWidth="false" maxHeight="178.0" maxWidth="180.0" minHeight="50.0" minWidth="79.0" prefHeight="166.0" prefWidth="180.0" BorderPane.alignment="CENTER">
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="226.0" text="Insert your username:" textFill="#4d5fff">
                <font>
@@ -30,7 +36,13 @@
                   <Font size="13.0" />
                </font>
             </TextField>
-            <Pane layoutX="10.0" layoutY="27.0" prefHeight="18.0" prefWidth="200.0" />
+            <Pane layoutX="10.0" layoutY="27.0" prefHeight="42.0" prefWidth="180.0">
+               <children>
+                  <Label fx:id="usernameInfo" layoutX="-253.0" layoutY="10.0" prefHeight="22.0" prefWidth="676.0" text="Username must contain letters or/and numbers and should be more than 4 and less than 16 characters long." textFill="#f50505" visible="false">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
+               </children></Pane>
             <Button fx:id="enterUsernameButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onEnterUsernameButtonClick" onKeyPressed="#onEnterUsernameKeyPressed" prefHeight="25.0" prefWidth="213.0" text="Enter" textAlignment="JUSTIFY" textFill="#375cf2" textOverrun="CLIP">
                <opaqueInsets>
                   <Insets />
