@@ -9,9 +9,9 @@ public class BossBullet extends AbstractDynamicGameObject{
 
     public BossBullet(double x, double y) {
         super(x, y);
-        this.setImage(Constants.BULLET_PATH);
-        this.setWidth(Constants.BULLET_WIDTH);
-        this.setHeight(Constants.BULLET_HEIGHT);
+        this.setImage(Constants.BOSS_BULLET_PATH);
+        this.setWidth(Constants.BOSS_BULLET_WIDTH);
+        this.setHeight(Constants.BOSS_BULLET_HEIGHT);
         this.setVelocity(0, 10);
     }
 

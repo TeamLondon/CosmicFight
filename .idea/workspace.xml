@@ -2,11 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="abfa34c2-0a36-4086-98a2-cc4b4b01a6e5" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/CosmicFight/highscores.save" afterPath="$PROJECT_DIR$/out/production/CosmicFight/highscores.save" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/CosmicFight/laser shot.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/laser shot.png" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controllers/FirstLevelController.java" afterPath="$PROJECT_DIR$/src/controllers/FirstLevelController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/core/UnitFactory.java" afterPath="$PROJECT_DIR$/src/core/UnitFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gameObjects/AbstractDynamicGameObject.java" afterPath="$PROJECT_DIR$/src/gameObjects/AbstractDynamicGameObject.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/core/Constants.java" afterPath="$PROJECT_DIR$/src/core/Constants.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/core/ObjectHandler.java" afterPath="$PROJECT_DIR$/src/core/ObjectHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gameObjects/dynamicGameObjects/attacks/BossBullet.java" afterPath="$PROJECT_DIR$/src/gameObjects/dynamicGameObjects/attacks/BossBullet.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gameObjects/dynamicGameObjects/enemies/FirstLevelBoss.java" afterPath="$PROJECT_DIR$/src/gameObjects/dynamicGameObjects/enemies/FirstLevelBoss.java" />
     </list>
     <ignored path="CosmicFight.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -66,23 +68,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BossBullet.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="BossBullet.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/gameObjects/dynamicGameObjects/attacks/BossBullet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="3" column="45" selection-start-line="3" selection-start-column="45" selection-end-line="3" selection-end-column="45" />
+            <state vertical-scroll-proportion="0.4857143">
+              <caret line="14" column="32" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
               <folding>
-                <element signature="e#899#900#0" expanded="true" />
-                <element signature="e#923#924#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#914#915#0" expanded="true" />
+                <element signature="e#938#939#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FirstLevelController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FirstLevelController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/controllers/FirstLevelController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4367347">
+            <state vertical-scroll-proportion="0.0">
               <caret line="121" column="16" selection-start-line="121" selection-start-column="16" selection-end-line="121" selection-end-column="16" />
               <folding>
                 <element signature="e#2231#2232#0" expanded="true" />
@@ -111,10 +114,10 @@
         <entry file="file://$PROJECT_DIR$/src/gameObjects/dynamicGameObjects/enemies/FirstLevelBoss.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="47" selection-start-line="0" selection-start-column="47" selection-end-line="0" selection-end-column="47" />
+              <caret line="19" column="39" selection-start-line="19" selection-start-column="39" selection-end-line="19" selection-end-column="39" />
               <folding>
-                <element signature="e#2018#2019#0" expanded="true" />
-                <element signature="e#2044#2045#0" expanded="true" />
+                <element signature="e#2020#2021#0" expanded="true" />
+                <element signature="e#2046#2047#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -124,10 +127,20 @@
         <entry file="file://$PROJECT_DIR$/src/core/ObjectHandler.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="42" column="33" selection-start-line="42" selection-start-column="33" selection-end-line="42" selection-end-column="33" />
+              <caret line="74" column="29" selection-start-line="74" selection-start-column="29" selection-end-line="74" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Constants.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/core/Constants.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="6" column="74" selection-start-line="6" selection-start-column="74" selection-end-line="6" selection-end-column="74" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -148,6 +161,10 @@
         <option value="$PROJECT_DIR$/src/core/UnitFactory.java" />
         <option value="$PROJECT_DIR$/src/gameObjects/AbstractDynamicGameObject.java" />
         <option value="$PROJECT_DIR$/src/controllers/FirstLevelController.java" />
+        <option value="$PROJECT_DIR$/src/gameObjects/dynamicGameObjects/enemies/FirstLevelBoss.java" />
+        <option value="$PROJECT_DIR$/src/core/ObjectHandler.java" />
+        <option value="$PROJECT_DIR$/src/core/Constants.java" />
+        <option value="$PROJECT_DIR$/src/gameObjects/dynamicGameObjects/attacks/BossBullet.java" />
       </list>
     </option>
   </component>
@@ -368,24 +385,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JavaGameRepoLocal" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JavaGameRepoLocal" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controllers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -684,7 +683,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="32" width="1616" height="876" extended-state="7" />
+    <frame x="-8" y="32" width="1616" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -695,7 +694,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32755905" sideWeight="0.50292826" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3237598" sideWeight="0.49707174" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3237598" sideWeight="0.49707174" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32913387" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -931,14 +930,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/core/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.5511222">
-          <caret line="11" column="63" selection-start-line="11" selection-start-column="63" selection-end-line="11" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/core/SimpleConfirmBox.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2543641">
@@ -1112,27 +1103,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/core/ObjectHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="42" column="33" selection-start-line="42" selection-start-column="33" selection-end-line="42" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gameObjects/dynamicGameObjects/attacks/BossBullet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="3" column="45" selection-start-line="3" selection-start-column="45" selection-end-line="3" selection-end-column="45" />
-          <folding>
-            <element signature="e#899#900#0" expanded="true" />
-            <element signature="e#923#924#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/controllers/AbstractLevelController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1158,26 +1128,56 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gameObjects/dynamicGameObjects/enemies/FirstLevelBoss.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="47" selection-start-line="0" selection-start-column="47" selection-end-line="0" selection-end-column="47" />
-          <folding>
-            <element signature="e#2018#2019#0" expanded="true" />
-            <element signature="e#2044#2045#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/controllers/FirstLevelController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4367347">
+        <state vertical-scroll-proportion="0.0">
           <caret line="121" column="16" selection-start-line="121" selection-start-column="16" selection-end-line="121" selection-end-column="16" />
           <folding>
             <element signature="e#2231#2232#0" expanded="true" />
             <element signature="e#2290#2291#0" expanded="true" />
             <element signature="e#4232#4233#0" expanded="true" />
             <element signature="e#4301#4302#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/core/ObjectHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="74" column="29" selection-start-line="74" selection-start-column="29" selection-end-line="74" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gameObjects/dynamicGameObjects/enemies/FirstLevelBoss.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="19" column="39" selection-start-line="19" selection-start-column="39" selection-end-line="19" selection-end-column="39" />
+          <folding>
+            <element signature="e#2020#2021#0" expanded="true" />
+            <element signature="e#2046#2047#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/core/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="74" selection-start-line="6" selection-start-column="74" selection-end-line="6" selection-end-column="74" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gameObjects/dynamicGameObjects/attacks/BossBullet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4857143">
+          <caret line="14" column="32" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#914#915#0" expanded="true" />
+            <element signature="e#938#939#0" expanded="true" />
           </folding>
         </state>
       </provider>

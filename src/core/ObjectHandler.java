@@ -1,6 +1,7 @@
 package core;
 
 import gameObjects.dynamicGameObjects.attacks.BossBullet;
+import gameObjects.dynamicGameObjects.enemies.FirstLevelBoss;
 import gameObjects.dynamicGameObjects.player.GamePlayer;
 import interfaces.*;
 import javafx.scene.canvas.GraphicsContext;
@@ -66,7 +67,12 @@ public class ObjectHandler {
                             ((Bonus)tempObject).applyBonus(this.player);
                             this.removeDynamicObject(tempObject);
                         } else {
-                            player.applyDamage(1);
+                            if (tempObject instanceof FirstLevelBoss) {
+                                player.applyDamage(1);
+                            }else {
+                                player.applyDamage(5);
+                                this.removeDynamicObject(tempObject);
+                            }
                         }
                     }
                 }

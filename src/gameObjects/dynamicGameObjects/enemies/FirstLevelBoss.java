@@ -39,7 +39,7 @@ public class FirstLevelBoss extends AbstractDynamicGameObject implements Enemy{
             this.setVelocity(-5, 0);
         }
 
-        if (currentTime - lastTime > 200) {
+        if (currentTime - lastTime > 300.0) {
             handler.addDynamicObject(new BossBullet(this.getX(), this.getY() + this.getHeight()));
             handler.addDynamicObject(new BossBullet(this.getX() + this.getWidth(), this.getY() + + this.getHeight()));
             lastTime = currentTime;
