@@ -4,9 +4,9 @@ import gameObjects.AbstractDynamicGameObject;
 import gameObjects.dynamicGameObjects.enemies.ChaoticEnemy;
 import gameObjects.dynamicGameObjects.enemies.FirstLevelBoss;
 import gameObjects.dynamicGameObjects.enemies.SlowEnemy;
-import gameObjects.dynamicGameObjects.rocks.RoundAsteroid;
-
-import java.util.Random;
+import gameObjects.dynamicGameObjects.obstacles.LeftAsteroid;
+import gameObjects.dynamicGameObjects.obstacles.RightAsteroid;
+import gameObjects.dynamicGameObjects.obstacles.RoundAsteroid;
 
 public class UnitFactory {
     public AbstractDynamicGameObject createUnit(double x, double y, String unitType) {
@@ -24,6 +24,12 @@ public class UnitFactory {
                 break;
             case "FirstLevelBoss":
                 unit = new FirstLevelBoss(x, y);
+                break;
+            case "LeftAsteroid":
+                unit = new LeftAsteroid(x, y);
+                break;
+            case  "RightAsteroid":
+                unit = new RightAsteroid(x,y);
                 break;
         }
         return unit;

@@ -8,4 +8,5 @@ public interface HighScore extends Serializable,Comparable<HighScore> {
     Integer getPlayerScore();
 
     void setPlayerScore(Integer playerScore);
+
 }
