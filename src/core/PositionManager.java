@@ -20,6 +20,7 @@ public class PositionManager {
             case "RightAsteroid":
                 x = 0;
                 y = random.nextInt(Constants.BONUS_HEIGHT / 2);
+                break;
             case "LeftAsteroid":
                 x = Constants.WINDOW_WIDTH - Constants.BONUS_WIDTH;
                 y = random.nextInt(Constants.BONUS_HEIGHT / 2);
