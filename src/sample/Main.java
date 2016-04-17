@@ -16,8 +16,8 @@ public class Main extends Application {
     public void init(Stage stage) throws java.io.IOException{
         SimpleSceneBuilder sceneBuilder = new SimpleSceneBuilder();
         Database gameDatabase = new GameDatabase();
-        MessageBox messageBox = new MessageBox();
-        ConfirmBox confirmBox = new ConfirmBox();
+        SimpleMessageBox messageBox = new SimpleMessageBox();
+        SimpleConfirmBox confirmBox = new SimpleConfirmBox();
         SimpleStageManager stageManager = new SimpleStageManager(stage, sceneBuilder, gameDatabase, messageBox, confirmBox);
 
         stageManager.setScene(Scenes.StartGameScene);

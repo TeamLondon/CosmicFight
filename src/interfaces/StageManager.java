@@ -1,7 +1,7 @@
 package interfaces;
 
-import core.ConfirmBox;
-import core.MessageBox;
+import core.SimpleConfirmBox;
+import core.SimpleMessageBox;
 import core.SimpleSceneBuilder;
 import enums.Scenes;
 import javafx.scene.Scene;
@@ -16,9 +16,9 @@ public interface StageManager {
 
     Scene getCurrentScene();
 
-    ConfirmBox getConfirmBox();
+    SimpleConfirmBox getConfirmBox();
 
-    MessageBox getMessageBox();
+    SimpleMessageBox getMessageBox();
 
     void setScene(Scenes sceneType);
 }

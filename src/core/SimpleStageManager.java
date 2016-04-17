@@ -11,15 +11,15 @@ public class SimpleStageManager  implements StageManager{
 
     private Scene currentScene;
 
-    private MessageBox messageBox;
+    private SimpleMessageBox messageBox;
 
-    private ConfirmBox confirmBox;
+    private SimpleConfirmBox confirmBox;
 
     private Stage stage;
 
     private Database gameDatabase;
 
-    public SimpleStageManager(Stage stage, SimpleSceneBuilder sceneBuilder, Database gameDatabase, MessageBox messageBox, ConfirmBox confirmBox) {
+    public SimpleStageManager(Stage stage, SimpleSceneBuilder sceneBuilder, Database gameDatabase, SimpleMessageBox messageBox, SimpleConfirmBox confirmBox) {
         this.stage = stage;
         this.sceneBuilder = sceneBuilder;
         this.gameDatabase = gameDatabase;
@@ -46,12 +46,12 @@ public class SimpleStageManager  implements StageManager{
     }
 
     @Override
-    public ConfirmBox getConfirmBox() {
+    public SimpleConfirmBox getConfirmBox() {
         return this.confirmBox;
     }
 
     @Override
-    public MessageBox getMessageBox() {
+    public SimpleMessageBox getMessageBox() {
         return this.messageBox;
     }
 

@@ -16,7 +16,7 @@ public class BombPackage extends GameBonus {
 
     @Override
     public void applyBonus(Player player) {
-        player.addAttack(Attacks.Bomb  );
+        player.addAttack(Attacks.Bomb);
     }
 
     @Override
