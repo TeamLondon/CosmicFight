@@ -2,6 +2,9 @@ package controllers;
 
 import core.Constants;
 import enums.Scenes;
+import interfaces.ConfirmBox;
+import interfaces.Database;
+import interfaces.MessageBox;
 import interfaces.StageManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -19,11 +22,11 @@ public class StartGameController extends AbstractController {
     public Button exitGameButton;
 
     @Override
-    public void setStageManager(StageManager stageManager) {
+    public void initialize(StageManager stageManager, Database database, MessageBox messageBox, ConfirmBox confirmBox) {
         this.startGameButton.setStyle(Constants.BUTTON_STYLE);
         this.highScoreButton.setStyle(Constants.BUTTON_STYLE);
         this.exitGameButton.setStyle(Constants.BUTTON_STYLE);
-        super.setStageManager(stageManager);
+        super.initialize(stageManager, database, messageBox, confirmBox);
     }
 
     public void onStartGameButtonClick() {

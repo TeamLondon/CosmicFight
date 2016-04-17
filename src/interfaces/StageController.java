@@ -1,5 +1,5 @@
 package interfaces;
 
 public interface StageController {
-    void setStageManager(StageManager stageManager);
+    void initialize(StageManager stageManager, Database database, MessageBox messageBox, ConfirmBox confirmBox);
 }

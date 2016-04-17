@@ -1,8 +1,10 @@
 package controllers;
 
 import core.Constants;
-import core.SimpleStageManager;
 import enums.Scenes;
+import interfaces.ConfirmBox;
+import interfaces.Database;
+import interfaces.MessageBox;
 import interfaces.StageManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -23,9 +25,9 @@ public class HighScoreController extends AbstractController {
     private Label highScoreLabel;
 
     @Override
-    public void setStageManager(StageManager stageManager) {
+    public void initialize(StageManager stageManager, Database database, MessageBox messageBox, ConfirmBox confirmBox) {
         this.mainMenuButton.setStyle(Constants.BUTTON_STYLE);
-        super.setStageManager(stageManager);
+        super.initialize(stageManager, database, messageBox, confirmBox);
         this.initializeInfo();
     }
 
