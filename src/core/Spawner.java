@@ -48,7 +48,7 @@ public class Spawner {
                 } else {
                     gameObject = unitFactory.createUnit(random.nextInt(650), 0, enemyType);
                 }
-                System.out.println(this.passedDistance);
+
                 this.passedDistance = currentDistance;
             }
         }
