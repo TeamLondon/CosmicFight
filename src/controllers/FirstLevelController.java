@@ -5,8 +5,10 @@ import enums.Scenes;
 import gameObjects.dynamicGameObjects.enemies.FirstLevelBoss;
 import gameObjects.dynamicGameObjects.player.GamePlayer;
 import gameObjects.staticGameObjects.HUD;
+
 import interfaces.DynamicGameObject;
 import interfaces.Player;
+
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -16,35 +18,30 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-
 import java.util.Random;
 
 public class FirstLevelController extends AbstractController {
-    private SimpleStageManager stageManager;
     private Scene scene;
     private Stage stage;
     private AnimationTimer timer;
-    private HUD hud;
-    private PositionManager positionManager;
-
-    private ObjectHandler handler;
-    private Stage window;
-    private Player player;
-    private InputHandler keyInput;
-    private UnitFactory factory;
     private ImageView backgroundImageView;
     private double backgroundScrollSpeed = 0.6;
+    private Stage window;
     private Pane backgroundLayer;
     private StackPane layout;
-    private FirstLevelBoss boss;
 
+    private ObjectHandler handler;
+    private Player player;
+    private InputHandler inputHandler;
+    private FirstLevelBoss boss;
+    private HUD hud;
     private Spawner spawner;
 
     private boolean isBossSpawned = false;
 
     public FirstLevelController(SimpleStageManager stageManager) {
         this.stage = stageManager.getStage();
-        this.stageManager = stageManager;
+        super.initialize(stageManager, stageManager.getDatabase(), stageManager.getMessageBox(), stageManager.getConfirmBox());
     }
 
     public void start() throws Exception {
@@ -78,16 +75,27 @@ public class FirstLevelController extends AbstractController {
     }
 
     private void initializeControllersAndPlayer() {
-        this.player = stageManager.getDatabase().getPlayer();
-        this.handler = new ObjectHandler((GamePlayer) player);
-        this.factory = new UnitFactory();
-        this.positionManager = new PositionManager();
-        this.spawner = new Spawner(this.factory, this.positionManager);
-        this.keyInput = new InputHandler(scene, player, handler);
+        this.player = this.getStageManager().getDatabase().getPlayer();
+
+        this.handler = new ObjectHandler((GamePlayer) this.player);
+
+        this.spawner = new Spawner(new UnitFactory(), new PositionManager());
+
+        this.inputHandler = new InputHandler(this.scene, this.player, this.handler);
+
         this.handler.addDynamicObject(player);
-        hud = new HUD(this.player);
+
+        this.hud = new HUD(this.player);
     }
 
+    public void initialize(Player player, ObjectHandler handler, Spawner spawner, InputHandler inputHandler, HUD hud){
+        this.player = player;
+        this.handler = handler;
+        this.spawner = spawner;
+        this.inputHandler = inputHandler;
+        this.inputHandler.setScene(this.scene);
+        this.hud = hud;
+    }
     private void setBackground() {
         backgroundImageView = new ImageView(getClass().getResource(Constants.BACKGROUND_PATH).toExternalForm());
         backgroundImageView.setFitWidth(Constants.WINDOW_WIDTH);
@@ -132,7 +140,7 @@ public class FirstLevelController extends AbstractController {
 
     public void update() {
         handler.update();
-        keyInput.refresh();
+        inputHandler.refresh();
         if (isBossSpawned) {
             if (boss.getHitPoints() <= 0) {
                 setNextScene();
@@ -150,7 +158,7 @@ public class FirstLevelController extends AbstractController {
     }
 
     private void setNextScene() {
-        this.stageManager.setScene(Scenes.ExitGameScene);
+        this.getStageManager().setScene(Scenes.ExitGameScene);
     }
 
     public Scene getCurrentScene() throws Exception {

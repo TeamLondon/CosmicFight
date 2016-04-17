@@ -41,11 +41,11 @@ public class Spawner {
             if (currentDistance < 2000 && currentDistance > 1900 && !this.isBombPackageSpawned) {
                 this.isBombPackageSpawned = true;
                 Position position = this.positionManager.getPositionFor("BombPackage");
-                gameObject = unitFactory.createUnit(position.getX(), position.getY(), "BombPackage");
+                gameObject = this.unitFactory.createUnit(position.getX(), position.getY(), "BombPackage");
             }else {
 
                 Position position = this.positionManager.getPositionFor(enemyType);
-                gameObject = unitFactory.createUnit(position.getX(), position.getY(), enemyType);
+                gameObject = this.unitFactory.createUnit(position.getX(), position.getY(), enemyType);
                 this.passedDistance = currentDistance;
             }
         }

@@ -13,7 +13,6 @@ public class InputHandler {
     private Player player;
     private ObjectHandler handler;
     private List<String> input;
-    private long lastTime = System.nanoTime();
 
     public InputHandler(Scene scene, Player player, ObjectHandler handler) {
         this.scene = scene;
@@ -68,5 +67,11 @@ public class InputHandler {
         }
 
 
+    }
+
+    public void setScene(Scene scene) {
+        if (scene != null) {
+            this.scene = scene;
+        }
     }
 }
