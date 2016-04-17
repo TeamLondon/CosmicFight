@@ -1,5 +1,6 @@
 package core;
 
+import enums.Attacks;
 import gameObjects.dynamicGameObjects.attacks.Bullet;
 import gameObjects.dynamicGameObjects.attacks.GiantBomb;
 import interfaces.Player;
@@ -32,7 +33,9 @@ public class InputHandler {
         this.scene.setOnKeyReleased(
                 e -> {
                     String code = e.getCode().toString();
-                    this.input.remove(code);
+                    if (!(code.equals("E"))) {
+                        this.input.remove(code);
+                    }
                 });
         handleKeys();
     }
@@ -47,16 +50,21 @@ public class InputHandler {
         if (this.input.contains("DOWN") || this.input.contains("S"))
             this.player.addVelocity(0,5);
         if (this.input.contains("SPACE")) {
-            if (player.getBulletCooldown() <= 0.0) {
-                this.handler.addDynamicObject(new Bullet(player.getX(), player.getY()));
-                player.resetBullet();
+            if (player.getCurrentAttack() == Attacks.Bullet) {
+                if (player.getBulletCooldown() <= 0.0) {
+                    this.handler.addDynamicObject(new Bullet(player.getX(), player.getY()));
+                    player.resetBullet();
+                }
+            }else if (player.getCurrentAttack() == Attacks.Bomb) {
+                if (player.getBombCooldown() <= 0.0) {
+                    this.handler.addDynamicObject(new GiantBomb(player.getX(), player.getY()));
+                    player.resetBomb();
+                }
             }
         }
         if (this.input.contains("E")) {
-            if (player.getBombCooldown() <= 0.0) {
-                this.handler.addDynamicObject(new GiantBomb(player.getX(), player.getY()));
-                player.resetBomb();
-            }
+            player.changeAttack();
+            this.input.remove("E");
         }
 
 

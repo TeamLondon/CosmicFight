@@ -1,5 +1,7 @@
 package interfaces;
 
+import enums.Attacks;
+
 public interface Player extends DynamicGameObject, Unit {
     String getName();
 
@@ -14,4 +16,9 @@ public interface Player extends DynamicGameObject, Unit {
     void setName(String name);
 
     HighScore getHighScore();
+
+    void changeAttack();
+    
+    Attacks getCurrentAttack();
+
 }
