@@ -16,7 +16,7 @@ public class UnitFactory {
         switch (unitType) {
             case "SlowEnemy":
                 unit = new SlowEnemy(x, y);
-                break;
+d                break;
             case "ChaoticEnemy":
                 unit = new ChaoticEnemy(x, y);
                 break;

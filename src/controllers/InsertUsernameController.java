@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
@@ -53,10 +54,9 @@ public class InsertUsernameController extends AbstractController {
         String name = "";
         if (validationMatcher.find()){
             name = input;
-            Player gamePlayer = new GamePlayer(100, 100 ,name);
 
-            this.getStageManager().getDatabase().setPlayer(gamePlayer);
-            this.getStageManager().getDatabase().addHighScore(gamePlayer.getHighScore());
+            this.getStageManager().getDatabase().getPlayer().setName(name);
+            this.getStageManager().getDatabase().addHighScore(this.getStageManager().getDatabase().getPlayer().getHighScore());
             setNextScene();
 
         } else{

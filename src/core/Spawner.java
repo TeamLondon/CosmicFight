@@ -34,7 +34,6 @@ public class Spawner {
         if (this.passedDistance == 0) {
             this.passedDistance = currentDistance;
         }
-
         if (Math.abs(currentDistance - this.passedDistance) > this.distanceRate) {
             String enemyType = this.unitTypes.get(random.nextInt(this.unitTypes.size()));
 

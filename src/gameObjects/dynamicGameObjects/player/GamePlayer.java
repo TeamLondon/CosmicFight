@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GamePlayer extends AbstractDynamicGameObject implements Player{
+    private static final String DefaultName = "DefaultName";
     private String name;
     private double bulletCooldown;
     private double bombCooldown;
@@ -30,6 +31,10 @@ public class GamePlayer extends AbstractDynamicGameObject implements Player{
         this.currentAttack = Attacks.Bullet;
         this.addAttack(currentAttack);
         this.highScore = new GameHighScore(this.name, 0);
+    }
+
+    public GamePlayer(double x, double y) {
+        this(x, y, DefaultName);
     }
 
     public String getName() {

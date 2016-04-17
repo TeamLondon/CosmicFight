@@ -11,14 +11,20 @@ import java.util.List;
 public class InputHandler {
     private Scene scene;
     private Player player;
-    private ObjectHandler handler;
+    private ObjectHandler objectHandler;
     private List<String> input;
 
     public InputHandler(Scene scene, Player player, ObjectHandler handler) {
         this.scene = scene;
         this.player = player;
         this.input = new ArrayList<>();
-        this.handler = handler;
+        this.objectHandler = handler;
+    }
+
+    public InputHandler(Player player, ObjectHandler handler) {
+        this.player = player;
+        this.objectHandler = handler;
+        this.input = new ArrayList<>();
     }
 
     public void refresh() {
@@ -43,7 +49,7 @@ public class InputHandler {
         if (this.input.contains("LEFT") || this.input.contains("A"))
             this.player.addVelocity(-10,0);
         if (this.input.contains("RIGHT") || this.input.contains("D"))
-            this.player.addVelocity(10,0);
+             this.player.addVelocity(10,0);
         if (this.input.contains("UP") || this.input.contains("W"))
             this.player.addVelocity(0,-5);
         if (this.input.contains("DOWN") || this.input.contains("S"))
@@ -51,18 +57,18 @@ public class InputHandler {
         if (this.input.contains("SPACE")) {
             if (player.getCurrentAttack() == Attacks.Bullet) {
                 if (player.getBulletCooldown() >= 0.4) {
-                    this.handler.addDynamicObject(new Bullet(player.getX(), player.getY()));
+                    this.objectHandler.addDynamicObject(new Bullet(player.getX(), player.getY()));
                     player.resetBullet();
                 }
             }else if (player.getCurrentAttack() == Attacks.Bomb) {
                 if (player.getBombCooldown() >= 20.0) {
-                    this.handler.addDynamicObject(new GiantBomb(player.getX(), player.getY()));
+                    this.objectHandler.addDynamicObject(new GiantBomb(player.getX(), player.getY()));
                     player.resetBomb();
                 }
             }
         }
         if (this.input.contains("E")) {
-            player.changeAttack();
+            this.player.changeAttack();
             this.input.remove("E");
         }
 
