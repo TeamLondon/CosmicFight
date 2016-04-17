@@ -55,7 +55,6 @@ public class FirstLevelController extends AbstractLevelController {
     public void start() throws Exception {
         GraphicsContext gc = initializeGraphicContext();
         setBackground();
-        initializeControllersAndPlayer();
         initialize();
         spawnBoss();
 
@@ -64,7 +63,7 @@ public class FirstLevelController extends AbstractLevelController {
             public void handle(long currentNanoTime) {
                 update();
                 draw(gc);
-                System.out.println(handler.dynamicObjects.size());
+                System.out.println(getObjectHandler().dynamicObjects.size());
             }
         };
 
@@ -120,7 +119,7 @@ public class FirstLevelController extends AbstractLevelController {
         this.getObjectHandler().update();
         this.getInputHandler().refresh();
         if (this.isBossSpawned) {
-            if (!this.isBossDead) {
+            if (this.boss.isAlive()) {
                 setNextScene();
                 this.timer.stop();
             }
@@ -130,15 +129,9 @@ public class FirstLevelController extends AbstractLevelController {
 
     private void spawnBoss() {
         Random random = new Random();
-<<<<<<< HEAD
-        this.boss = new FirstLevelBoss(random.nextInt(650) + 100, 50, this.handler);
-        this.handler.addDynamicObject(boss);
-        isBossSpawned = true;
-=======
-        //this.boss = new FirstLevelBoss(random.nextInt(650) + 100, 50, this.getObjectHandler());
+        this.boss = new FirstLevelBoss(random.nextInt(650) + 100, 50, this.getObjectHandler());
         this.getObjectHandler().addDynamicObject(boss);
         this.isBossSpawned = true;
->>>>>>> 362767adb8c06aa7a5de359c9bb195292be5d129
     }
 
     private void setNextScene() {
@@ -168,21 +161,4 @@ public class FirstLevelController extends AbstractLevelController {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         return gc;
     }
-
-    private void initializeControllersAndPlayer() {
-        /*
-        this.player = this.getStageManager().getDatabase().getPlayer();
-
-        this.objectHandler = new ObjectHandler((GamePlayer) this.player);
-
-        this.spawner = new Spawner(new UnitFactory(), new PositionManager());
-
-        this.inputHandler = new InputHandler(this.scene, this.player, this.objectHandler);
-
-        this.objectHandler.addDynamicObject(player);
-
-        this.hud = new HUD(this.player);
-        */
-    }
-
 }

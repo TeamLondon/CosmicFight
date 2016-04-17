@@ -74,7 +74,7 @@ public abstract class AbstractDynamicGameObject implements DynamicGameObject{
     }
 
     public boolean isAlive() {
-        return isAlive;
+        return this.getHitPoints() <= 0;
     }
 
     public void setAlive(boolean alive) {
