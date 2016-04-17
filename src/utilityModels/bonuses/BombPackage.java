@@ -1,6 +1,7 @@
 package utilityModels.bonuses;
 
 import core.Constants;
+import enums.Attacks;
 import interfaces.Player;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -15,7 +16,7 @@ public class BombPackage extends GameBonus {
 
     @Override
     public void applyBonus(Player player) {
-        // player.addAttack(Bomb);
+        player.addAttack(Attacks.Bomb  );
     }
 
     @Override

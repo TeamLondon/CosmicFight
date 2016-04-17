@@ -2,11 +2,9 @@ package core;
 
 import gameObjects.dynamicGameObjects.attacks.Bullet;
 import gameObjects.dynamicGameObjects.player.GamePlayer;
-<<<<<<< HEAD
 import interfaces.Bonus;
-=======
 import interfaces.Ammo;
->>>>>>> 234e0378a6964639bd0bf02b1c5b2670e66248fb
+
 import interfaces.DynamicGameObject;
 import interfaces.Enemy;
 import interfaces.StaticGameObject;
