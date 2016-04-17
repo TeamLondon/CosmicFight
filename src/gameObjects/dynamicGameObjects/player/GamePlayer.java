@@ -29,7 +29,6 @@ public class GamePlayer extends AbstractDynamicGameObject implements Player{
         this.setBombCooldown(20.0);
         this.currentAttack = Attacks.Bullet;
         this.addAttack(currentAttack);
-        this.addAttack(Attacks.Bomb);
         this.highScore = new GameHighScore(this.name, 0);
     }
 

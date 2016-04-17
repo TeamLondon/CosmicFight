@@ -18,7 +18,7 @@ public interface Player extends DynamicGameObject, Unit {
     HighScore getHighScore();
 
     void changeAttack();
-    
+
     Attacks getCurrentAttack();
 
 }
