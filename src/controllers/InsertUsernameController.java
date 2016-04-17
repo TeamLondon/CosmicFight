@@ -3,6 +3,7 @@ package controllers;
 import core.Constants;
 import enums.Scenes;
 import gameObjects.dynamicGameObjects.player.GamePlayer;
+import interfaces.Player;
 import interfaces.StageManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -43,15 +44,9 @@ public class InsertUsernameController extends AbstractController {
         String input = this.usernameTextField.getText();
         Pattern pattern = Pattern.compile("([a-zA-Z]+)[\\W]+([0-9]+)");
         String name = input;
-        getStageManager().getDatabase().setPlayer(new GamePlayer(100, 100 ,name));
-           /*
-            Matcher matcher = pattern.matcher(input);
-            if (matcher.find()){
-                String name = matcher.group(1);
-                Integer points = Integer.parseInt(matcher.group(2));
-                this.getStageManager().getDatabase().addHighScore(new GameHighScore(name, points));
-            }
-            */
+        Player gamePlayer = new GamePlayer(100, 100 ,name);
+        getStageManager().getDatabase().setPlayer(gamePlayer);
+        this.getStageManager().getDatabase().addHighScore(gamePlayer.getHighScore());
         setNextScene();
     }
 
