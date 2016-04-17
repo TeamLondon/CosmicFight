@@ -9,6 +9,7 @@ public class Constants {
     public static final int ROUND_ASTEROID_WIDTH = 64, ROUND_ASTEROID_HEIGHT = 64;
     public static final int CHAOTIC_ENEMY_WIDTH = 50, CHAOTIC_ENEMY_HEIGHT = 50;
     public static final int BOSS_WIDTH = 300, BOSS_HEIGHT = 100;
+    public static final int BONUS_WIDTH = 30, BONUS_HEIGHT = 30;
 
     //Sprite paths
     public static final String PLAYER_PATH = "/player.png";
@@ -18,6 +19,7 @@ public class Constants {
     public static final String SLOW_ENEMY_PATH = "/enemy.png";
     public static final String BACKGROUND_PATH = "/background/space3.jpg";
     public static final String BOSS_PATH = "/firstLevelBoss.png";
+    public static final String BONUS_PATH = "/GreenPlanet.png";
     public static final String HUD_HEALTH_BAR_PATH = "/HUD/HUD_healthBar.png";
     public static final String BOSS_HEALTH_BAR_PATH = "/HealthBars/BossHealthBar.png";
     public static final String SLOW_ENEMY_HEALTH_BAR_PATH = "/HealthBars/slowEnemyHealthBar.png";

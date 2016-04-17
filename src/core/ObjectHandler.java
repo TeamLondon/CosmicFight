@@ -2,6 +2,7 @@ package core;
 
 import gameObjects.dynamicGameObjects.attacks.Bullet;
 import gameObjects.dynamicGameObjects.player.GamePlayer;
+import interfaces.Bonus;
 import interfaces.DynamicGameObject;
 import interfaces.Enemy;
 import interfaces.StaticGameObject;
@@ -57,7 +58,12 @@ public class ObjectHandler {
             }else {
                 if (!(tempObject instanceof GamePlayer)) {
                     if (tempObject.isIntersecting(this. player)) {
-                        player.applyDamage(0.5);
+                        if (tempObject instanceof Bonus) {
+                            ((Bonus)tempObject).applyBonus(this.player);
+                            this.removeDynamicObject(tempObject);
+                        } else {
+                            player.applyDamage(0.5);
+                        }
                     }
                 }
             }
