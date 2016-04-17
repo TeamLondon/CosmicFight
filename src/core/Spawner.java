@@ -12,6 +12,7 @@ public class Spawner {
     private Double distanceRate;
     private Double passedDistance;
     private Random random;
+    private Boolean isBombPackageSpawned;
 
     public Spawner(UnitFactory unitFactory) {
         this.unitFactory = unitFactory;
@@ -23,35 +24,39 @@ public class Spawner {
         this.unitTypes.add("RightAsteroid");
         this.unitTypes.add("LeftAsteroid");
         this.random = new Random();
+        this.isBombPackageSpawned = false;
     }
 
-    public DynamicGameObject spawn(Double currentDistance)
-    {
+    public DynamicGameObject spawn(Double currentDistance) {
         DynamicGameObject gameObject = null;
-        if (this.passedDistance == 0){
+        if (this.passedDistance == 0) {
             this.passedDistance = currentDistance;
         }
 
-        if (Math.abs( currentDistance - this.passedDistance) > this.distanceRate){
+        if (Math.abs(currentDistance - this.passedDistance) > this.distanceRate) {
             String enemyType = this.unitTypes.get(random.nextInt(this.unitTypes.size()));
 
             // ToDo: Position manager.
-
-            if (enemyType.equals("RightAsteroid")){
-                gameObject = unitFactory.createUnit(0 , random.nextInt(250), enemyType);
-            }else if (enemyType.equals("LeftAsteroid")){
-                gameObject = unitFactory.createUnit(650 , random.nextInt(250), enemyType);
+            if (currentDistance < 2000 && currentDistance > 1900 && !this.isBombPackageSpawned) {
+                this.isBombPackageSpawned = true;
+                gameObject = unitFactory.createUnit(random.nextInt(650), 0, "BombPackage");
             }else {
-                gameObject = unitFactory.createUnit(random.nextInt(650) , 0, enemyType);
+                if (enemyType.equals("RightAsteroid")) {
+                    gameObject = unitFactory.createUnit(0, random.nextInt(250), enemyType);
+                } else if (enemyType.equals("LeftAsteroid")) {
+                    gameObject = unitFactory.createUnit(650, random.nextInt(250), enemyType);
+                } else {
+                    gameObject = unitFactory.createUnit(random.nextInt(650), 0, enemyType);
+                }
+                System.out.println(this.passedDistance);
+                this.passedDistance = currentDistance;
             }
-
-            this.passedDistance = currentDistance;
         }
 
         return gameObject;
     }
 
-    public void setDistance(Double distanceRate){
+    public void setDistance(Double distanceRate) {
         this.distanceRate = distanceRate;
     }
 

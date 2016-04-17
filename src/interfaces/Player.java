@@ -5,9 +5,11 @@ import enums.Attacks;
 public interface Player extends DynamicGameObject, Unit {
     String getName();
 
-     double getBulletCooldown();
+    void addAttack(Attacks attack);
 
-     double getBombCooldown();
+    double getBulletCooldown();
+
+    double getBombCooldown();
 
     void resetBullet();
 

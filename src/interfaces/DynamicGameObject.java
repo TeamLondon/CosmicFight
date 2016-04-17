@@ -12,6 +12,8 @@ public interface DynamicGameObject extends Visualizable{
 
     double getHitPoints();
 
+    void setHitPoints(double hitPoints);
+
     double getX();
 
     double getY();
@@ -23,7 +25,6 @@ public interface DynamicGameObject extends Visualizable{
     boolean isIntersecting(DynamicGameObject otherDynamicObject);
 
     void initiateDestroyAnimation();
-
 
     void draw(GraphicsContext gc);
 

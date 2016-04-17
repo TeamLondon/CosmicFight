@@ -13,11 +13,11 @@ public abstract class AbstractStaticGameObject implements StaticGameObject{
 
 
     public double getX() {
-        return x;
+        return this.x;
     }
 
     public double getY() {
-        return y;
+        return this.y;
     }
 
     public Image getImage() {

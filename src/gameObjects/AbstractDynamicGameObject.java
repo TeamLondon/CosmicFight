@@ -108,9 +108,7 @@ public abstract class AbstractDynamicGameObject implements DynamicGameObject{
         return otherDynamicObject.getBoundary().intersects( this.getBoundary() );
     }
 
-
-
-    public void draw(GraphicsContext gc) {
+    public void draw(GraphicsContext gc){
 
     }
 
