@@ -6,8 +6,7 @@ import gameObjects.dynamicGameObjects.enemies.FirstLevelBoss;
 import gameObjects.dynamicGameObjects.player.GamePlayer;
 import gameObjects.staticGameObjects.HUD;
 
-import interfaces.DynamicGameObject;
-import interfaces.Player;
+import interfaces.*;
 
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
@@ -18,6 +17,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+
 import java.util.Random;
 
 public class FirstLevelController extends AbstractController {
@@ -39,9 +39,14 @@ public class FirstLevelController extends AbstractController {
 
     private boolean isBossSpawned = false;
 
-    public FirstLevelController(SimpleStageManager stageManager) {
+    public FirstLevelController(
+            StageManager stageManager,
+            Database gameDatabase,
+            MessageBox messageBox,
+            ConfirmBox confirmBox) {
+        super.initialize(stageManager, gameDatabase, messageBox, confirmBox);
+
         this.stage = stageManager.getStage();
-        super.initialize(stageManager, stageManager.getDatabase(), stageManager.getMessageBox(), stageManager.getConfirmBox());
     }
 
     public void start() throws Exception {
@@ -88,7 +93,7 @@ public class FirstLevelController extends AbstractController {
         this.hud = new HUD(this.player);
     }
 
-    public void initialize(Player player, ObjectHandler handler, Spawner spawner, InputHandler inputHandler, HUD hud){
+    public void initialize(Player player, ObjectHandler handler, Spawner spawner, InputHandler inputHandler, HUD hud) {
         this.player = player;
         this.handler = handler;
         this.spawner = spawner;
@@ -96,6 +101,7 @@ public class FirstLevelController extends AbstractController {
         this.inputHandler.setScene(this.scene);
         this.hud = hud;
     }
+
     private void setBackground() {
         backgroundImageView = new ImageView(getClass().getResource(Constants.BACKGROUND_PATH).toExternalForm());
         backgroundImageView.setFitWidth(Constants.WINDOW_WIDTH);
