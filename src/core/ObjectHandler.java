@@ -64,7 +64,7 @@ public class ObjectHandler {
                             ((Bonus)tempObject).applyBonus(this.player);
                             this.removeDynamicObject(tempObject);
                         } else {
-                            player.applyDamage(0.5);
+                            player.applyDamage(1);
                         }
                     }
                 }

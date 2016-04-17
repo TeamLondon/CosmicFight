@@ -13,9 +13,11 @@ public class Spawner {
     private Double passedDistance;
     private Random random;
     private Boolean isBombPackageSpawned;
+    private PositionManager positionManager;
 
-    public Spawner(UnitFactory unitFactory) {
+    public Spawner(UnitFactory unitFactory, PositionManager positionManager) {
         this.unitFactory = unitFactory;
+        this.positionManager = positionManager;
         this.passedDistance = 0d;
         this.unitTypes = new ArrayList<>();
         this.unitTypes.add("SlowEnemy");
@@ -36,19 +38,14 @@ public class Spawner {
         if (Math.abs(currentDistance - this.passedDistance) > this.distanceRate) {
             String enemyType = this.unitTypes.get(random.nextInt(this.unitTypes.size()));
 
-            // ToDo: Position manager.
             if (currentDistance < 2000 && currentDistance > 1900 && !this.isBombPackageSpawned) {
                 this.isBombPackageSpawned = true;
-                gameObject = unitFactory.createUnit(random.nextInt(650), 0, "BombPackage");
+                Position position = this.positionManager.getPositionFor("BombPackage");
+                gameObject = unitFactory.createUnit(position.getX(), position.getY(), "BombPackage");
             }else {
-                if (enemyType.equals("RightAsteroid")) {
-                    gameObject = unitFactory.createUnit(0, random.nextInt(250), enemyType);
-                } else if (enemyType.equals("LeftAsteroid")) {
-                    gameObject = unitFactory.createUnit(650, random.nextInt(250), enemyType);
-                } else {
-                    gameObject = unitFactory.createUnit(random.nextInt(650), 0, enemyType);
-                }
 
+                Position position = this.positionManager.getPositionFor(enemyType);
+                gameObject = unitFactory.createUnit(position.getX(), position.getY(), enemyType);
                 this.passedDistance = currentDistance;
             }
         }
@@ -59,5 +56,4 @@ public class Spawner {
     public void setDistance(Double distanceRate) {
         this.distanceRate = distanceRate;
     }
-
 }

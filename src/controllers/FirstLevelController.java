@@ -25,6 +25,7 @@ public class FirstLevelController extends AbstractController {
     private Stage stage;
     private AnimationTimer timer;
     private HUD hud;
+    private PositionManager positionManager;
 
     private ObjectHandler handler;
     private Stage window;
@@ -83,7 +84,8 @@ spawnBoss();
         this.player = stageManager.getDatabase().getPlayer();
         this.handler = new ObjectHandler((GamePlayer) player);
         this.factory = new UnitFactory();
-        this.spawner = new Spawner(this.factory);
+        this.positionManager = new PositionManager();
+        this.spawner = new Spawner(this.factory, this.positionManager);
         this.keyInput = new InputHandler(scene, player, handler);
         this.handler.addDynamicObject(player);
         hud = new HUD(this.player);
