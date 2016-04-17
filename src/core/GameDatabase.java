@@ -24,7 +24,6 @@ public class GameDatabase implements Database {
 
     @Override
     public void saveHighScoreInfo() {
-        this.highScores = this.highScores.stream().sorted().collect(Collectors.toSet());
         String savePath = "res\\highscores.save";
         try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(savePath, false))) {
             objectOutputStream.writeObject(this.highScores);
@@ -46,11 +45,12 @@ public class GameDatabase implements Database {
     }
 
     public String getHighScore() {
-        this.highScores = this.highScores.stream().sorted().collect(Collectors.toSet());
+        List<HighScore> scores = this.highScores.stream().
+                sorted((p1, p2) -> p2.getPlayerScore().compareTo(p1.getPlayerScore())).collect(Collectors.toList());
         StringBuilder highScoreStringBuilder = new StringBuilder();
 
         int index = 1;
-        for (HighScore highScore : highScores) {
+        for (HighScore highScore : scores) {
             highScoreStringBuilder.append(String.format("%d. %s%n", index, highScore.toString()));
             index++;
         }
