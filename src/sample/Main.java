@@ -9,11 +9,11 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     public void start(Stage primaryStage) throws Exception{
-        init(primaryStage);
+        initialize(primaryStage);
         primaryStage.show();
     }
 
-    public void init(Stage stage) throws java.io.IOException{
+    public void initialize(Stage stage) throws java.io.IOException{
         SimpleSceneBuilder sceneBuilder = new SimpleSceneBuilder();
         Database gameDatabase = new GameDatabase();
         SimpleMessageBox messageBox = new SimpleMessageBox();

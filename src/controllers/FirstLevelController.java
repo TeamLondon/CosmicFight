@@ -45,7 +45,7 @@ public class FirstLevelController extends AbstractController {
     }
 
     public void start() throws Exception {
-        GraphicsContext gc = initialize();
+        GraphicsContext gc = initializeGraphicContext();
         setBackground();
         initializeControllersAndPlayer();
 
@@ -61,7 +61,7 @@ public class FirstLevelController extends AbstractController {
         timer.start();
     }
 
-    private GraphicsContext initialize() {
+    private GraphicsContext initializeGraphicContext() {
         this.window = this.stage;
         this.layout = new StackPane();
         this.backgroundLayer = new Pane();
