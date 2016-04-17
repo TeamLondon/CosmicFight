@@ -24,8 +24,6 @@ public interface DynamicGameObject extends Visualizable{
 
     boolean isIntersecting(DynamicGameObject otherDynamicObject);
 
-    void initiateDestroyAnimation();
-
     void draw(GraphicsContext gc);
 
     void update();

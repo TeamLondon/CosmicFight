@@ -15,6 +15,7 @@ public abstract class AbstractDynamicGameObject implements DynamicGameObject{
     private double height;
     private double hitPoints;
     private boolean isAlive;
+    private Image explosionSheet = new Image("/explosion/explosion.png");
 
     public AbstractDynamicGameObject(double x, double y) {
         this.setPosition(x ,y);
@@ -58,10 +59,6 @@ public abstract class AbstractDynamicGameObject implements DynamicGameObject{
     public void setPosition(double x, double y) {
         this.x = x;
         this.y = y;
-    }
-
-    public void initiateDestroyAnimation() {
-        this.setAlive(false);
     }
 
     public double getHitPoints() {
@@ -109,7 +106,7 @@ public abstract class AbstractDynamicGameObject implements DynamicGameObject{
     }
 
     public void draw(GraphicsContext gc){
-
+        //gc.drawImage(explosionSheet, explosionSheet.getWidth() - 128, 0, 128, 128, 0, 0, 800, 600);
     }
 
     public void update() {

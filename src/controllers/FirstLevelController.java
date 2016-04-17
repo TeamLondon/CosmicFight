@@ -56,10 +56,12 @@ public class FirstLevelController extends AbstractController {
 
         spawnBoss();
 
+
         timer = new AnimationTimer() {
             public void handle(long currentNanoTime) {
                 update();
                 draw(gc);
+                System.out.println(handler.dynamicObjects.size());
             }
         };
 
@@ -158,7 +160,7 @@ public class FirstLevelController extends AbstractController {
 
     private void spawnBoss() {
         Random random = new Random();
-        this.boss = new FirstLevelBoss(random.nextInt(650) + 100, 50);
+        this.boss = new FirstLevelBoss(random.nextInt(650) + 100, 50, this.handler);
         this.handler.addDynamicObject(boss);
         isBossSpawned = true;
     }

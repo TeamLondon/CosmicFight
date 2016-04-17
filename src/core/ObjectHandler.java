@@ -1,5 +1,6 @@
 package core;
 
+import gameObjects.dynamicGameObjects.attacks.BossBullet;
 import gameObjects.dynamicGameObjects.player.GamePlayer;
 import interfaces.Ammo;
 import interfaces.Bonus;
@@ -32,14 +33,14 @@ public class ObjectHandler {
                 continue;
             }
             /////////////////////////////////////////////Collision testing///////////////////////////////////////////////////////
-            //If the current object is an instance of the bullet class
+            //If the current object is an instance of the Ammo interface
             if (tempObject instanceof Ammo) {
                 //Iterate through all game objects again
                 for (int j = 0; j < this.dynamicObjects.size(); j++) {
                     DynamicGameObject currentTempObject = this.dynamicObjects.get(j);
 
                     //Check if the current object is the player or another bullet
-                    if (currentTempObject instanceof GamePlayer || currentTempObject instanceof Ammo) {
+                    if (currentTempObject instanceof GamePlayer || currentTempObject instanceof Ammo || currentTempObject instanceof BossBullet) {
                         //If yes - continue..
                         continue;
                     }else {
@@ -48,14 +49,12 @@ public class ObjectHandler {
                             //If yes subtract 10 from the total hitPoints of this object
                             currentTempObject.applyDamage(((Ammo) tempObject).getDamage());
                             //Then destroy this bullet and initiate its death animation
-                            tempObject.initiateDestroyAnimation();
                             this.removeDynamicObject(tempObject);
                             //tempObject = null;
                             //Then check if the current object currently has 0 health
                             if (currentTempObject.getHitPoints() <= 0) {
                                 //If yes - initiate its death animation and remove it from the list
                                 player.addScore(currentTempObject instanceof Enemy ? ((Enemy) currentTempObject).getRewardPoints(): 1);
-                                currentTempObject.initiateDestroyAnimation();
                                 removeDynamicObject(currentTempObject);
                                 currentTempObject = null;
                             }

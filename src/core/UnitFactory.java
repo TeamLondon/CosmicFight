@@ -24,7 +24,7 @@ public class UnitFactory {
                 unit = new RoundAsteroid(x, y);
                 break;
             case "FirstLevelBoss":
-                unit = new FirstLevelBoss(x, y);
+                //unit = new FirstLevelBoss(x, y);
                 break;
             case "LeftAsteroid":
                 unit = new LeftAsteroid(x, y);
