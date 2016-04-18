@@ -14,13 +14,11 @@ public abstract class AbstractDynamicGameObject implements DynamicGameObject{
     private double width;
     private double height;
     private double hitPoints;
-    private boolean isAlive;
-    private Image explosionSheet = new Image("/explosion/explosion.png");
+    // private Image explosionSheet = new Image("/explosion/explosion.png");
 
     public AbstractDynamicGameObject(double x, double y) {
         this.setPosition(x ,y);
         this.setHitPoints(100);
-        this.setAlive(true);
     }
 
     public void setVelocity(double x, double y) {
@@ -74,11 +72,7 @@ public abstract class AbstractDynamicGameObject implements DynamicGameObject{
     }
 
     public boolean isAlive() {
-        return this.getHitPoints() <= 0;
-    }
-
-    public void setAlive(boolean alive) {
-        isAlive = alive;
+        return this.getHitPoints() > 0;
     }
 
     public double getWidth() {

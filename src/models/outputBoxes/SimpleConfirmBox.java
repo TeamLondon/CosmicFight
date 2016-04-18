@@ -1,5 +1,7 @@
 package models.outputBoxes;
 
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import models.contracts.ConfirmBox;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -22,13 +24,28 @@ public class SimpleConfirmBox implements ConfirmBox{
         Button yesButton = new Button("Yes");
         Button noButton = new Button("No");
 
-        yesButton.setOnAction(e -> {
+        yesButton.setOnMouseClicked(e -> {
             this.answer = true;
             window.close();
         });
-        noButton.setOnAction(e -> {
+
+        noButton.setOnMouseClicked(e -> {
             this.answer = false;
             window.close();
+        });
+
+
+        yesButton.setOnKeyPressed(e -> {
+            if (e.getCode().equals(KeyCode.ENTER)){
+                this.answer = true;
+                window.close();
+            }
+        });
+        noButton.setOnKeyPressed(e -> {
+            if (e.getCode().equals(KeyCode.ENTER)){
+                this.answer = false;
+                window.close();
+            }
         });
 
         VBox layout = new VBox(10);

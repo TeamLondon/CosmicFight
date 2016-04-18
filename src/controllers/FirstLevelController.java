@@ -63,7 +63,6 @@ public class FirstLevelController extends AbstractLevelController {
             public void handle(long currentNanoTime) {
                 update();
                 draw(gc);
-                // System.out.println(getObjectHandler().dynamicObjects.size());
             }
         };
 
@@ -77,13 +76,9 @@ public class FirstLevelController extends AbstractLevelController {
 
     public void initialize(){
         this.getInputHandler().setScene(this.scene);
-        /*
-        BUG: Player acts much faster when this method is called.
-        this.getObjectHandler().setPlayer(this.getPlayer());
-        */
-
-        this.getInputHandler().getObjectHandler().setPlayer(this.getPlayer());
         this.getInputHandler().setPlayer(this.getPlayer());
+        this.getInputHandler().getObjectHandler().setPlayer(this.getPlayer());
+
         this.getHud().setPlayer(this.getPlayer());
     }
 
@@ -124,7 +119,7 @@ public class FirstLevelController extends AbstractLevelController {
         this.getInputHandler().getObjectHandler().update();
         this.getInputHandler().refresh();
         if (this.isBossSpawned) {
-            if (this.boss.isAlive()) {
+            if (!this.boss.isAlive() || this.getPlayer().getHitPoints() <= 0) {
                 setNextScene();
                 this.timer.stop();
             }
