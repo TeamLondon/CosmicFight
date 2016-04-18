@@ -1,6 +1,8 @@
 package entryPoint;
 
 import core.*;
+import core.factories.SimpleAttackFactory;
+import core.factories.SimpleBonusFactory;
 import core.factories.SimpleUnitFactory;
 import core.managers.PositionManager;
 import core.managers.SimpleStageManager;
@@ -8,6 +10,8 @@ import data.GameDatabase;
 import enums.Scenes;
 import gameObjects.staticGameObjects.SimpleHUD;
 import interfaces.core.Database;
+import interfaces.factories.AttacksFactory;
+import interfaces.factories.BonusFactory;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import models.handlers.InputHandler;
@@ -25,7 +29,9 @@ public class Main extends Application {
     public void initialize(Stage stage) throws java.io.IOException {
         SimpleUnitFactory unitFactory = new SimpleUnitFactory();
         PositionManager positionManager = new PositionManager();
-        Spawner spawner = new Spawner(unitFactory, positionManager);
+        AttacksFactory attacksFactory = new SimpleAttackFactory();
+        BonusFactory bonusFactory = new SimpleBonusFactory();
+        Spawner spawner = new Spawner(unitFactory,attacksFactory, bonusFactory, positionManager);
 
         ObjectHandler objectHandler = new ObjectHandler();
         InputHandler inputHandler = new InputHandler(objectHandler);

@@ -3,7 +3,7 @@ package models.handlers;
 import gameObjects.dynamicGameObjects.attacks.BossBullet;
 import gameObjects.dynamicGameObjects.enemies.FirstLevelBoss;
 import gameObjects.dynamicGameObjects.player.GamePlayer;
-import interfaces.models.Ammo;
+import interfaces.models.Attack;
 import interfaces.models.DynamicGameObject;
 import interfaces.models.Enemy;
 import interfaces.models.Player;
@@ -42,21 +42,21 @@ public class ObjectHandler {
                 continue;
             }
             /////////////////////////////////////////////Collision testing///////////////////////////////////////////////////////
-            //If the current object is an instance of the Ammo interface
-            if (tempObject instanceof Ammo) {
+            //If the current object is an instance of the Attack interface
+            if (tempObject instanceof Attack) {
                 //Iterate through all game objects again
                 for (int j = 0; j < this.dynamicObjects.size(); j++) {
                     DynamicGameObject currentTempObject = this.dynamicObjects.get(j);
 
                     //Check if the current object is the player or another bullet
-                    if (currentTempObject instanceof GamePlayer || currentTempObject instanceof Ammo || currentTempObject instanceof BossBullet) {
+                    if (currentTempObject instanceof GamePlayer || currentTempObject instanceof Attack || currentTempObject instanceof BossBullet) {
                         //If yes - continue..
                         continue;
                     }else {
                         //Else check if it is intersecting with the bullet
                         if (tempObject.isIntersecting(currentTempObject)) {
                             //If yes subtract 10 from the total hitPoints of this object
-                            currentTempObject.applyDamage(((Ammo) tempObject).getDamage());
+                            currentTempObject.applyDamage(((Attack) tempObject).getDamage());
                             //Then destroy this bullet and initiate its death animation
                             this.removeDynamicObject(tempObject);
                             //tempObject = null;

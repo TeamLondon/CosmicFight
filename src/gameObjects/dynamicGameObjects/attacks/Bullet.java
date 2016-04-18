@@ -1,12 +1,12 @@
 package gameObjects.dynamicGameObjects.attacks;
 
+import interfaces.models.Attack;
 import utilities.Constants;
 import gameObjects.AbstractDynamicGameObject;
-import interfaces.models.Ammo;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 
-public class Bullet extends AbstractDynamicGameObject implements Ammo{
+public class Bullet extends AbstractDynamicGameObject implements Attack {
 
     public Bullet(double x, double y) {
         super(x, y);
@@ -19,8 +19,6 @@ public class Bullet extends AbstractDynamicGameObject implements Ammo{
     public Rectangle2D getBoundary() {
         return new Rectangle2D(this.getX(), this.getY(), this.getWidth() + 20, this.getHeight() + 20);
     }
-
-
 
     public void draw(GraphicsContext gc) {
         gc.drawImage(this.getImage(), this.getX() + 18, this.getY(), this.getWidth(), this.getHeight());

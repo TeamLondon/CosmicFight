@@ -1,5 +1,5 @@
 package interfaces.models;
 
-public interface Ammo {
+public interface Attack {
     Integer getDamage();
 }

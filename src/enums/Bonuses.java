@@ -1,5 +1,5 @@
 package enums;
 public enum Bonuses {
-    MissilePackage,
+    BombPackage,
     HealthPackage
 }

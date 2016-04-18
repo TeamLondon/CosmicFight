@@ -2,10 +2,10 @@ package gameObjects.dynamicGameObjects.attacks;
 
 import utilities.Constants;
 import gameObjects.AbstractDynamicGameObject;
-import interfaces.models.Ammo;
+import interfaces.models.Attack;
 import javafx.scene.canvas.GraphicsContext;
 
-public class GiantBomb extends AbstractDynamicGameObject implements Ammo{
+public class GiantBomb extends AbstractDynamicGameObject implements Attack {
 
     public GiantBomb(double x, double y) {
         super(x, y);

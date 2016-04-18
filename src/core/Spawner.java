@@ -1,26 +1,32 @@
 package core;
 
-import core.factories.SimpleUnitFactory;
 import core.managers.PositionManager;
+import enums.Bonuses;
 import enums.Units;
+import interfaces.factories.AttacksFactory;
+import interfaces.factories.BonusFactory;
+import interfaces.factories.UnitFactory;
 import interfaces.models.DynamicGameObject;
-import interfaces.models.Unit;
 import models.Position;
 
 import java.util.*;
 
 public class Spawner {
-    private static final List<Units> unitTypes =
-            Collections.unmodifiableList(Arrays.asList(Units.values()));
-    private SimpleUnitFactory unitFactory;
+    private static final List<Units> unitTypes = Collections.unmodifiableList(Arrays.asList(Units.values()));
+
+    private UnitFactory unitFactory;
+    private AttacksFactory attacksFactory;
+    private BonusFactory bonusFactory;
     private Double distanceRate;
     private Double passedDistance;
     private Random random;
     private Boolean isBombPackageSpawned;
     private PositionManager positionManager;
 
-    public Spawner(SimpleUnitFactory unitFactory, PositionManager positionManager) {
+    public Spawner(UnitFactory unitFactory, AttacksFactory attacksFactory, BonusFactory bonusFactory, PositionManager positionManager) {
         this.unitFactory = unitFactory;
+        this.attacksFactory = attacksFactory;
+        this.bonusFactory = bonusFactory;
         this.positionManager = positionManager;
         this.passedDistance = 0d;
         this.isBombPackageSpawned = false;
@@ -36,8 +42,8 @@ public class Spawner {
             if (currentDistance < 2000 && currentDistance > 1900 && !this.isBombPackageSpawned) {
                 this.isBombPackageSpawned = true;
                 Position position = this.positionManager.getPositionFor("BombPackage");
-                // gameObject = this.unitFactory.createUnit("BombPackage", position.getX(), position.getY());
-            }else {
+                gameObject = this.bonusFactory.createBonus(Bonuses.BombPackage, position.getX(), position.getY());
+            } else {
                 Units unitType = unitTypes.get(this.random.nextInt(unitTypes.size()));
                 Position position = this.positionManager.getPositionFor(unitType.toString());
                 gameObject = this.unitFactory.createUnit(unitType, position.getX(), position.getY());
