@@ -19,22 +19,20 @@ import models.outputBoxes.SimpleMessageBox;
 
 public class Main extends Application {
 
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         initialize(primaryStage);
         primaryStage.show();
     }
 
-    public void initialize(Stage stage) throws java.io.IOException{
-        Player player = new GamePlayer(100, 100);
+    public void initialize(Stage stage) throws java.io.IOException {
         UnitFactory unitFactory = new UnitFactory();
         PositionManager positionManager = new PositionManager();
         Spawner spawner = new Spawner(unitFactory, positionManager);
-        ObjectHandler objectHandler = new ObjectHandler(player);
-        InputHandler inputHandler = new InputHandler(player,objectHandler);
-        HUD hud = new HUD(player);
-        SimpleSceneBuilder sceneBuilder = new SimpleSceneBuilder(player,spawner, objectHandler, inputHandler, hud);
+        ObjectHandler objectHandler = new ObjectHandler();
+        InputHandler inputHandler = new InputHandler(objectHandler);
+        HUD hud = new HUD();
+        SimpleSceneBuilder sceneBuilder = new SimpleSceneBuilder(inputHandler, objectHandler, spawner, hud);
         Database gameDatabase = new GameDatabase();
-        gameDatabase.setPlayer(player);
         SimpleMessageBox messageBox = new SimpleMessageBox();
         SimpleConfirmBox confirmBox = new SimpleConfirmBox();
         SimpleStageManager stageManager = new SimpleStageManager(stage, sceneBuilder, gameDatabase, messageBox, confirmBox);

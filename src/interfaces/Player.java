@@ -27,5 +27,5 @@ public interface Player extends DynamicGameObject, Unit {
 
     Attacks getCurrentAttack();
 
-     List<Attacks> getAttacks();
+    List<Attacks> getAttacks();
 }

@@ -17,6 +17,13 @@ public class ObjectHandler {
         this.addDynamicObject(player);
     }
 
+    public ObjectHandler() {
+    }
+
+    public void setPlayer(Player player){
+        this.player = player;
+        this.addDynamicObject(player);
+    }
     public void update() {
         //This loop goes through all the objects in the game
         for (int i = 0; i < dynamicObjects.size(); i++) {

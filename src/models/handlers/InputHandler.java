@@ -27,6 +27,15 @@ public class InputHandler {
         this.input = new ArrayList<>();
     }
 
+    public InputHandler(ObjectHandler objectHandler) {
+        this.objectHandler = objectHandler;
+        this.input = new ArrayList<>();
+    }
+
+    public void  setPlayer(Player player){
+        this.player = player;
+    }
+
     public void refresh() {
         this.scene.setOnKeyPressed(
                 e -> {

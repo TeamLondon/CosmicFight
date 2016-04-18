@@ -33,6 +33,13 @@ public class SimpleSceneBuilder {
         this.hud = hud;
     }
 
+    public SimpleSceneBuilder(InputHandler inputHandler, ObjectHandler objectHandler, Spawner spawner,HUD hud) {
+        this.hud = hud;
+        this.inputHandler = inputHandler;
+        this.objectHandler = objectHandler;
+        this.spawner = spawner;
+    }
+
     public Scene build(Scenes sceneType, SimpleStageManager stageManager) {
         Scene scene = null;
         switch (sceneType) {
@@ -43,7 +50,7 @@ public class SimpleSceneBuilder {
                 scene = getInsertUsernameScene(stageManager);
                 break;
             case FirstLevelScene:
-                scene = getFirstLevelScene(stageManager, this.player, this.inputHandler, this.objectHandler, this.hud, this.spawner);
+                scene = getFirstLevelScene(stageManager, stageManager.getDatabase().getPlayer(), this.inputHandler, this.objectHandler, this.hud, this.spawner);
                 break;
             case HighScoreScene:
                 scene = getHighScoreScene(stageManager);

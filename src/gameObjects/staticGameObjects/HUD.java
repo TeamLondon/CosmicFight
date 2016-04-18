@@ -18,6 +18,9 @@ public class HUD extends AbstractStaticGameObject {
         this.player = player;
     }
 
+    public HUD() {
+    }
+
     public void draw(GraphicsContext gc) {
         this.setImage(Constants.HUD_HEALTH_BAR_PATH);
         gc.setFill(Color.rgb(75, Math.abs((int)healthValue), 0));
@@ -43,6 +46,10 @@ public class HUD extends AbstractStaticGameObject {
         double amountInPercent = (player.getBombCooldown() / 20.0) * 100;
         this.bombValue = this.getWidth() * (amountInPercent * 0.01) - 89;
         healthValue = clamp(player.getHitPoints() * 2, 0, this.getWidth() - 32);
+    }
+
+    public void setPlayer(Player player){
+        this.player = player;
     }
 
     private double clamp(double var, double min, double max) {

@@ -90,7 +90,7 @@ public class GamePlayer extends AbstractDynamicGameObject implements Player{
     }
 
     public double getBombCooldown() {
-        return bombCooldown;
+        return this.bombCooldown;
     }
 
     public void setBombCooldown(double bombCooldown) {
@@ -116,6 +116,7 @@ public class GamePlayer extends AbstractDynamicGameObject implements Player{
         this.setPosition(currentX, currentY + 1);
         this.setBulletCooldown(clamp(this.getBulletCooldown() + 0.13, 0.0, 0.4));
         this.setBombCooldown(clamp(this.getBombCooldown() + 0.1, 0.0, 20.0));
+        System.out.println(this.getBulletCooldown());
     }
 
     public void draw(GraphicsContext gc) {

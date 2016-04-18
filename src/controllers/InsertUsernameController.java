@@ -1,5 +1,6 @@
 package controllers;
 
+import gameObjects.dynamicGameObjects.player.GamePlayer;
 import utilities.Constants;
 import enums.Scenes;
 import interfaces.*;
@@ -53,8 +54,8 @@ public class InsertUsernameController extends AbstractController {
         String name = "";
         if (validationMatcher.find()){
             name = input;
-
-            this.getStageManager().getDatabase().getPlayer().setName(name);
+            this.getGameDatabase().setPlayer(new GamePlayer(100, 100, name));
+            // this.getStageManager().getDatabase().getPlayer().setName(name);
             this.getStageManager().getDatabase().addHighScore(this.getStageManager().getDatabase().getPlayer().getHighScore());
             setNextScene();
 
