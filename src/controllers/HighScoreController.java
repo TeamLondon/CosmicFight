@@ -36,7 +36,7 @@ public class HighScoreController extends AbstractController {
     }
 
     private void initializeInfo() {
-        String highScoreText = this.getGameDatabase().getHighScore();
+        String highScoreText = this.getDatabase().getHighScore();
         this.highScoreResultsLabel.setText(highScoreText);
     }
 

@@ -23,7 +23,7 @@ public abstract class AbstractController implements StageController {
         return this.stageManager;
     }
 
-    protected Database getGameDatabase() {
+    protected Database getDatabase() {
         return this.gameDatabase;
     }
 
@@ -42,7 +42,7 @@ public abstract class AbstractController implements StageController {
 
 
     protected void onCloseRequest() {
-        boolean isQuitting = this.stageManager.getConfirmBox().display("Exit game", "Are you sure you want to exit?");
+        boolean isQuitting = this.confirmBox.display("Exit game", "Are you sure you want to exit?");
         if (isQuitting){
             this.gameDatabase.saveHighScoreInfo();
             this.stageManager.getStage().close();

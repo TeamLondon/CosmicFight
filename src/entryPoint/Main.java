@@ -28,15 +28,24 @@ public class Main extends Application {
         UnitFactory unitFactory = new UnitFactory();
         PositionManager positionManager = new PositionManager();
         Spawner spawner = new Spawner(unitFactory, positionManager);
+
         ObjectHandler objectHandler = new ObjectHandler();
         InputHandler inputHandler = new InputHandler(objectHandler);
 
         HUD hud = new HUD();
-        SimpleSceneBuilder sceneBuilder = new SimpleSceneBuilder(inputHandler, spawner, hud);
         Database gameDatabase = new GameDatabase();
         SimpleMessageBox messageBox = new SimpleMessageBox();
         SimpleConfirmBox confirmBox = new SimpleConfirmBox();
-        SimpleStageManager stageManager = new SimpleStageManager(stage, sceneBuilder, gameDatabase, messageBox, confirmBox);
+
+        SimpleSceneBuilder sceneBuilder = new SimpleSceneBuilder(
+                gameDatabase,
+                spawner,
+                inputHandler,
+                confirmBox,
+                messageBox,
+                hud);
+
+        SimpleStageManager stageManager = new SimpleStageManager(stage, sceneBuilder);
 
         stageManager.setScene(Scenes.StartGameScene);
         stage.setTitle("Cosmic fight");

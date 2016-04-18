@@ -31,12 +31,12 @@ public class GameOverController extends AbstractController {
         this.exitGame.setStyle(Constants.BUTTON_STYLE);
         this.playNewGame.setStyle(Constants.BUTTON_STYLE);
         super.initialize(stageManager, database, messageBox, confirmBox);
-        boolean isAlive = this.getGameDatabase().getPlayer().getHitPoints() > 0;
+        boolean isAlive = this.getDatabase().getPlayer().getHitPoints() > 0;
         if (isAlive) {
             this.congratulationsYouWin.setVisible(true);
             this.score.textProperty().
-                    set(this.getGameDatabase().getPlayer().getName() +
-                    " score: " + this.getGameDatabase().getPlayer().getHighScore().getPlayerScore());
+                    set(this.getDatabase().getPlayer().getName() +
+                    " score: " + this.getDatabase().getPlayer().getHighScore().getPlayerScore());
             this.score.setVisible(true);
         } else {
             this.badLuck.setVisible(true);
@@ -44,7 +44,7 @@ public class GameOverController extends AbstractController {
     }
 
     public void playNewGameButton() {
-        this.getGameDatabase().saveHighScoreInfo();
+        this.getDatabase().saveHighScoreInfo();
         this.getStageManager().setScene(Scenes.StartGameScene);
     }
 

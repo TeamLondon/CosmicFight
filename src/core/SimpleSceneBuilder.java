@@ -3,8 +3,7 @@ package core;
 import controllers.*;
 import core.managers.SimpleStageManager;
 import gameObjects.staticGameObjects.HUD;
-import interfaces.Player;
-import interfaces.StageManager;
+import interfaces.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -19,21 +18,29 @@ import utilities.Constants;
 public class SimpleSceneBuilder {
     private FXMLLoader myLoader;
 
-    private Player player;
     private Spawner spawner;
-    private ObjectHandler objectHandler;
     private InputHandler inputHandler;
     private HUD hud;
+    private Database database;
+    private MessageBox messageBox;
+    private ConfirmBox confirmBox;
 
-    public SimpleSceneBuilder(Player player, Spawner spawner, ObjectHandler objectHandler, InputHandler inputHandler, HUD hud) {
-        this.player = player;
+    public SimpleSceneBuilder(
+            Database database,
+            Spawner spawner,
+            InputHandler inputHandler,
+            ConfirmBox confirmBox,
+            MessageBox messageBox,
+            HUD hud) {
+        this.database = database;
+        this.messageBox = messageBox;
+        this.confirmBox = confirmBox;
         this.spawner = spawner;
-        this.objectHandler = objectHandler;
         this.inputHandler = inputHandler;
         this.hud = hud;
     }
 
-    public SimpleSceneBuilder(InputHandler inputHandler, Spawner spawner,HUD hud) {
+    public SimpleSceneBuilder(InputHandler inputHandler, Spawner spawner, HUD hud) {
         this.hud = hud;
         this.inputHandler = inputHandler;
         this.spawner = spawner;
@@ -49,7 +56,7 @@ public class SimpleSceneBuilder {
                 scene = getInsertUsernameScene(stageManager);
                 break;
             case FirstLevelScene:
-                scene = getFirstLevelScene(stageManager, stageManager.getDatabase().getPlayer(), this.inputHandler, this.hud, this.spawner);
+                scene = getFirstLevelScene(stageManager);
                 break;
             case HighScoreScene:
                 scene = getHighScoreScene(stageManager);
@@ -72,10 +79,10 @@ public class SimpleSceneBuilder {
             scene = new Scene(loadScreen);
 
             GameOverController gameOverController = this.myLoader.getController();
-            gameOverController.initialize(stageManager, stageManager.getDatabase(), stageManager.getMessageBox(), stageManager.getConfirmBox());
+            gameOverController.initialize(stageManager, this.database, this.messageBox, this.confirmBox);
 
         } catch (IOException e) {
-            stageManager.getMessageBox().display("Exception", "Scene not loaded.");
+            this.messageBox.display("Exception", "Scene not loaded.");
             System.out.println(e.getMessage());
         }
         return scene;
@@ -89,10 +96,10 @@ public class SimpleSceneBuilder {
             scene = new Scene(loadScreen);
 
             HighScoreController highScoreController = this.myLoader.getController();
-            highScoreController.initialize(stageManager, stageManager.getDatabase(), stageManager.getMessageBox(), stageManager.getConfirmBox());
+            highScoreController.initialize(stageManager, this.database, this.messageBox, this.confirmBox);
 
         } catch (IOException e) {
-            stageManager.getMessageBox().display("Exception", "Scene not loaded.");
+            this.messageBox.display("Exception", "Scene not loaded.");
             System.out.println(e.getMessage());
         }
         return scene;
@@ -106,9 +113,9 @@ public class SimpleSceneBuilder {
             scene = new Scene(loadScreen);
 
             InsertUsernameController insertUsernameController = this.myLoader.getController();
-            insertUsernameController.initialize(stageManager, stageManager.getDatabase(), stageManager.getMessageBox(), stageManager.getConfirmBox());
+            insertUsernameController.initialize(stageManager, this.database, this.messageBox, this.confirmBox);
         } catch (IOException e) {
-            stageManager.getMessageBox().display("Exception", "Scene not loaded.");
+            this.messageBox.display("Exception", "Scene not loaded.");
         }
         return scene;
     }
@@ -120,28 +127,22 @@ public class SimpleSceneBuilder {
             Parent loadScreen = this.myLoader.load();
             scene = new Scene(loadScreen);
             StartGameController startGameController = this.myLoader.getController();
-            startGameController.initialize(stageManager, stageManager.getDatabase(), stageManager.getMessageBox(), stageManager.getConfirmBox());
+            startGameController.initialize(stageManager, this.database, this.messageBox, this.confirmBox);
         } catch (IOException e) {
-            stageManager.getMessageBox().display("Exception", "Scene not loaded.");
+            this.messageBox.display("Exception", "Scene not loaded.");
         }
         return scene;
     }
 
-    public Scene getFirstLevelScene(
-            SimpleStageManager stageManager,
-            Player player,
-            InputHandler inputHandler,
-            HUD hud,
-            Spawner spawner) {
+    public Scene getFirstLevelScene(SimpleStageManager stageManager) {
         FirstLevelController controller = new FirstLevelController(
                 stageManager,
-                stageManager.getDatabase(),
-                stageManager.getMessageBox(),
-                stageManager.getConfirmBox(),
-                player,
-                inputHandler,
-                hud,
-                spawner);
+                this.database,
+                this.spawner,
+                this.inputHandler,
+                this.messageBox,
+                this.confirmBox,
+                this.hud);
         Scene scene = null;
         try {
             scene = controller.getCurrentScene();

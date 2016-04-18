@@ -54,9 +54,9 @@ public class InsertUsernameController extends AbstractController {
         String name = "";
         if (validationMatcher.find()){
             name = input;
-            this.getGameDatabase().setPlayer(new GamePlayer(100, 100, name));
+            this.getDatabase().setPlayer(new GamePlayer(100, 100, name));
             // this.getStageManager().getDatabase().getPlayer().setName(name);
-            this.getStageManager().getDatabase().addHighScore(this.getStageManager().getDatabase().getPlayer().getHighScore());
+            this.getDatabase().addHighScore(this.getDatabase().getPlayer().getHighScore());
             setNextScene();
 
         } else{

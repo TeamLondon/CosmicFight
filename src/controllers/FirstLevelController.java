@@ -38,14 +38,13 @@ public class FirstLevelController extends AbstractLevelController {
     public FirstLevelController(
             StageManager stageManager,
             Database gameDatabase,
+            Spawner spawner,
+            InputHandler inputHandler,
             MessageBox messageBox,
             ConfirmBox confirmBox,
-            Player player,
-            InputHandler inputHandler,
-            HUD hud,
-            Spawner spawner) {
+            HUD hud) {
 
-        super(stageManager, gameDatabase, messageBox, confirmBox, player, inputHandler, hud, spawner);
+        super(stageManager, gameDatabase, spawner, inputHandler, messageBox, confirmBox, hud);
         this.stage = stageManager.getStage();
         this.isBossSpawned = false;
     }

@@ -15,15 +15,14 @@ public abstract class AbstractLevelController extends AbstractController {
     public AbstractLevelController(
             StageManager stateManager,
             Database gameDatabase,
+            Spawner spawner,
+            InputHandler inputHandler,
             MessageBox messageBox,
             ConfirmBox confirmBox,
-            Player player,
-            InputHandler inputHandler,
-            HUD hud,
-            Spawner spawner) {
+            HUD hud) {
         super.initialize(stateManager, gameDatabase, messageBox, confirmBox);
         this.spawner = spawner;
-        this.player = player;
+        this.player = gameDatabase.getPlayer();
         this.inputHandler = inputHandler;
         this.hud = hud;
     }

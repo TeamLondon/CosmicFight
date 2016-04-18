@@ -1,42 +1,26 @@
 package core.managers;
 
-import models.outputBoxes.SimpleConfirmBox;
-import models.outputBoxes.SimpleMessageBox;
 import core.SimpleSceneBuilder;
 import enums.Scenes;
-import interfaces.Database;
 import interfaces.StageManager;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class SimpleStageManager  implements StageManager{
-    private SimpleSceneBuilder sceneBuilder;
-
     private Scene currentScene;
-
-    private SimpleMessageBox messageBox;
-
-    private SimpleConfirmBox confirmBox;
 
     private Stage stage;
 
-    private Database gameDatabase;
+    private SimpleSceneBuilder sceneBuilder;
 
-    public SimpleStageManager(Stage stage, SimpleSceneBuilder sceneBuilder, Database gameDatabase, SimpleMessageBox messageBox, SimpleConfirmBox confirmBox) {
+    public SimpleStageManager(Stage stage, SimpleSceneBuilder sceneBuilder) {
         this.stage = stage;
-        this.sceneBuilder = sceneBuilder;
-        this.gameDatabase = gameDatabase;
-        this.messageBox = messageBox;
-        this.confirmBox = confirmBox;
-    }
-
-    public SimpleSceneBuilder getSceneBuilder() {
-        return sceneBuilder;
+        this.sceneBuilder =sceneBuilder;
     }
 
     @Override
-    public Database getDatabase() {
-        return this.gameDatabase;
+    public SimpleSceneBuilder getSceneBuilder() {
+        return this.sceneBuilder;
     }
 
     @Override
@@ -48,20 +32,9 @@ public class SimpleStageManager  implements StageManager{
         return currentScene;
     }
 
-    @Override
-    public SimpleConfirmBox getConfirmBox() {
-        return this.confirmBox;
-    }
-
-    @Override
-    public SimpleMessageBox getMessageBox() {
-        return this.messageBox;
-    }
-
     public void setScene(Scenes sceneType) {
         Scene scene = sceneBuilder.build(sceneType, this);
         this.currentScene = scene;
         this.stage.setScene(scene);
     }
-
 }
