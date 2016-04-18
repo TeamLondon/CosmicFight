@@ -6,10 +6,8 @@ import core.managers.PositionManager;
 import core.managers.SimpleStageManager;
 import data.GameDatabase;
 import enums.Scenes;
-import gameObjects.dynamicGameObjects.player.GamePlayer;
-import gameObjects.staticGameObjects.HUD;
-import interfaces.Database;
-import interfaces.Player;
+import gameObjects.staticGameObjects.SimpleHUD;
+import interfaces.core.Database;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import models.handlers.InputHandler;
@@ -32,7 +30,7 @@ public class Main extends Application {
         ObjectHandler objectHandler = new ObjectHandler();
         InputHandler inputHandler = new InputHandler(objectHandler);
 
-        HUD hud = new HUD();
+        SimpleHUD hud = new SimpleHUD();
         Database gameDatabase = new GameDatabase();
         SimpleMessageBox messageBox = new SimpleMessageBox();
         SimpleConfirmBox confirmBox = new SimpleConfirmBox();

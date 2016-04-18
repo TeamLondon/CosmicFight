@@ -1,6 +1,6 @@
 package models.outputBoxes;
 
-import interfaces.ConfirmBox;
+import models.contracts.ConfirmBox;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;

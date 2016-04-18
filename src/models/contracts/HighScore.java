@@ -1,4 +1,4 @@
-package interfaces;
+package models.contracts;
 
 import java.io.Serializable;
 

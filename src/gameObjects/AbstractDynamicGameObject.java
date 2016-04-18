@@ -1,6 +1,6 @@
 package gameObjects;
 
-import interfaces.DynamicGameObject;
+import interfaces.models.DynamicGameObject;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;

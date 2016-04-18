@@ -3,10 +3,12 @@ package controllers;
 import core.*;
 import enums.Scenes;
 import gameObjects.dynamicGameObjects.enemies.FirstLevelBoss;
-import gameObjects.staticGameObjects.HUD;
+import gameObjects.staticGameObjects.SimpleHUD;
 
 import interfaces.*;
 
+import interfaces.core.Database;
+import interfaces.models.DynamicGameObject;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -16,8 +18,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import models.contracts.ConfirmBox;
+import models.contracts.MessageBox;
 import models.handlers.InputHandler;
-import models.handlers.ObjectHandler;
 import utilities.Constants;
 
 import java.util.Random;
@@ -42,7 +45,7 @@ public class FirstLevelController extends AbstractLevelController {
             InputHandler inputHandler,
             MessageBox messageBox,
             ConfirmBox confirmBox,
-            HUD hud) {
+            SimpleHUD hud) {
 
         super(stageManager, gameDatabase, spawner, inputHandler, messageBox, confirmBox, hud);
         this.stage = stageManager.getStage();

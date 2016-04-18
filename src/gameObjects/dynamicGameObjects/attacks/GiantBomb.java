@@ -2,7 +2,7 @@ package gameObjects.dynamicGameObjects.attacks;
 
 import utilities.Constants;
 import gameObjects.AbstractDynamicGameObject;
-import interfaces.Ammo;
+import interfaces.models.Ammo;
 import javafx.scene.canvas.GraphicsContext;
 
 public class GiantBomb extends AbstractDynamicGameObject implements Ammo{

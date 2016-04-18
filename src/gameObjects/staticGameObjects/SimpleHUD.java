@@ -3,22 +3,18 @@ package gameObjects.staticGameObjects;
 import utilities.Constants;
 import enums.Attacks;
 import gameObjects.AbstractStaticGameObject;
-import interfaces.Player;
+import interfaces.models.Player;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
-public class HUD extends AbstractStaticGameObject {
+public class SimpleHUD extends AbstractStaticGameObject implements interfaces.HUD{
     private Player player;
     private double healthValue;
     private double bombValue;
 
-    public HUD(Player player) {
-        this.player = player;
-    }
-
-    public HUD() {
+    public SimpleHUD() {
     }
 
     public void draw(GraphicsContext gc) {
@@ -45,16 +41,20 @@ public class HUD extends AbstractStaticGameObject {
     public void update() {
         double amountInPercent = (player.getBombCooldown() / 20.0) * 100;
         this.bombValue = this.getWidth() * (amountInPercent * 0.01) - 89;
-        healthValue = clamp(player.getHitPoints() * 2, 0, this.getWidth() - 32);
+        this.healthValue = clamp(player.getHitPoints() * 2, 0, this.getWidth() - 32);
     }
 
     public void setPlayer(Player player){
         this.player = player;
     }
 
-    private double clamp(double var, double min, double max) {
-        if (var >= max) return var = max;
-        else if(var <= min)return var = min;
+    public double clamp(double var, double min, double max) {
+        if (var >= max) {
+            return max;
+        }
+        else if(var <= min){
+            return min;
+        }
         else return var;
     }
 }

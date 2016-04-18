@@ -5,7 +5,7 @@ import models.handlers.ObjectHandler;
 import gameObjects.AbstractDynamicGameObject;
 import gameObjects.dynamicGameObjects.HealthBar;
 import gameObjects.dynamicGameObjects.attacks.BossBullet;
-import interfaces.Enemy;
+import interfaces.models.Enemy;
 import javafx.scene.canvas.GraphicsContext;
 
 public class FirstLevelBoss extends AbstractDynamicGameObject implements Enemy{

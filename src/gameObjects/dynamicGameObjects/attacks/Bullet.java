@@ -2,7 +2,7 @@ package gameObjects.dynamicGameObjects.attacks;
 
 import utilities.Constants;
 import gameObjects.AbstractDynamicGameObject;
-import interfaces.Ammo;
+import interfaces.models.Ammo;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 

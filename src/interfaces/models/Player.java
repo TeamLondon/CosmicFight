@@ -1,6 +1,7 @@
-package interfaces;
+package interfaces.models;
 
 import enums.Attacks;
+import models.contracts.HighScore;
 
 import java.util.List;
 

@@ -2,7 +2,7 @@ package core;
 
 import core.factories.UnitFactory;
 import core.managers.PositionManager;
-import interfaces.DynamicGameObject;
+import interfaces.models.DynamicGameObject;
 import models.Position;
 
 import java.util.ArrayList;

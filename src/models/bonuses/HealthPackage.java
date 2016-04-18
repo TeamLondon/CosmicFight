@@ -1,6 +1,6 @@
 package models.bonuses;
 
-import interfaces.Player;
+import interfaces.models.Player;
 
 public class HealthPackage extends GameBonus {
     public HealthPackage(double x, double y) {

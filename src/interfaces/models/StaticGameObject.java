@@ -1,4 +1,4 @@
-package interfaces;
+package interfaces.models;
 
 import javafx.scene.canvas.GraphicsContext;
 

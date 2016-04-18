@@ -1,8 +1,8 @@
 package data;
 
-import interfaces.Database;
-import interfaces.HighScore;
-import interfaces.Player;
+import interfaces.core.Database;
+import models.contracts.HighScore;
+import interfaces.models.Player;
 
 import java.io.*;
 import java.util.*;

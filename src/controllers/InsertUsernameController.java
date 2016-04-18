@@ -1,6 +1,9 @@
 package controllers;
 
 import gameObjects.dynamicGameObjects.player.GamePlayer;
+import interfaces.core.Database;
+import models.contracts.ConfirmBox;
+import models.contracts.MessageBox;
 import utilities.Constants;
 import enums.Scenes;
 import interfaces.*;

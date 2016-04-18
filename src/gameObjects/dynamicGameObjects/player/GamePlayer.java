@@ -3,8 +3,8 @@ package gameObjects.dynamicGameObjects.player;
 import utilities.Constants;
 import enums.Attacks;
 import gameObjects.AbstractDynamicGameObject;
-import interfaces.HighScore;
-import interfaces.Player;
+import models.contracts.HighScore;
+import interfaces.models.Player;
 import javafx.scene.canvas.GraphicsContext;
 import models.GameHighScore;
 

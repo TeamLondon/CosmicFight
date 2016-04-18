@@ -1,26 +1,26 @@
 package core;
 
 import controllers.*;
-import core.managers.SimpleStageManager;
-import gameObjects.staticGameObjects.HUD;
+import enums.Scenes;
+import gameObjects.staticGameObjects.SimpleHUD;
 import interfaces.*;
+import interfaces.core.Database;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import models.contracts.ConfirmBox;
+import models.contracts.MessageBox;
+import models.handlers.InputHandler;
+import utilities.Constants;
 
 import java.io.IOException;
 
-import enums.Scenes;
-import models.handlers.InputHandler;
-import models.handlers.ObjectHandler;
-import utilities.Constants;
-
-public class SimpleSceneBuilder {
+public class SimpleSceneBuilder implements SceneBuilder {
     private FXMLLoader myLoader;
 
     private Spawner spawner;
     private InputHandler inputHandler;
-    private HUD hud;
+    private SimpleHUD hud;
     private Database database;
     private MessageBox messageBox;
     private ConfirmBox confirmBox;
@@ -31,7 +31,7 @@ public class SimpleSceneBuilder {
             InputHandler inputHandler,
             ConfirmBox confirmBox,
             MessageBox messageBox,
-            HUD hud) {
+            SimpleHUD hud) {
         this.database = database;
         this.messageBox = messageBox;
         this.confirmBox = confirmBox;
@@ -40,13 +40,7 @@ public class SimpleSceneBuilder {
         this.hud = hud;
     }
 
-    public SimpleSceneBuilder(InputHandler inputHandler, Spawner spawner, HUD hud) {
-        this.hud = hud;
-        this.inputHandler = inputHandler;
-        this.spawner = spawner;
-    }
-
-    public Scene build(Scenes sceneType, SimpleStageManager stageManager) {
+    public Scene build(Scenes sceneType, StageManager stageManager) {
         Scene scene = null;
         switch (sceneType) {
             case StartGameScene:
@@ -71,7 +65,7 @@ public class SimpleSceneBuilder {
         return scene;
     }
 
-    private Scene getExitGameScene(SimpleStageManager stageManager) {
+    private Scene getExitGameScene(StageManager stageManager) {
         Scene scene = null;
         this.myLoader = new FXMLLoader(getClass().getResource(Constants.END_GAME_SCENE_RESOURCE));
         try {
@@ -105,7 +99,7 @@ public class SimpleSceneBuilder {
         return scene;
     }
 
-    private Scene getInsertUsernameScene(SimpleStageManager stageManager) {
+    private Scene getInsertUsernameScene(StageManager stageManager) {
         Scene scene = null;
         this.myLoader = new FXMLLoader(getClass().getResource(Constants.INSERT_USERNAME_SCENE_RESOURCE));
         try {
@@ -120,7 +114,7 @@ public class SimpleSceneBuilder {
         return scene;
     }
 
-    private Scene getStartScene(SimpleStageManager stageManager) {
+    private Scene getStartScene(StageManager stageManager) {
         Scene scene = null;
         this.myLoader = new FXMLLoader(getClass().getResource(Constants.START_GAME_SCENE_RESOURCE));
         try {
@@ -134,7 +128,7 @@ public class SimpleSceneBuilder {
         return scene;
     }
 
-    public Scene getFirstLevelScene(SimpleStageManager stageManager) {
+    private Scene getFirstLevelScene(StageManager stageManager) {
         FirstLevelController controller = new FirstLevelController(
                 stageManager,
                 this.database,

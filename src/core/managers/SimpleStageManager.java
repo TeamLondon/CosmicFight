@@ -1,8 +1,9 @@
 package core.managers;
 
-import core.SimpleSceneBuilder;
 import enums.Scenes;
+import interfaces.SceneBuilder;
 import interfaces.StageManager;
+
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -11,15 +12,15 @@ public class SimpleStageManager  implements StageManager{
 
     private Stage stage;
 
-    private SimpleSceneBuilder sceneBuilder;
+    private SceneBuilder sceneBuilder;
 
-    public SimpleStageManager(Stage stage, SimpleSceneBuilder sceneBuilder) {
+    public SimpleStageManager(Stage stage, SceneBuilder sceneBuilder) {
         this.stage = stage;
         this.sceneBuilder =sceneBuilder;
     }
 
     @Override
-    public SimpleSceneBuilder getSceneBuilder() {
+    public SceneBuilder getSceneBuilder() {
         return this.sceneBuilder;
     }
 

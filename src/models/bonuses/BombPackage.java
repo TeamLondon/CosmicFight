@@ -2,7 +2,7 @@ package models.bonuses;
 
 import utilities.Constants;
 import enums.Attacks;
-import interfaces.Player;
+import interfaces.models.Player;
 import javafx.scene.canvas.GraphicsContext;
 
 public class BombPackage extends GameBonus {

@@ -1,6 +1,6 @@
 package models;
 
-import interfaces.HighScore;
+import models.contracts.HighScore;
 
 import java.security.InvalidParameterException;
 import java.util.regex.Matcher;

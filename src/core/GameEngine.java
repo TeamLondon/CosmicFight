@@ -1,7 +1,7 @@
 package core;
 
 import interfaces.Engine;
-import interfaces.Player;
+import interfaces.models.Player;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 

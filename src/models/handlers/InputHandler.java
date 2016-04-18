@@ -3,7 +3,7 @@ package models.handlers;
 import enums.Attacks;
 import gameObjects.dynamicGameObjects.attacks.Bullet;
 import gameObjects.dynamicGameObjects.attacks.GiantBomb;
-import interfaces.Player;
+import interfaces.models.Player;
 import javafx.scene.Scene;
 import java.util.ArrayList;
 import java.util.List;

@@ -3,7 +3,7 @@ package gameObjects.dynamicGameObjects.enemies;
 import utilities.Constants;
 import gameObjects.AbstractDynamicGameObject;
 import gameObjects.dynamicGameObjects.HealthBar;
-import interfaces.Enemy;
+import interfaces.models.Enemy;
 import javafx.scene.canvas.GraphicsContext;
 
 public class ChaoticEnemy extends AbstractDynamicGameObject implements Enemy {

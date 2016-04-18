@@ -1,4 +1,7 @@
-package interfaces;
+package interfaces.core;
+
+import interfaces.models.Player;
+import models.contracts.HighScore;
 
 public interface Database {
     Player getPlayer();

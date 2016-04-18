@@ -1,15 +1,18 @@
 package controllers;
 
+import interfaces.core.Database;
+import interfaces.models.Player;
+import models.contracts.ConfirmBox;
+import models.contracts.MessageBox;
 import models.handlers.InputHandler;
-import models.handlers.ObjectHandler;
 import core.Spawner;
-import gameObjects.staticGameObjects.HUD;
+import gameObjects.staticGameObjects.SimpleHUD;
 import interfaces.*;
 
 public abstract class AbstractLevelController extends AbstractController {
     private Player player;
     private InputHandler inputHandler;
-    private HUD hud;
+    private SimpleHUD hud;
     private Spawner spawner;
 
     public AbstractLevelController(
@@ -19,7 +22,7 @@ public abstract class AbstractLevelController extends AbstractController {
             InputHandler inputHandler,
             MessageBox messageBox,
             ConfirmBox confirmBox,
-            HUD hud) {
+            SimpleHUD hud) {
         super.initialize(stateManager, gameDatabase, messageBox, confirmBox);
         this.spawner = spawner;
         this.player = gameDatabase.getPlayer();
@@ -36,7 +39,7 @@ public abstract class AbstractLevelController extends AbstractController {
         return inputHandler;
     }
 
-    protected HUD getHud() {
+    protected SimpleHUD getHud() {
         return hud;
     }
 

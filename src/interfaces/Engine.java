@@ -1,5 +1,6 @@
 package interfaces;
 
+import interfaces.models.Player;
 import javafx.scene.Scene;
 
 public interface Engine {

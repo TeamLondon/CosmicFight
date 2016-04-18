@@ -1,6 +1,9 @@
 package controllers;
 
 import interfaces.*;
+import interfaces.core.Database;
+import models.contracts.ConfirmBox;
+import models.contracts.MessageBox;
 
 public abstract class AbstractController implements StageController {
     private StageManager stageManager;

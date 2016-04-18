@@ -3,8 +3,12 @@ package models.handlers;
 import gameObjects.dynamicGameObjects.attacks.BossBullet;
 import gameObjects.dynamicGameObjects.enemies.FirstLevelBoss;
 import gameObjects.dynamicGameObjects.player.GamePlayer;
-import interfaces.*;
+import interfaces.models.Ammo;
+import interfaces.models.DynamicGameObject;
+import interfaces.models.Enemy;
+import interfaces.models.Player;
 import javafx.scene.canvas.GraphicsContext;
+import models.contracts.Bonus;
 
 import java.util.LinkedList;
 
