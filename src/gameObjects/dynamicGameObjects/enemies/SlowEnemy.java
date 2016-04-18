@@ -1,12 +1,12 @@
 package gameObjects.dynamicGameObjects.enemies;
 
-import core.Constants;
+import utilities.Constants;
 import gameObjects.AbstractDynamicGameObject;
 import gameObjects.dynamicGameObjects.HealthBar;
 import gameObjects.dynamicGameObjects.effects.Particle;
 import gameObjects.dynamicGameObjects.effects.Emitter;
 import gameObjects.dynamicGameObjects.effects.FireEmitter;
-import interfaces.Enemy;
+import interfaces.models.Enemy;
 import javafx.scene.canvas.GraphicsContext;
 
 import java.util.ArrayList;

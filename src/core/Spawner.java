@@ -1,32 +1,36 @@
 package core;
 
-import interfaces.DynamicGameObject;
+import core.managers.PositionManager;
+import enums.Bonuses;
+import enums.Units;
+import interfaces.factories.AttacksFactory;
+import interfaces.factories.BonusFactory;
+import interfaces.factories.UnitFactory;
+import interfaces.models.DynamicGameObject;
+import models.Position;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Spawner {
+    private static final List<Units> unitTypes = Collections.unmodifiableList(Arrays.asList(Units.values()));
+
     private UnitFactory unitFactory;
-    private List<String> unitTypes;
+    private AttacksFactory attacksFactory;
+    private BonusFactory bonusFactory;
     private Double distanceRate;
     private Double passedDistance;
     private Random random;
     private Boolean isBombPackageSpawned;
     private PositionManager positionManager;
 
-    public Spawner(UnitFactory unitFactory, PositionManager positionManager) {
+    public Spawner(UnitFactory unitFactory, AttacksFactory attacksFactory, BonusFactory bonusFactory, PositionManager positionManager) {
         this.unitFactory = unitFactory;
+        this.attacksFactory = attacksFactory;
+        this.bonusFactory = bonusFactory;
         this.positionManager = positionManager;
         this.passedDistance = 0d;
-        this.unitTypes = new ArrayList<>();
-        this.unitTypes.add("SlowEnemy");
-        this.unitTypes.add("ChaoticEnemy");
-        this.unitTypes.add("RoundAsteroid");
-        this.unitTypes.add("RightAsteroid");
-        this.unitTypes.add("LeftAsteroid");
-        this.random = new Random();
         this.isBombPackageSpawned = false;
+        this.random = new Random();
     }
 
     public DynamicGameObject spawn(Double currentDistance) {
@@ -35,16 +39,14 @@ public class Spawner {
             this.passedDistance = currentDistance;
         }
         if (Math.abs(currentDistance - this.passedDistance) > this.distanceRate) {
-            String enemyType = this.unitTypes.get(random.nextInt(this.unitTypes.size()));
-
             if (currentDistance < 2000 && currentDistance > 1900 && !this.isBombPackageSpawned) {
                 this.isBombPackageSpawned = true;
                 Position position = this.positionManager.getPositionFor("BombPackage");
-                gameObject = this.unitFactory.createUnit(position.getX(), position.getY(), "BombPackage");
-            }else {
-
-                Position position = this.positionManager.getPositionFor(enemyType);
-                gameObject = this.unitFactory.createUnit(position.getX(), position.getY(), enemyType);
+                gameObject = this.bonusFactory.createBonus(Bonuses.BombPackage, position.getX(), position.getY());
+            } else {
+                Units unitType = unitTypes.get(this.random.nextInt(unitTypes.size()));
+                Position position = this.positionManager.getPositionFor(unitType.toString());
+                gameObject = this.unitFactory.createUnit(unitType, position.getX(), position.getY());
                 this.passedDistance = currentDistance;
             }
         }

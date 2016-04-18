@@ -1,6 +1,6 @@
 package gameObjects.dynamicGameObjects.obstacles;
 
-import core.Constants;
+import utilities.Constants;
 
 public class LeftAsteroid extends Asteroid {
     public LeftAsteroid(double x, double y) {

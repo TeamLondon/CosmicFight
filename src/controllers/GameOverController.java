@@ -1,17 +1,16 @@
 package controllers;
 
-import core.Constants;
+import utilities.Constants;
 import enums.Scenes;
-import interfaces.ConfirmBox;
-import interfaces.Database;
-import interfaces.MessageBox;
+import models.contracts.ConfirmBox;
+import interfaces.core.Database;
+import models.contracts.MessageBox;
 import interfaces.StageManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.paint.Paint;
 
 public class GameOverController extends AbstractController {
     @FXML
@@ -32,12 +31,12 @@ public class GameOverController extends AbstractController {
         this.exitGame.setStyle(Constants.BUTTON_STYLE);
         this.playNewGame.setStyle(Constants.BUTTON_STYLE);
         super.initialize(stageManager, database, messageBox, confirmBox);
-        boolean isAlive = this.getGameDatabase().getPlayer().getHitPoints() > 0;
+        boolean isAlive = this.getDatabase().getPlayer().getHitPoints() > 0;
         if (isAlive) {
             this.congratulationsYouWin.setVisible(true);
             this.score.textProperty().
-                    set(this.getGameDatabase().getPlayer().getName() +
-                    " score: " + this.getGameDatabase().getPlayer().getHighScore().getPlayerScore());
+                    set(this.getDatabase().getPlayer().getName() +
+                    " score: " + this.getDatabase().getPlayer().getHighScore().getPlayerScore());
             this.score.setVisible(true);
         } else {
             this.badLuck.setVisible(true);
@@ -45,7 +44,7 @@ public class GameOverController extends AbstractController {
     }
 
     public void playNewGameButton() {
-        this.getGameDatabase().saveHighScoreInfo();
+        this.getDatabase().saveHighScoreInfo();
         this.getStageManager().setScene(Scenes.StartGameScene);
     }
 

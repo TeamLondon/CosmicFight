@@ -3,11 +3,12 @@ package controllers;
 import core.*;
 import enums.Scenes;
 import gameObjects.dynamicGameObjects.enemies.FirstLevelBoss;
-import gameObjects.dynamicGameObjects.player.GamePlayer;
-import gameObjects.staticGameObjects.HUD;
+import gameObjects.staticGameObjects.SimpleHUD;
 
 import interfaces.*;
 
+import interfaces.core.Database;
+import interfaces.models.DynamicGameObject;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -17,6 +18,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import models.contracts.ConfirmBox;
+import models.contracts.MessageBox;
+import models.handlers.InputHandler;
+import utilities.Constants;
 
 import java.util.Random;
 
@@ -31,30 +36,26 @@ public class FirstLevelController extends AbstractLevelController {
     private StackPane layout;
 
     private boolean isBossSpawned = false;
-    private boolean isBossDead = false;
     private FirstLevelBoss boss;
 
     public FirstLevelController(
             StageManager stageManager,
             Database gameDatabase,
+            Spawner spawner,
+            InputHandler inputHandler,
             MessageBox messageBox,
             ConfirmBox confirmBox,
-            ObjectHandler objectHandler,
-            Player player,
-            InputHandler inputHandler,
-            HUD hud,
-            Spawner spawner) {
+            SimpleHUD hud) {
 
-        super(stageManager, gameDatabase, messageBox, confirmBox, objectHandler, player, inputHandler, hud, spawner);
-        this.initialize();
+        super(stageManager, gameDatabase, spawner, inputHandler, messageBox, confirmBox, hud);
         this.stage = stageManager.getStage();
         this.isBossSpawned = false;
-        this.isBossDead = false;
     }
 
     public void start() throws Exception {
         GraphicsContext gc = initializeGraphicContext();
         setBackground();
+        clear();
         initialize();
         spawnBoss();
 
@@ -63,11 +64,15 @@ public class FirstLevelController extends AbstractLevelController {
             public void handle(long currentNanoTime) {
                 update();
                 draw(gc);
-                System.out.println(getObjectHandler().dynamicObjects.size());
             }
         };
 
         timer.start();
+    }
+
+    private void clear() {
+        this.getInputHandler().getObjectHandler().clear();
+        this.getInputHandler().clear();
     }
 
     public Scene getCurrentScene() throws Exception {
@@ -77,11 +82,15 @@ public class FirstLevelController extends AbstractLevelController {
 
     public void initialize(){
         this.getInputHandler().setScene(this.scene);
+        this.getInputHandler().setPlayer(this.getPlayer());
+        this.getInputHandler().getObjectHandler().setPlayer(this.getPlayer());
+
+        this.getHud().setPlayer(this.getPlayer());
     }
 
-    public void draw(GraphicsContext gc) {
-        gc.setGlobalAlpha(1.0);
-        gc.setGlobalBlendMode(BlendMode.SRC_OVER);
+    public void draw(GraphicsContext graphicsContext) {
+        graphicsContext.setGlobalAlpha(1.0);
+        graphicsContext.setGlobalBlendMode(BlendMode.SRC_OVER);
         // scroll background and calculate new position
         double distanceTravelled = backgroundImageView.getLayoutY();
         double y = backgroundImageView.getLayoutY() + backgroundScrollSpeed;
@@ -100,26 +109,23 @@ public class FirstLevelController extends AbstractLevelController {
         this.getSpawner().setDistance(30d);
         DynamicGameObject gameObject = this.getSpawner().spawn(distanceTravelled);
         if (gameObject != null) {
-            if (gameObject instanceof FirstLevelBoss){
-
-            }
-            this.getObjectHandler().addDynamicObject(gameObject);
+            this.getInputHandler().getObjectHandler().addDynamicObject(gameObject);
         }
 
         ///////////////////////////////////////////////
 
         // move background
-        backgroundImageView.setLayoutY(y);
-        gc.clearRect(0, 0, Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
-        this.getObjectHandler().draw(gc);
-        this.getHud().draw(gc);
+        this.backgroundImageView.setLayoutY(y);
+        graphicsContext.clearRect(0, 0, Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
+        this.getInputHandler().getObjectHandler().draw(graphicsContext);
+        this.getHud().draw(graphicsContext);
     }
 
     public void update() {
-        this.getObjectHandler().update();
+        this.getInputHandler().getObjectHandler().update();
         this.getInputHandler().refresh();
         if (this.isBossSpawned) {
-            if (this.boss.isAlive()) {
+            if (!this.boss.isAlive() || this.getPlayer().getHitPoints() <= 0) {
                 setNextScene();
                 this.timer.stop();
             }
@@ -129,8 +135,8 @@ public class FirstLevelController extends AbstractLevelController {
 
     private void spawnBoss() {
         Random random = new Random();
-        this.boss = new FirstLevelBoss(random.nextInt(650) + 100, 50, this.getObjectHandler());
-        this.getObjectHandler().addDynamicObject(boss);
+        this.boss = new FirstLevelBoss(random.nextInt(650) + 100, 50, this.getInputHandler().getObjectHandler());
+        this.getInputHandler().getObjectHandler().addDynamicObject(boss);
         this.isBossSpawned = true;
     }
 
@@ -158,7 +164,7 @@ public class FirstLevelController extends AbstractLevelController {
         Canvas canvas = new Canvas(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
         this.layout.getChildren().add(backgroundLayer);
         this.layout.getChildren().add(canvas);
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-        return gc;
+        GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
+        return graphicsContext;
     }
 }

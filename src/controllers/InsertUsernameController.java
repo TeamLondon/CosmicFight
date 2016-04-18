@@ -1,8 +1,11 @@
 package controllers;
 
-import core.Constants;
-import enums.Scenes;
 import gameObjects.dynamicGameObjects.player.GamePlayer;
+import interfaces.core.Database;
+import models.contracts.ConfirmBox;
+import models.contracts.MessageBox;
+import utilities.Constants;
+import enums.Scenes;
 import interfaces.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -54,9 +57,8 @@ public class InsertUsernameController extends AbstractController {
         String name = "";
         if (validationMatcher.find()){
             name = input;
-
-            this.getStageManager().getDatabase().getPlayer().setName(name);
-            this.getStageManager().getDatabase().addHighScore(this.getStageManager().getDatabase().getPlayer().getHighScore());
+            this.getDatabase().setPlayer(new GamePlayer(name));
+            this.getDatabase().addHighScore(this.getDatabase().getPlayer().getHighScore());
             setNextScene();
 
         } else{

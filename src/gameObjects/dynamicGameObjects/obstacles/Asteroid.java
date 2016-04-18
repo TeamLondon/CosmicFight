@@ -1,9 +1,10 @@
 package gameObjects.dynamicGameObjects.obstacles;
 
 import gameObjects.AbstractDynamicGameObject;
+import interfaces.models.Unit;
 import javafx.scene.canvas.GraphicsContext;
 
-public abstract class Asteroid extends AbstractDynamicGameObject{
+public abstract class Asteroid extends AbstractDynamicGameObject implements Unit {
 
     protected Asteroid(double x, double y) {
         super(x, y);

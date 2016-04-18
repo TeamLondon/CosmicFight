@@ -1,18 +1,17 @@
 package gameObjects.dynamicGameObjects.player;
 
-import core.Constants;
+import utilities.Constants;
 import enums.Attacks;
 import gameObjects.AbstractDynamicGameObject;
-import interfaces.HighScore;
-import interfaces.Player;
+import models.contracts.HighScore;
+import interfaces.models.Player;
 import javafx.scene.canvas.GraphicsContext;
-import utilityModels.GameHighScore;
+import models.GameHighScore;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class GamePlayer extends AbstractDynamicGameObject implements Player{
-    private static final String DefaultName = "DefaultName";
     private String name;
     private double bulletCooldown;
     private double bombCooldown;
@@ -33,8 +32,8 @@ public class GamePlayer extends AbstractDynamicGameObject implements Player{
         this.highScore = new GameHighScore(this.name, 0);
     }
 
-    public GamePlayer(double x, double y) {
-        this(x, y, DefaultName);
+    public GamePlayer(String name){
+        this(Constants.PLAYER_X, Constants.PLAYER_Y, name);
     }
 
     public String getName() {
@@ -90,7 +89,7 @@ public class GamePlayer extends AbstractDynamicGameObject implements Player{
     }
 
     public double getBombCooldown() {
-        return bombCooldown;
+        return this.bombCooldown;
     }
 
     public void setBombCooldown(double bombCooldown) {

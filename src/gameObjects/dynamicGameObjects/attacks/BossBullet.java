@@ -1,6 +1,6 @@
 package gameObjects.dynamicGameObjects.attacks;
 
-import core.Constants;
+import utilities.Constants;
 import gameObjects.AbstractDynamicGameObject;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;

@@ -1,10 +1,10 @@
 package controllers;
 
-import core.Constants;
+import utilities.Constants;
 import enums.Scenes;
-import interfaces.ConfirmBox;
-import interfaces.Database;
-import interfaces.MessageBox;
+import models.contracts.ConfirmBox;
+import interfaces.core.Database;
+import models.contracts.MessageBox;
 import interfaces.StageManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -36,7 +36,7 @@ public class HighScoreController extends AbstractController {
     }
 
     private void initializeInfo() {
-        String highScoreText = this.getGameDatabase().getHighScore();
+        String highScoreText = this.getDatabase().getHighScore();
         this.highScoreResultsLabel.setText(highScoreText);
     }
 

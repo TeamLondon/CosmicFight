@@ -1,7 +1,6 @@
 package gameObjects;
 
-import interfaces.StaticGameObject;
-import javafx.scene.canvas.GraphicsContext;
+import interfaces.models.StaticGameObject;
 import javafx.scene.image.Image;
 
 public abstract class AbstractStaticGameObject implements StaticGameObject{

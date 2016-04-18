@@ -1,13 +1,10 @@
 package gameObjects.dynamicGameObjects.enemies;
 
-import core.Constants;
+import utilities.Constants;
 import gameObjects.AbstractDynamicGameObject;
 import gameObjects.dynamicGameObjects.HealthBar;
-import interfaces.Enemy;
+import interfaces.models.Enemy;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
-
-import java.util.Random;
 
 public class ChaoticEnemy extends AbstractDynamicGameObject implements Enemy {
     private HealthBar healthBar;
@@ -20,9 +17,9 @@ public class ChaoticEnemy extends AbstractDynamicGameObject implements Enemy {
         this.healthBar = new HealthBar(this.getX(), this.getY(), this.getWidth(), this.getHeight(), this.getHitPoints(), Constants.SLOW_ENEMY_HEALTH_BAR_PATH);
     }
 
-    public void draw(GraphicsContext gc) {
-        gc.drawImage(this.getImage(), this.getX(), this.getY(), this.getWidth(), this.getHeight());
-        this.healthBar.draw(gc);
+    public void draw(GraphicsContext graphicsContext) {
+        graphicsContext.drawImage(this.getImage(), this.getX(), this.getY(), this.getWidth(), this.getHeight());
+        this.healthBar.draw(graphicsContext);
     }
     public void update() {
         super.update();
