@@ -1,4 +1,4 @@
-package core;
+package utilities;
 
 public class Constants {
     //Dimension variables

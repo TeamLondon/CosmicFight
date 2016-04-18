@@ -1,6 +1,6 @@
-package utilityModels.bonuses;
+package models.bonuses;
 
-import core.Constants;
+import utilities.Constants;
 import enums.Attacks;
 import interfaces.Player;
 import javafx.scene.canvas.GraphicsContext;

@@ -1,4 +1,4 @@
-package utilityModels;
+package models;
 
 import interfaces.HighScore;
 

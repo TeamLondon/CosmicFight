@@ -3,7 +3,6 @@ package controllers;
 import core.*;
 import enums.Scenes;
 import gameObjects.dynamicGameObjects.enemies.FirstLevelBoss;
-import gameObjects.dynamicGameObjects.player.GamePlayer;
 import gameObjects.staticGameObjects.HUD;
 
 import interfaces.*;
@@ -17,6 +16,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import models.handlers.InputHandler;
+import models.handlers.ObjectHandler;
+import utilities.Constants;
 
 import java.util.Random;
 

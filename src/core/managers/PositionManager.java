@@ -1,4 +1,7 @@
-package core;
+package core.managers;
+
+import utilities.Constants;
+import models.Position;
 
 import java.util.Random;
 
@@ -9,7 +12,7 @@ public class PositionManager {
         this.random = new Random();
     }
 
-    Position getPositionFor(String unitType) {
+    public Position getPositionFor(String unitType) {
         int x = -1;
         int y = -1;
         switch (unitType) {

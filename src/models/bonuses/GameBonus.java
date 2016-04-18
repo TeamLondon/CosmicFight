@@ -1,4 +1,4 @@
-package utilityModels.bonuses;
+package models.bonuses;
 
 import gameObjects.AbstractDynamicGameObject;
 import interfaces.Bonus;

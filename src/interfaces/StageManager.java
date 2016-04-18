@@ -1,7 +1,7 @@
 package interfaces;
 
-import core.SimpleConfirmBox;
-import core.SimpleMessageBox;
+import models.outputBoxes.SimpleConfirmBox;
+import models.outputBoxes.SimpleMessageBox;
 import core.SimpleSceneBuilder;
 import enums.Scenes;
 import javafx.scene.Scene;

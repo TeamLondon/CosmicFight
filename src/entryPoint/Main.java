@@ -1,14 +1,21 @@
-package sample;
+package entryPoint;
 
 import core.*;
+import core.factories.UnitFactory;
+import core.managers.PositionManager;
+import core.managers.SimpleStageManager;
+import data.GameDatabase;
 import enums.Scenes;
 import gameObjects.dynamicGameObjects.player.GamePlayer;
 import gameObjects.staticGameObjects.HUD;
 import interfaces.Database;
 import interfaces.Player;
-import interfaces.Unit;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import models.handlers.InputHandler;
+import models.handlers.ObjectHandler;
+import models.outputBoxes.SimpleConfirmBox;
+import models.outputBoxes.SimpleMessageBox;
 
 public class Main extends Application {
 

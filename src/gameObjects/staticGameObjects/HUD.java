@@ -1,9 +1,8 @@
 package gameObjects.staticGameObjects;
 
-import core.Constants;
+import utilities.Constants;
 import enums.Attacks;
 import gameObjects.AbstractStaticGameObject;
-import gameObjects.dynamicGameObjects.player.GamePlayer;
 import interfaces.Player;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;

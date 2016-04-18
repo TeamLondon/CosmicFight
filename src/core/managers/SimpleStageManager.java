@@ -1,5 +1,8 @@
-package core;
+package core.managers;
 
+import models.outputBoxes.SimpleConfirmBox;
+import models.outputBoxes.SimpleMessageBox;
+import core.SimpleSceneBuilder;
 import enums.Scenes;
 import interfaces.Database;
 import interfaces.StageManager;

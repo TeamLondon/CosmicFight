@@ -1,13 +1,12 @@
 package gameObjects.dynamicGameObjects.enemies;
 
-import core.Constants;
-import core.ObjectHandler;
+import utilities.Constants;
+import models.handlers.ObjectHandler;
 import gameObjects.AbstractDynamicGameObject;
 import gameObjects.dynamicGameObjects.HealthBar;
 import gameObjects.dynamicGameObjects.attacks.BossBullet;
 import interfaces.Enemy;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 
 public class FirstLevelBoss extends AbstractDynamicGameObject implements Enemy{
     private HealthBar healthBar;

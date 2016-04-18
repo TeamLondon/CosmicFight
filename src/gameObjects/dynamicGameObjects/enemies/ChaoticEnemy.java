@@ -1,13 +1,10 @@
 package gameObjects.dynamicGameObjects.enemies;
 
-import core.Constants;
+import utilities.Constants;
 import gameObjects.AbstractDynamicGameObject;
 import gameObjects.dynamicGameObjects.HealthBar;
 import interfaces.Enemy;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
-
-import java.util.Random;
 
 public class ChaoticEnemy extends AbstractDynamicGameObject implements Enemy {
     private HealthBar healthBar;

@@ -1,8 +1,6 @@
 package gameObjects.dynamicGameObjects.obstacles;
 
-import core.Constants;
-import gameObjects.AbstractDynamicGameObject;
-import javafx.scene.canvas.GraphicsContext;
+import utilities.Constants;
 
 public class RoundAsteroid extends Asteroid{
 

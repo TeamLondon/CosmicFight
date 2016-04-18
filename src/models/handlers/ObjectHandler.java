@@ -1,4 +1,4 @@
-package core;
+package models.handlers;
 
 import gameObjects.dynamicGameObjects.attacks.BossBullet;
 import gameObjects.dynamicGameObjects.enemies.FirstLevelBoss;

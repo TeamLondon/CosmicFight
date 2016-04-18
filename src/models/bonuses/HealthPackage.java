@@ -1,4 +1,4 @@
-package utilityModels.bonuses;
+package models.bonuses;
 
 import interfaces.Player;
 

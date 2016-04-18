@@ -1,13 +1,12 @@
-package core;
+package core.factories;
 
 import gameObjects.AbstractDynamicGameObject;
 import gameObjects.dynamicGameObjects.enemies.ChaoticEnemy;
-import gameObjects.dynamicGameObjects.enemies.FirstLevelBoss;
 import gameObjects.dynamicGameObjects.enemies.SlowEnemy;
 import gameObjects.dynamicGameObjects.obstacles.LeftAsteroid;
 import gameObjects.dynamicGameObjects.obstacles.RightAsteroid;
 import gameObjects.dynamicGameObjects.obstacles.RoundAsteroid;
-import utilityModels.bonuses.BombPackage;
+import models.bonuses.BombPackage;
 
 public class UnitFactory {
     public AbstractDynamicGameObject createUnit(double x, double y, String unitType) {

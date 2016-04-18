@@ -1,8 +1,7 @@
 package controllers;
 
-import core.Constants;
+import utilities.Constants;
 import enums.Scenes;
-import gameObjects.dynamicGameObjects.player.GamePlayer;
 import interfaces.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

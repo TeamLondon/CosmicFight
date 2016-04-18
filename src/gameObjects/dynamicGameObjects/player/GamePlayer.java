@@ -1,12 +1,12 @@
 package gameObjects.dynamicGameObjects.player;
 
-import core.Constants;
+import utilities.Constants;
 import enums.Attacks;
 import gameObjects.AbstractDynamicGameObject;
 import interfaces.HighScore;
 import interfaces.Player;
 import javafx.scene.canvas.GraphicsContext;
-import utilityModels.GameHighScore;
+import models.GameHighScore;
 
 import java.util.ArrayList;
 import java.util.List;

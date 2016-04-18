@@ -1,6 +1,6 @@
 package gameObjects.dynamicGameObjects.enemies;
 
-import core.Constants;
+import utilities.Constants;
 import gameObjects.AbstractDynamicGameObject;
 import gameObjects.dynamicGameObjects.HealthBar;
 import gameObjects.dynamicGameObjects.effects.Particle;

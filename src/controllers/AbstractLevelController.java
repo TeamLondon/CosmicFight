@@ -1,7 +1,7 @@
 package controllers;
 
-import core.InputHandler;
-import core.ObjectHandler;
+import models.handlers.InputHandler;
+import models.handlers.ObjectHandler;
 import core.Spawner;
 import gameObjects.staticGameObjects.HUD;
 import interfaces.*;

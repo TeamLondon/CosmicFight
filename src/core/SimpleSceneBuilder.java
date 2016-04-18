@@ -1,7 +1,7 @@
 package core;
 
 import controllers.*;
-import gameObjects.dynamicGameObjects.player.GamePlayer;
+import core.managers.SimpleStageManager;
 import gameObjects.staticGameObjects.HUD;
 import interfaces.Player;
 import interfaces.StageManager;
@@ -12,6 +12,9 @@ import javafx.scene.Scene;
 import java.io.IOException;
 
 import enums.Scenes;
+import models.handlers.InputHandler;
+import models.handlers.ObjectHandler;
+import utilities.Constants;
 
 public class SimpleSceneBuilder {
     private FXMLLoader myLoader;

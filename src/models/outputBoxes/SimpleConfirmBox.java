@@ -1,4 +1,4 @@
-package core;
+package models.outputBoxes;
 
 import interfaces.ConfirmBox;
 import javafx.geometry.Pos;

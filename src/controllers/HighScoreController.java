@@ -1,6 +1,6 @@
 package controllers;
 
-import core.Constants;
+import utilities.Constants;
 import enums.Scenes;
 import interfaces.ConfirmBox;
 import interfaces.Database;
