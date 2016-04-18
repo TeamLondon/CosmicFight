@@ -27,6 +27,10 @@ public class InputHandler {
         this.player = player;
     }
 
+    public void clear(){
+        this.input.clear();
+    }
+
     public void refresh() {
         this.scene.setOnKeyPressed(
                 e -> {

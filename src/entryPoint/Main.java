@@ -1,7 +1,7 @@
 package entryPoint;
 
 import core.*;
-import core.factories.UnitFactory;
+import core.factories.SimpleUnitFactory;
 import core.managers.PositionManager;
 import core.managers.SimpleStageManager;
 import data.GameDatabase;
@@ -23,7 +23,7 @@ public class Main extends Application {
     }
 
     public void initialize(Stage stage) throws java.io.IOException {
-        UnitFactory unitFactory = new UnitFactory();
+        SimpleUnitFactory unitFactory = new SimpleUnitFactory();
         PositionManager positionManager = new PositionManager();
         Spawner spawner = new Spawner(unitFactory, positionManager);
 

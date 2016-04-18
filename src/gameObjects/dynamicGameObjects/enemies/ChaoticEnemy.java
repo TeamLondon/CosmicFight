@@ -17,9 +17,9 @@ public class ChaoticEnemy extends AbstractDynamicGameObject implements Enemy {
         this.healthBar = new HealthBar(this.getX(), this.getY(), this.getWidth(), this.getHeight(), this.getHitPoints(), Constants.SLOW_ENEMY_HEALTH_BAR_PATH);
     }
 
-    public void draw(GraphicsContext gc) {
-        gc.drawImage(this.getImage(), this.getX(), this.getY(), this.getWidth(), this.getHeight());
-        this.healthBar.draw(gc);
+    public void draw(GraphicsContext graphicsContext) {
+        graphicsContext.drawImage(this.getImage(), this.getX(), this.getY(), this.getWidth(), this.getHeight());
+        this.healthBar.draw(graphicsContext);
     }
     public void update() {
         super.update();

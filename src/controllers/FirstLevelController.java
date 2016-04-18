@@ -55,6 +55,7 @@ public class FirstLevelController extends AbstractLevelController {
     public void start() throws Exception {
         GraphicsContext gc = initializeGraphicContext();
         setBackground();
+        clear();
         initialize();
         spawnBoss();
 
@@ -67,6 +68,11 @@ public class FirstLevelController extends AbstractLevelController {
         };
 
         timer.start();
+    }
+
+    private void clear() {
+        this.getInputHandler().getObjectHandler().clear();
+        this.getInputHandler().clear();
     }
 
     public Scene getCurrentScene() throws Exception {

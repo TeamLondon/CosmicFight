@@ -1,5 +1,5 @@
 package interfaces.models;
 
-public interface Unit {
+public interface Unit extends DynamicGameObject {
     double getHitPoints();
 }

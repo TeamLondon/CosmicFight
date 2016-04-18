@@ -23,6 +23,10 @@ public class ObjectHandler {
         this.player = player;
         this.addDynamicObject(player);
     }
+
+    public void clear(){
+        this.dynamicObjects.clear();
+    }
     public void update() {
         //This loop goes through all the objects in the game
         for (int i = 0; i < dynamicObjects.size(); i++) {

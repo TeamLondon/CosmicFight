@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GamePlayer extends AbstractDynamicGameObject implements Player{
-    private static final String DefaultName = "DefaultName";
     private String name;
     private double bulletCooldown;
     private double bombCooldown;
@@ -33,8 +32,8 @@ public class GamePlayer extends AbstractDynamicGameObject implements Player{
         this.highScore = new GameHighScore(this.name, 0);
     }
 
-    public GamePlayer(double x, double y) {
-        this(x, y, DefaultName);
+    public GamePlayer(String name){
+        this(Constants.PLAYER_X, Constants.PLAYER_Y, name);
     }
 
     public String getName() {
@@ -116,7 +115,6 @@ public class GamePlayer extends AbstractDynamicGameObject implements Player{
         this.setPosition(currentX, currentY + 1);
         this.setBulletCooldown(clamp(this.getBulletCooldown() + 0.13, 0.0, 0.4));
         this.setBombCooldown(clamp(this.getBombCooldown() + 0.1, 0.0, 20.0));
-        System.out.println(this.getBulletCooldown());
     }
 
     public void draw(GraphicsContext gc) {

@@ -35,6 +35,8 @@ public class Constants {
     public static final String HIGH_SCORE_SCENE_RESOURCE = "/scenesFxmls/HighScoreScene.fxml";
     public static final String END_GAME_SCENE_RESOURCE = "/scenesFxmls/GameOverScene.fxml";
 
+    // Starting coordinates
+    public static final int PLAYER_X = 100, PLAYER_Y = 100;
     //Styles
     public static final String BUTTON_STYLE = "-fx-background-color: \n" +
             "        linear-gradient(#ffd65b, #e68400),\n" +
