@@ -6,6 +6,7 @@ import gameObjects.dynamicGameObjects.enemies.SlowEnemy;
 import gameObjects.dynamicGameObjects.obstacles.LeftAsteroid;
 import gameObjects.dynamicGameObjects.obstacles.RightAsteroid;
 import gameObjects.dynamicGameObjects.obstacles.RoundAsteroid;
+import gameObjects.dynamicGameObjects.player.GamePlayer;
 import models.bonuses.BombPackage;
 
 public class UnitFactory {

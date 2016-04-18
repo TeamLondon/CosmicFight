@@ -12,11 +12,6 @@ public class ObjectHandler {
     public LinkedList<DynamicGameObject> dynamicObjects = new LinkedList<DynamicGameObject>();
     private Player player;
 
-    public ObjectHandler(Player player) {
-        this.player = player;
-        this.addDynamicObject(player);
-    }
-
     public ObjectHandler() {
     }
 

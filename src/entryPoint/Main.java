@@ -30,8 +30,9 @@ public class Main extends Application {
         Spawner spawner = new Spawner(unitFactory, positionManager);
         ObjectHandler objectHandler = new ObjectHandler();
         InputHandler inputHandler = new InputHandler(objectHandler);
+
         HUD hud = new HUD();
-        SimpleSceneBuilder sceneBuilder = new SimpleSceneBuilder(inputHandler, objectHandler, spawner, hud);
+        SimpleSceneBuilder sceneBuilder = new SimpleSceneBuilder(inputHandler, spawner, hud);
         Database gameDatabase = new GameDatabase();
         SimpleMessageBox messageBox = new SimpleMessageBox();
         SimpleConfirmBox confirmBox = new SimpleConfirmBox();

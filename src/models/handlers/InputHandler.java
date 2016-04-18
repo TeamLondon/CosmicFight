@@ -14,22 +14,13 @@ public class InputHandler {
     private ObjectHandler objectHandler;
     private List<String> input;
 
-    public InputHandler(Scene scene, Player player, ObjectHandler handler) {
-        this.scene = scene;
-        this.player = player;
-        this.input = new ArrayList<>();
-        this.objectHandler = handler;
-    }
-
-    public InputHandler(Player player, ObjectHandler handler) {
-        this.player = player;
-        this.objectHandler = handler;
-        this.input = new ArrayList<>();
-    }
-
     public InputHandler(ObjectHandler objectHandler) {
         this.objectHandler = objectHandler;
         this.input = new ArrayList<>();
+    }
+
+    public ObjectHandler getObjectHandler() {
+        return this.objectHandler;
     }
 
     public void  setPlayer(Player player){
