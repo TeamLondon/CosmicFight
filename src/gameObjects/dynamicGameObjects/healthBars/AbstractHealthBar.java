@@ -1,21 +1,30 @@
-package gameObjects.dynamicGameObjects;
+package gameObjects.dynamicGameObjects.healthBars;
 
 import gameObjects.AbstractDynamicGameObject;
+import interfaces.models.HealthBar;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
-public class HealthBar extends AbstractDynamicGameObject {
+public class AbstractHealthBar extends AbstractDynamicGameObject implements HealthBar {
     private double startHealth;
     private double redWidth;
 
-    public HealthBar(double x, double y, double width, double height, double startHealth, String imgPath) {
+    protected AbstractHealthBar(double x, double y, double width, double height, double startHealth, String imgPath) {
         super(x, y);
         this.setWidth(width);
         this.setHeight(height * 0.3);
         this.redWidth = this.getWidth();
         this.startHealth = startHealth;
         this.setImage(new Image(imgPath, this.getWidth(), this.getHeight(), false, false));
+    }
+
+    protected double getStartHealth() {
+        return this.startHealth;
+    }
+
+    protected double getRedWidth() {
+        return this.redWidth;
     }
 
     @Override
@@ -32,7 +41,7 @@ public class HealthBar extends AbstractDynamicGameObject {
     }
 
     public void setHealth(double health) {
-        double amountInPercent = (health / startHealth) * 100;
+        double amountInPercent = (health / this.startHealth) * 100;
         this.redWidth = this.getWidth() * (amountInPercent * 0.01) - 11;
     }
 

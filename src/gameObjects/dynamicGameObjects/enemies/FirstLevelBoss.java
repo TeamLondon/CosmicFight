@@ -2,9 +2,10 @@ package gameObjects.dynamicGameObjects.enemies;
 
 import enums.Attacks;
 import gameObjects.AbstractDynamicGameObject;
-import gameObjects.dynamicGameObjects.HealthBar;
+import gameObjects.dynamicGameObjects.healthBars.EnemyHealthBar;
 import interfaces.factories.AttacksFactory;
 import interfaces.models.Enemy;
+import interfaces.models.HealthBar;
 import javafx.scene.canvas.GraphicsContext;
 import models.handlers.ObjectHandler;
 import utilities.Constants;
@@ -24,7 +25,7 @@ public class FirstLevelBoss extends AbstractDynamicGameObject implements Enemy {
         this.setVelocity(5, 0);
         this.objectHandler = handler;
         this.attacksFactory = attacksFactory;
-        this.healthBar = new HealthBar(this.getX(), this.getY(), this.getWidth(), this.getHeight(), this.getHitPoints(), Constants.BOSS_HEALTH_BAR_PATH);
+        this.healthBar = new EnemyHealthBar(this.getX(), this.getY(), this.getWidth(), this.getHeight(), this.getHitPoints(), Constants.BOSS_HEALTH_BAR_PATH);
     }
 
     public void draw(GraphicsContext gc) {

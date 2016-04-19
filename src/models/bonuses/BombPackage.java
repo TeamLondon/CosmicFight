@@ -1,16 +1,21 @@
 package models.bonuses;
 
-import utilities.Constants;
 import enums.Attacks;
+import gameObjects.dynamicGameObjects.healthBars.PackageHealthBar;
+import interfaces.models.HealthBar;
 import interfaces.models.Player;
 import javafx.scene.canvas.GraphicsContext;
+import utilities.Constants;
 
 public class BombPackage extends GameBonus {
+    private HealthBar healthBar;
+
     public BombPackage(double x, double y) {
         super(x, y);
         this.setImage(Constants.BONUS_PATH);
         this.setWidth(Constants.BONUS_WIDTH);
         this.setHeight(Constants.BONUS_HEIGHT);
+        this.healthBar = new PackageHealthBar(this.getX(), this.getY(), this.getWidth(), this.getHeight(), this.getHitPoints(), Constants.SLOW_ENEMY_HEALTH_BAR_PATH);
     }
 
 
@@ -22,5 +27,15 @@ public class BombPackage extends GameBonus {
     @Override
     public void draw(GraphicsContext gc) {
         gc.drawImage(this.getImage(), this.getX(), this.getY(), this.getWidth(), this.getHeight());
+
+        this.healthBar.draw(gc);
+    }
+
+    @Override
+    public void update() {
+        super.update();
+        this.healthBar.setPosition(this.getX(), this.getY());
+        this.healthBar.setHealth(this.getHitPoints());
+        this.healthBar.update();
     }
 }

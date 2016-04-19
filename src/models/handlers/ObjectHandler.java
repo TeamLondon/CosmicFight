@@ -9,7 +9,7 @@ import models.contracts.Bonus;
 import java.util.LinkedList;
 
 public class ObjectHandler {
-    public LinkedList<DynamicGameObject> dynamicObjects = new LinkedList<DynamicGameObject>();
+    public LinkedList<DynamicGameObject> dynamicObjects = new LinkedList<>();
     private Player player;
 
     public ObjectHandler() {
@@ -24,51 +24,22 @@ public class ObjectHandler {
         this.dynamicObjects.clear();
     }
     public void update() {
-        //This loop goes through all the objects in the game
         for (int i = 0; i < dynamicObjects.size(); i++) {
-            //Gets them and saves their reference to the variable tempObject
             DynamicGameObject tempObject = dynamicObjects.get(i);
-
             //Checks if the object is outside of the map
             if (tempObject.getY() < 0 || tempObject.getY() > 600) {
                 removeDynamicObject(tempObject);
-                tempObject = null;
-                continue;
-            }
-
-            handleCollision(tempObject);
-            tempObject.update();
-        }
-    }
-
-    private void handleCollision(DynamicGameObject tempObject) {
-        //If the current object is an instance of the Attack interface
-        if (tempObject instanceof Attack) {
-            //Iterate through all game objects again
-            for (int j = 0; j < this.dynamicObjects.size(); j++) {
-                DynamicGameObject currentTempObject = this.dynamicObjects.get(j);
-
-                // If player is attacked.
-                if (currentTempObject instanceof Player && tempObject instanceof EnemyAttack) {
-                    handleEnemyAttack(tempObject, currentTempObject);
-                }else if (!(currentTempObject instanceof Player && currentTempObject instanceof Attack)) {
-                    handlePlayerAttack(tempObject, currentTempObject);
-                }
-            }
-        }else {
-            if (!(tempObject instanceof GamePlayer)) {
-                handleCollisionWithPlayer(tempObject);
+            } else {
+                handleCollision(tempObject);
+                tempObject.update();
             }
         }
     }
 
-    public void draw(GraphicsContext gc) {
+    public void draw(GraphicsContext graphicsContext) {
         //This loop goes through all the objects in the game
-        for (int i = 0; i < dynamicObjects.size(); i++) {
-            //Gets them and saves their reference to the variable tempObject
-            DynamicGameObject tempObject = dynamicObjects.get(i);
-            //And invokes their draw() method so any new changes on their rendering (graphics) get taken into account
-            tempObject.draw(gc);
+        for (DynamicGameObject tempObject : dynamicObjects) {
+            tempObject.draw(graphicsContext);
         }
     }
 
@@ -82,6 +53,26 @@ public class ObjectHandler {
     //When an object is removed from the list, his update and draw methods are no longer called every frame
     public void removeDynamicObject(DynamicGameObject object) {
         this.dynamicObjects.remove(object);
+    }
+
+    private void handleCollision(DynamicGameObject tempObject) {
+        if (tempObject instanceof Attack) {
+            LinkedList<DynamicGameObject> dynamicObjects1 = this.dynamicObjects;
+            for (int i = 0; i < dynamicObjects1.size(); i++) {
+                DynamicGameObject currentTempObject = dynamicObjects1.get(i);
+                // If player is attacked.
+                if (currentTempObject instanceof Player && tempObject instanceof EnemyAttack) {
+                    handleEnemyAttack(tempObject, currentTempObject);
+                } else if (!(currentTempObject instanceof Player) && !(currentTempObject instanceof Attack)) {
+                    // If player is attacking.
+                    handlePlayerAttack(tempObject, currentTempObject);
+                }
+            }
+        }else {
+            if (!(tempObject instanceof GamePlayer)) {
+                handleCollisionWithPlayer(tempObject);
+            }
+        }
     }
 
     private void handleEnemyAttack(DynamicGameObject tempObject, DynamicGameObject currentTempObject) {
@@ -104,7 +95,6 @@ public class ObjectHandler {
                 //If yes - initiate its death animation and remove it from the list
                 this.player.addScore(currentTempObject instanceof Enemy ? ((Enemy) currentTempObject).getRewardPoints(): 1);
                 removeDynamicObject(currentTempObject);
-                currentTempObject = null;
             }
         }
     }
