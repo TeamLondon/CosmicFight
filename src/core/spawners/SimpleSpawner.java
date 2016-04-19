@@ -50,7 +50,7 @@ public class SimpleSpawner implements Spawner {
             this.passedDistance = currentDistance;
         }
         if (Math.abs(currentDistance - this.passedDistance) > this.distanceRate) {
-            if (currentDistance < 2000 && currentDistance > 1900 && !this.isBombPackageSpawned) {
+            if (currentDistance < 2400 && currentDistance > 1900 && !this.isBombPackageSpawned) {
                 this.isBombPackageSpawned = true;
                 Position position = this.positionManager.getPositionFor("Package");
                 gameObject = this.bonusFactory.createBonus(Bonuses.BombPackage, position.getX(), position.getY());
