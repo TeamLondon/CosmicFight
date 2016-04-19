@@ -5,7 +5,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-public abstract class AbstractDynamicGameObject implements DynamicGameObject{
+public abstract class AbstractDynamicGameObject implements DynamicGameObject {
     private Image image;
     private double x;
     private double y;
@@ -17,7 +17,7 @@ public abstract class AbstractDynamicGameObject implements DynamicGameObject{
     // private Image explosionSheet = new Image("/explosion/explosion.png");
 
     public AbstractDynamicGameObject(double x, double y) {
-        this.setPosition(x ,y);
+        this.setPosition(x, y);
         this.setHitPoints(100);
     }
 
@@ -92,14 +92,20 @@ public abstract class AbstractDynamicGameObject implements DynamicGameObject{
     }
 
     public Rectangle2D getBoundary() {
-        return new Rectangle2D(this.x,this.y,width,height);
+        return new Rectangle2D(this.x, this.y, width, height);
     }
 
     public boolean isIntersecting(DynamicGameObject otherDynamicObject) {
-        return otherDynamicObject.getBoundary().intersects( this.getBoundary() );
+        try {
+            return otherDynamicObject.getBoundary().intersects(this.getBoundary());
+        } catch (NullPointerException npe) {
+            System.out.println();
+            System.out.println(npe.toString());
+        }
+        return false;
     }
 
-    public void draw(GraphicsContext gc){
+    public void draw(GraphicsContext gc) {
         //gc.drawImage(explosionSheet, explosionSheet.getWidth() - 128, 0, 128, 128, 0, 0, 800, 600);
     }
 

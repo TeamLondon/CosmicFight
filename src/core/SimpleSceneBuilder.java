@@ -1,6 +1,7 @@
 package core;
 
 import controllers.*;
+import core.spawners.SimpleSpawner;
 import enums.Scenes;
 import gameObjects.staticGameObjects.SimpleHUD;
 import interfaces.*;
@@ -18,7 +19,7 @@ import java.io.IOException;
 public class SimpleSceneBuilder implements SceneBuilder {
     private FXMLLoader myLoader;
 
-    private Spawner spawner;
+    private SimpleSpawner spawner;
     private InputHandler inputHandler;
     private SimpleHUD hud;
     private Database database;
@@ -27,7 +28,7 @@ public class SimpleSceneBuilder implements SceneBuilder {
 
     public SimpleSceneBuilder(
             Database database,
-            Spawner spawner,
+            SimpleSpawner spawner,
             InputHandler inputHandler,
             ConfirmBox confirmBox,
             MessageBox messageBox,

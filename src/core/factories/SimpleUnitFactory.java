@@ -2,6 +2,7 @@ package core.factories;
 
 import enums.Units;
 import gameObjects.dynamicGameObjects.enemies.ChaoticEnemy;
+import gameObjects.dynamicGameObjects.enemies.FirstLevelBoss;
 import gameObjects.dynamicGameObjects.enemies.SlowEnemy;
 import gameObjects.dynamicGameObjects.obstacles.LeftAsteroid;
 import gameObjects.dynamicGameObjects.obstacles.RightAsteroid;
@@ -23,9 +24,6 @@ public class SimpleUnitFactory implements UnitFactory {
                 break;
             case RoundAsteroid:
                 unit = new RoundAsteroid(x, y);
-                break;
-            case FirstLevelBoss:
-                //unit = new FirstLevelBoss(x, y);
                 break;
             case LeftAsteroid:
                 unit = new LeftAsteroid(x, y);

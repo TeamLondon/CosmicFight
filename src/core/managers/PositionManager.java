@@ -28,6 +28,10 @@ public class PositionManager {
                 x = Constants.WINDOW_WIDTH - Constants.BONUS_WIDTH;
                 y = random.nextInt(Constants.BONUS_HEIGHT / 2);
                 break;
+            case "FirstLevelBoss":
+                x = random.nextInt(Constants.WINDOW_WIDTH - Constants.BONUS_WIDTH);
+                y = 50;
+                break;
             default:
                 x = random.nextInt(Constants.WINDOW_WIDTH - Constants.BONUS_WIDTH);
                 y = 0;

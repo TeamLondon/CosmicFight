@@ -44,15 +44,20 @@ public class ObjectHandler {
             /////////////////////////////////////////////Collision testing///////////////////////////////////////////////////////
             //If the current object is an instance of the Attack interface
             if (tempObject instanceof Attack) {
+                if (tempObject instanceof BossBullet){
+                    System.out.println();
+                }
                 //Iterate through all game objects again
                 for (int j = 0; j < this.dynamicObjects.size(); j++) {
                     DynamicGameObject currentTempObject = this.dynamicObjects.get(j);
 
-                    //Check if the current object is the player or another bullet
-                    if (currentTempObject instanceof GamePlayer || currentTempObject instanceof Attack || currentTempObject instanceof BossBullet) {
-                        //If yes - continue..
-                        continue;
-                    }else {
+                    // If player is attacked.
+                    if (currentTempObject instanceof Player && tempObject instanceof BossBullet) {
+                        if (tempObject.isIntersecting(currentTempObject)) {
+                            currentTempObject.applyDamage(((Attack) tempObject).getDamage());
+                            this.removeDynamicObject(tempObject);
+                        }
+                    }else if (!(currentTempObject instanceof Player) && !(currentTempObject instanceof Attack) ) {
                         //Else check if it is intersecting with the bullet
                         if (tempObject.isIntersecting(currentTempObject)) {
                             //If yes subtract 10 from the total hitPoints of this object
@@ -63,7 +68,7 @@ public class ObjectHandler {
                             //Then check if the current object currently has 0 health
                             if (currentTempObject.getHitPoints() <= 0) {
                                 //If yes - initiate its death animation and remove it from the list
-                                player.addScore(currentTempObject instanceof Enemy ? ((Enemy) currentTempObject).getRewardPoints(): 1);
+                                this.player.addScore(currentTempObject instanceof Enemy ? ((Enemy) currentTempObject).getRewardPoints(): 1);
                                 removeDynamicObject(currentTempObject);
                                 currentTempObject = null;
                             }
@@ -97,7 +102,6 @@ public class ObjectHandler {
         for (int i = 0; i < dynamicObjects.size(); i++) {
             //Gets them and saves their reference to the variable tempObject
             DynamicGameObject tempObject = dynamicObjects.get(i);
-
             //And invokes their draw() method so any new changes on their rendering (graphics) get taken into account
             tempObject.draw(gc);
         }
