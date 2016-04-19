@@ -1,5 +1,6 @@
 package gameObjects.staticGameObjects;
 
+import javafx.scene.image.Image;
 import utilities.Constants;
 import enums.Attacks;
 import gameObjects.AbstractStaticGameObject;
@@ -36,6 +37,7 @@ public class SimpleHUD extends AbstractStaticGameObject implements interfaces.HU
             this.setImage(Constants.HUD_COOLDOWN_BAR_PATH);
             gc.fillRect(84, Constants.WINDOW_HEIGHT - 42, bombValue, 20);
             gc.drawImage(this.getImage(), 1, Constants.WINDOW_HEIGHT - this.getImage().getHeight() + 20, this.getWidth(), this.getHeight() - 20);
+            gc.drawImage(new Image(Constants.GIANT_BOMB_PATH), 45, Constants.WINDOW_HEIGHT - 52, 30, 40);
         }
     }
     public void update() {

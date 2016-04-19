@@ -1,12 +1,10 @@
 package controllers;
 
-import core.*;
 import enums.Scenes;
 import gameObjects.dynamicGameObjects.enemies.FirstLevelBoss;
 import gameObjects.staticGameObjects.SimpleHUD;
-
-import interfaces.*;
-
+import interfaces.Spawner;
+import interfaces.StageManager;
 import interfaces.core.Database;
 import interfaces.models.DynamicGameObject;
 import javafx.animation.AnimationTimer;
@@ -22,8 +20,6 @@ import models.contracts.ConfirmBox;
 import models.contracts.MessageBox;
 import models.handlers.InputHandler;
 import utilities.Constants;
-
-import java.util.Random;
 
 public class FirstLevelController extends AbstractLevelController {
     private Scene scene;
@@ -57,8 +53,6 @@ public class FirstLevelController extends AbstractLevelController {
         setBackground();
         clear();
         initialize();
-        spawnBoss();
-
 
         timer = new AnimationTimer() {
             public void handle(long currentNanoTime) {
@@ -84,7 +78,8 @@ public class FirstLevelController extends AbstractLevelController {
         this.getInputHandler().setScene(this.scene);
         this.getInputHandler().setPlayer(this.getPlayer());
         this.getInputHandler().getObjectHandler().setPlayer(this.getPlayer());
-
+        this.getSpawner().initialize();
+        this.getSpawner().setDistance(20d);
         this.getHud().setPlayer(this.getPlayer());
     }
 
@@ -99,16 +94,15 @@ public class FirstLevelController extends AbstractLevelController {
         ////////////////////////////////////////////////
         if (Double.compare(y, 0) >= 0) {
             y = 0;
-            if (!this.isBossSpawned) {
-                spawnBoss();
-            }
         }
 
         distanceTravelled = distanceTravelled * (-1);
-
-        this.getSpawner().setDistance(30d);
         DynamicGameObject gameObject = this.getSpawner().spawn(distanceTravelled);
         if (gameObject != null) {
+            if (gameObject instanceof FirstLevelBoss){
+                this.isBossSpawned = true;
+                this.boss = (FirstLevelBoss) gameObject;
+            }
             this.getInputHandler().getObjectHandler().addDynamicObject(gameObject);
         }
 
@@ -130,14 +124,8 @@ public class FirstLevelController extends AbstractLevelController {
                 this.timer.stop();
             }
         }
+        
         this.getHud().update();
-    }
-
-    private void spawnBoss() {
-        Random random = new Random();
-        this.boss = new FirstLevelBoss(random.nextInt(650) + 100, 50, this.getInputHandler().getObjectHandler());
-        this.getInputHandler().getObjectHandler().addDynamicObject(boss);
-        this.isBossSpawned = true;
     }
 
     private void setNextScene() {

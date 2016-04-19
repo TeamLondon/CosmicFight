@@ -1,6 +1,7 @@
 package core.factories;
 
 import enums.Attacks;
+import gameObjects.dynamicGameObjects.attacks.BossBullet;
 import gameObjects.dynamicGameObjects.attacks.Bullet;
 import gameObjects.dynamicGameObjects.attacks.GiantBomb;
 import interfaces.factories.AttacksFactory;
@@ -16,6 +17,9 @@ public class SimpleAttackFactory implements AttacksFactory {
                 break;
             case Bullet:
                 attack = new Bullet(x, y);
+                break;
+            case  BossBullet:
+                attack = new BossBullet(x,y);
                 break;
             default:
                 break;

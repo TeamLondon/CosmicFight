@@ -1,11 +1,12 @@
 package gameObjects.dynamicGameObjects.attacks;
 
-import utilities.Constants;
 import gameObjects.AbstractDynamicGameObject;
+import interfaces.models.EnemyAttack;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
+import utilities.Constants;
 
-public class BossBullet extends AbstractDynamicGameObject{
+public class BossBullet extends AbstractDynamicGameObject implements EnemyAttack{
 
     public BossBullet(double x, double y) {
         super(x, y);

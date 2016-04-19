@@ -16,7 +16,7 @@ public class PositionManager {
         int x = -1;
         int y = -1;
         switch (unitType) {
-            case "BombPackage":
+            case "Package":
                 x = random.nextInt(Constants.WINDOW_WIDTH - Constants.BONUS_WIDTH);
                 y = 0;
                 break;
@@ -27,6 +27,10 @@ public class PositionManager {
             case "LeftAsteroid":
                 x = Constants.WINDOW_WIDTH - Constants.BONUS_WIDTH;
                 y = random.nextInt(Constants.BONUS_HEIGHT / 2);
+                break;
+            case "FirstLevelBoss":
+                x = random.nextInt(Constants.WINDOW_WIDTH - Constants.BONUS_WIDTH);
+                y = 50;
                 break;
             default:
                 x = random.nextInt(Constants.WINDOW_WIDTH - Constants.BONUS_WIDTH);

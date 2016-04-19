@@ -2,7 +2,7 @@ package gameObjects.dynamicGameObjects.enemies;
 
 import utilities.Constants;
 import gameObjects.AbstractDynamicGameObject;
-import gameObjects.dynamicGameObjects.HealthBar;
+import gameObjects.dynamicGameObjects.healthBars.EnemyHealthBar;
 import gameObjects.dynamicGameObjects.effects.Particle;
 import gameObjects.dynamicGameObjects.effects.Emitter;
 import gameObjects.dynamicGameObjects.effects.FireEmitter;
@@ -14,7 +14,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class SlowEnemy extends AbstractDynamicGameObject implements Enemy{
-    private HealthBar healthBar;
+    private EnemyHealthBar healthBar;
     private Emitter emitter = new FireEmitter();
     private List<Particle> particles = new ArrayList<>();
 
@@ -24,7 +24,7 @@ public class SlowEnemy extends AbstractDynamicGameObject implements Enemy{
         this.setWidth(Constants.SLOW_ENEMY_WIDTH);
         this.setHeight(Constants.SLOW_ENEMY_HEIGHT);
         this.setVelocity(0, 3);
-        this.healthBar = new HealthBar(this.getX(), this.getY(), this.getWidth(), this.getHeight(), this.getHitPoints(), Constants.SLOW_ENEMY_HEALTH_BAR_PATH);
+        this.healthBar = new EnemyHealthBar(this.getX(), this.getY(), this.getWidth(), this.getHeight(), this.getHitPoints(), Constants.SLOW_ENEMY_HEALTH_BAR_PATH);
     }
 
     public void draw(GraphicsContext gc) {
