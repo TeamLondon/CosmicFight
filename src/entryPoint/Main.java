@@ -11,6 +11,7 @@ import core.spawners.SimpleSpawner;
 import data.GameDatabase;
 import enums.Scenes;
 import gameObjects.staticGameObjects.SimpleHUD;
+import interfaces.StageManager;
 import interfaces.core.Database;
 import interfaces.factories.AttacksFactory;
 import interfaces.factories.BonusFactory;
@@ -54,7 +55,7 @@ public class Main extends Application {
                 messageBox,
                 hud);
 
-        SimpleStageManager stageManager = new SimpleStageManager(stage, sceneBuilder);
+        StageManager stageManager = new SimpleStageManager(stage, sceneBuilder);
 
         stageManager.setScene(Scenes.StartGameScene);
         stage.setTitle("Cosmic fight");

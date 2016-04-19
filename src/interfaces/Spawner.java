@@ -6,4 +6,6 @@ public interface Spawner {
     DynamicGameObject spawn(Double currentDistance);
 
     void setDistance(Double distance);
+
+    void initialize();
 }

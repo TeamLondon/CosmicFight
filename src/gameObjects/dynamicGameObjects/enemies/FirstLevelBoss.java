@@ -17,8 +17,7 @@ public class FirstLevelBoss extends AbstractDynamicGameObject implements Enemy {
     private double lastTime;
 
     public FirstLevelBoss(double x, double y, ObjectHandler handler, AttacksFactory attacksFactory) {
-        super(x, y);
-        this.setHitPoints(2000);
+        super(x, y, 2000);
         this.setImage(Constants.BOSS_PATH);
         this.setWidth(Constants.BOSS_WIDTH);
         this.setHeight(Constants.BOSS_HEIGHT);

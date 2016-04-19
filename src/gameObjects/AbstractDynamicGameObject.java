@@ -14,11 +14,17 @@ public abstract class AbstractDynamicGameObject implements DynamicGameObject {
     private double width;
     private double height;
     private double hitPoints;
+    private double initialHealth;
     // private Image explosionSheet = new Image("/explosion/explosion.png");
 
     public AbstractDynamicGameObject(double x, double y) {
+        this(x, y, 100);
+    }
+
+    public AbstractDynamicGameObject(double x, double y, double hitPoints) {
         this.setPosition(x, y);
-        this.setHitPoints(100);
+        this.hitPoints = hitPoints;
+        this.initialHealth = hitPoints;
     }
 
     public void setVelocity(double x, double y) {
@@ -64,7 +70,11 @@ public abstract class AbstractDynamicGameObject implements DynamicGameObject {
     }
 
     public void setHitPoints(double hitPoints) {
-        this.hitPoints = hitPoints;
+        if (hitPoints > this.initialHealth) {
+            this.hitPoints = this.initialHealth;
+        }else{
+            this.hitPoints = hitPoints;
+        }
     }
 
     public void applyDamage(double hitPoints) {

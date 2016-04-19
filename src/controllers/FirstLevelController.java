@@ -78,6 +78,7 @@ public class FirstLevelController extends AbstractLevelController {
         this.getInputHandler().setScene(this.scene);
         this.getInputHandler().setPlayer(this.getPlayer());
         this.getInputHandler().getObjectHandler().setPlayer(this.getPlayer());
+        this.getSpawner().initialize();
         this.getSpawner().setDistance(20d);
         this.getHud().setPlayer(this.getPlayer());
     }

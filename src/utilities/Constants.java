@@ -23,7 +23,7 @@ public class Constants {
     public static final String SLOW_ENEMY_PATH = "/enemy.png";
     public static final String BACKGROUND_PATH = "/background/space3.jpg";
     public static final String BOSS_PATH = "/firstLevelBoss.png";
-    public static final String BONUS_PATH = "/GreenPlanet.png";
+    public static final String BONUS_PATH = "/bomb/player/1.png";
     public static final String HUD_HEALTH_BAR_PATH = "/HUD/HUD_healthBar.png";
     public static final String HUD_COOLDOWN_BAR_PATH = "/HUD/HUD_cooldownBar.png";
     public static final String BOSS_HEALTH_BAR_PATH = "/HealthBars/BossHealthBar.png";

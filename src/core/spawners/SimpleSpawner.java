@@ -54,7 +54,7 @@ public class SimpleSpawner implements Spawner {
                 this.isBombPackageSpawned = true;
                 Position position = this.positionManager.getPositionFor("Package");
                 gameObject = this.bonusFactory.createBonus(Bonuses.BombPackage, position.getX(), position.getY());
-            } else if (!this.isHealthPackageSpawned && currentDistance < 2200) {
+            } else if (!this.isHealthPackageSpawned && currentDistance < 1600) {
                 this.isHealthPackageSpawned = true;
                 Position position = this.positionManager.getPositionFor("Package");
                 gameObject = this.bonusFactory.createBonus(Bonuses.HealthPackage, position.getX(), position.getY());
@@ -78,5 +78,12 @@ public class SimpleSpawner implements Spawner {
 
     public void setDistance(Double distanceRate) {
         this.distanceRate = distanceRate;
+    }
+
+    public void initialize(){
+        this.passedDistance = 0d;
+        this.isHealthPackageSpawned = false;
+        this.isFirstLevelBossSpawned = false;
+        this.isBombPackageSpawned = false;
     }
 }
