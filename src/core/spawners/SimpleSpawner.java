@@ -29,6 +29,7 @@ public class SimpleSpawner implements Spawner {
     private Boolean isBombPackageSpawned;
     private PositionManager positionManager;
     private Boolean isFirstLevelBossSpawned;
+    private boolean isHealthPackageSpawned;
 
     public SimpleSpawner(UnitFactory unitFactory, BossFactory bossFactory, BonusFactory bonusFactory, PositionManager positionManager) {
         this.unitFactory = unitFactory;
@@ -38,6 +39,7 @@ public class SimpleSpawner implements Spawner {
         this.passedDistance = 0d;
         this.isBombPackageSpawned = false;
         this.isFirstLevelBossSpawned = false;
+        this.isHealthPackageSpawned = false;
         this.random = new Random();
     }
 
@@ -50,8 +52,13 @@ public class SimpleSpawner implements Spawner {
         if (Math.abs(currentDistance - this.passedDistance) > this.distanceRate) {
             if (currentDistance < 2000 && currentDistance > 1900 && !this.isBombPackageSpawned) {
                 this.isBombPackageSpawned = true;
-                Position position = this.positionManager.getPositionFor("BombPackage");
+                Position position = this.positionManager.getPositionFor("Package");
                 gameObject = this.bonusFactory.createBonus(Bonuses.BombPackage, position.getX(), position.getY());
+            } else if (!this.isHealthPackageSpawned && currentDistance < 2200) {
+                this.isHealthPackageSpawned = true;
+                Position position = this.positionManager.getPositionFor("Package");
+                gameObject = this.bonusFactory.createBonus(Bonuses.HealthPackage, position.getX(), position.getY());
+                return gameObject;
             } else {
                 Units unitType = unitTypes.get(this.random.nextInt(unitTypes.size()));
                 Position position = this.positionManager.getPositionFor(unitType.toString());
@@ -62,7 +69,6 @@ public class SimpleSpawner implements Spawner {
 
         if (!this.isFirstLevelBossSpawned && this.passedDistance < 2000) {
             this.isFirstLevelBossSpawned = true;
-            System.out.println("boss");
             Position position = this.positionManager.getPositionFor(Boss.FirstLevelBoss.toString());
             gameObject = this.bossFactory.createUnit(Boss.FirstLevelBoss, position.getX(), position.getY());
         }

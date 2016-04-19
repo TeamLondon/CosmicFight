@@ -28,6 +28,7 @@ public class Constants {
     public static final String HUD_COOLDOWN_BAR_PATH = "/HUD/HUD_cooldownBar.png";
     public static final String BOSS_HEALTH_BAR_PATH = "/HealthBars/BossHealthBar.png";
     public static final String SLOW_ENEMY_HEALTH_BAR_PATH = "/HealthBars/slowEnemyHealthBar.png";
+    public static final String HEALTH_PACKAGE_IMAGE_PATH = "/HealthPackageImage.png";
 
     //FXML Paths
     public static final String START_GAME_SCENE_RESOURCE = "/scenesFxmls/StartGameScene.fxml";

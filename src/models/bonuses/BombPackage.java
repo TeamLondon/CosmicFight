@@ -2,13 +2,12 @@ package models.bonuses;
 
 import enums.Attacks;
 import gameObjects.dynamicGameObjects.healthBars.PackageHealthBar;
-import interfaces.models.HealthBar;
 import interfaces.models.Player;
 import javafx.scene.canvas.GraphicsContext;
 import utilities.Constants;
 
 public class BombPackage extends GameBonus {
-    private HealthBar healthBar;
+    private PackageHealthBar healthBar;
 
     public BombPackage(double x, double y) {
         super(x, y);

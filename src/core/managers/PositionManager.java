@@ -16,7 +16,7 @@ public class PositionManager {
         int x = -1;
         int y = -1;
         switch (unitType) {
-            case "BombPackage":
+            case "Package":
                 x = random.nextInt(Constants.WINDOW_WIDTH - Constants.BONUS_WIDTH);
                 y = 0;
                 break;
