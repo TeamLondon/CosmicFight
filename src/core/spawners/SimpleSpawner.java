@@ -1,19 +1,15 @@
 package core.spawners;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import core.managers.PositionManager;
 import enums.Bonuses;
 import enums.Boss;
 import enums.Units;
-import gameObjects.dynamicGameObjects.enemies.FirstLevelBoss;
 import interfaces.Spawner;
-import interfaces.factories.AttacksFactory;
 import interfaces.factories.BonusFactory;
 import interfaces.factories.BossFactory;
 import interfaces.factories.UnitFactory;
 import interfaces.models.DynamicGameObject;
 import models.Position;
-import models.handlers.ObjectHandler;
 
 import java.util.*;
 
@@ -54,11 +50,19 @@ public class SimpleSpawner implements Spawner {
                 this.isBombPackageSpawned = true;
                 Position position = this.positionManager.getPositionFor("Package");
                 gameObject = this.bonusFactory.createBonus(Bonuses.BombPackage, position.getX(), position.getY());
-            } else if (!this.isHealthPackageSpawned && currentDistance < 1600) {
+            } else if (this.passedDistance > 1300 && this.passedDistance < 1600 && !this.isHealthPackageSpawned) {
                 this.isHealthPackageSpawned = true;
                 Position position = this.positionManager.getPositionFor("Package");
                 gameObject = this.bonusFactory.createBonus(Bonuses.HealthPackage, position.getX(), position.getY());
                 return gameObject;
+            } else if (this.passedDistance < 1100 && this.passedDistance > 800 && this.isHealthPackageSpawned){
+                    this.isHealthPackageSpawned = false;
+                    Position position = this.positionManager.getPositionFor("Package");
+                    gameObject = this.bonusFactory.createBonus(Bonuses.HealthPackage, position.getX(), position.getY());
+            } else if (!this.isHealthPackageSpawned && this.passedDistance < 300 ){
+                this.isHealthPackageSpawned = true;
+                Position position = this.positionManager.getPositionFor("Package");
+                gameObject = this.bonusFactory.createBonus(Bonuses.HealthPackage, position.getX(), position.getY());
             } else {
                 Units unitType = unitTypes.get(this.random.nextInt(unitTypes.size()));
                 Position position = this.positionManager.getPositionFor(unitType.toString());

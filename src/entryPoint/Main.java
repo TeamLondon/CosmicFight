@@ -18,8 +18,8 @@ import interfaces.factories.BonusFactory;
 import interfaces.factories.BossFactory;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import models.handlers.InputHandler;
-import models.handlers.ObjectHandler;
+import core.handlers.InputHandler;
+import core.handlers.ObjectHandler;
 import models.outputBoxes.SimpleConfirmBox;
 import models.outputBoxes.SimpleMessageBox;
 

@@ -1,12 +1,11 @@
 package core.factories;
 
 import enums.Boss;
-import enums.Units;
 import gameObjects.dynamicGameObjects.enemies.FirstLevelBoss;
 import interfaces.factories.AttacksFactory;
 import interfaces.factories.BossFactory;
 import interfaces.models.Unit;
-import models.handlers.ObjectHandler;
+import core.handlers.ObjectHandler;
 
 public class SimpleBossFactory implements BossFactory {
     private ObjectHandler objectHandler;

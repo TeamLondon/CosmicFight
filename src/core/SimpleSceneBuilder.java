@@ -11,7 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import models.contracts.ConfirmBox;
 import models.contracts.MessageBox;
-import models.handlers.InputHandler;
+import core.handlers.InputHandler;
 import utilities.Constants;
 
 import java.io.IOException;

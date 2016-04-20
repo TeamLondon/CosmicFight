@@ -4,8 +4,7 @@ import interfaces.core.Database;
 import interfaces.models.Player;
 import models.contracts.ConfirmBox;
 import models.contracts.MessageBox;
-import models.handlers.InputHandler;
-import core.spawners.SimpleSpawner;
+import core.handlers.InputHandler;
 import gameObjects.staticGameObjects.SimpleHUD;
 import interfaces.*;
 

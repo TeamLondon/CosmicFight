@@ -18,7 +18,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import models.contracts.ConfirmBox;
 import models.contracts.MessageBox;
-import models.handlers.InputHandler;
+import core.handlers.InputHandler;
 import utilities.Constants;
 
 public class FirstLevelController extends AbstractLevelController {

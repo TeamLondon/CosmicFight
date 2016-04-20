@@ -7,7 +7,7 @@ import interfaces.factories.AttacksFactory;
 import interfaces.models.Enemy;
 import interfaces.models.HealthBar;
 import javafx.scene.canvas.GraphicsContext;
-import models.handlers.ObjectHandler;
+import core.handlers.ObjectHandler;
 import utilities.Constants;
 
 public class FirstLevelBoss extends AbstractDynamicGameObject implements Enemy {

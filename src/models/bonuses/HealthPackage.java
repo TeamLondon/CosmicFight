@@ -39,6 +39,6 @@ public class HealthPackage extends GameBonus {
 
     @Override
     public void applyBonus(Player player) {
-        player.setHitPoints(player.getHitPoints() + 40);
+        player.setHitPoints(player.getHitPoints() + 50);
     }
 }

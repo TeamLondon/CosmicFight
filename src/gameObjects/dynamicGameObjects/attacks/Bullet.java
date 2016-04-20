@@ -30,6 +30,6 @@ public class Bullet extends AbstractDynamicGameObject implements Attack {
 
     @Override
     public Integer getDamage() {
-        return 5;
+        return 10;
     }
 }

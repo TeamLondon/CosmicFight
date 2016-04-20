@@ -1,4 +1,4 @@
-package models.handlers;
+package core.handlers;
 
 import enums.Attacks;
 import gameObjects.dynamicGameObjects.attacks.Bullet;
