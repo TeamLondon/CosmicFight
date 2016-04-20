@@ -5,7 +5,7 @@ public class Constants {
     public static final int WINDOW_WIDTH = 800, WINDOW_HEIGHT = (WINDOW_WIDTH / 12) * 9;
     public static final int BULLET_WIDTH = 15, BULLET_HEIGHT = 15;
     public static final int BOSS_BULLET_WIDTH = 1, BOSS_BULLET_HEIGHT = 24;
-    public static final int GIANT_BOMB_WIDTH = 50, GIANT_BOMB_HEIGHT = 50;
+    public static final int GIANT_BOMB_WIDTH = 30, GIANT_BOMB_HEIGHT = 70;
     public static final int SLOW_ENEMY_WIDTH = 50, SLOW_ENEMY_HEIGHT = 50;
     public static final int PLAYER_WIDTH = 50, PLAYER_HEIGHT = 50;
     public static final int ROUND_ASTEROID_WIDTH = 64, ROUND_ASTEROID_HEIGHT = 64;
