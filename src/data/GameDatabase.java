@@ -24,7 +24,7 @@ public class GameDatabase implements Database {
 
     @Override
     public void saveHighScoreInfo() {
-        String savePath = "highscores.save";
+        String savePath = "res\\highscores.save";
         try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(savePath, false))) {
             objectOutputStream.writeObject(this.highScores);
         } catch (IOException ioe) {
@@ -60,7 +60,7 @@ public class GameDatabase implements Database {
 
     @Override
     public void loadHighScoreInfo() {
-        String loadPath = "highscores.save";
+        String loadPath = "res\\highscores.save";
         try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(loadPath))) {
             Set<HighScore> loadedHighScores = (HashSet<HighScore>) objectInputStream.readObject();
             if (loadedHighScores != null) {
