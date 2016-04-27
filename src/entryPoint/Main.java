@@ -31,7 +31,6 @@ public class Main extends Application {
     }
 
     public void initialize(Stage stage) throws java.io.IOException {
-
         ObjectHandler objectHandler = new ObjectHandler();
         InputHandler inputHandler = new InputHandler(objectHandler);
 
