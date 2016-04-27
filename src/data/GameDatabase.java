@@ -10,6 +10,8 @@ import java.util.stream.Collectors;
 
 public class GameDatabase implements Database {
     private Set<HighScore> highScores;
+	
+	private static final String Path = "highscores.save";
 
     private Player player;
 
@@ -24,8 +26,7 @@ public class GameDatabase implements Database {
 
     @Override
     public void saveHighScoreInfo() {
-        String savePath = "highscores.save";
-        try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(savePath, false))) {
+        try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(Path, false))) {
             objectOutputStream.writeObject(this.highScores);
         } catch (IOException ioe) {
             System.out.println(ioe.getMessage());
@@ -60,8 +61,7 @@ public class GameDatabase implements Database {
 
     @Override
     public void loadHighScoreInfo() {
-        String loadPath = "highscores.save";
-        try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(loadPath))) {
+        try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(Path))) {
             Set<HighScore> loadedHighScores = (HashSet<HighScore>) objectInputStream.readObject();
             if (loadedHighScores != null) {
                 this.highScores = loadedHighScores;
